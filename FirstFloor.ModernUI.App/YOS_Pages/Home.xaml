@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel >
+                <!--#region 샘플 : 제목 1-->
+                <TextBlock Text="YStory Office Solution" Style="{StaticResource Heading1}" Margin="0,0,0,8"/>
+                <!--#endregion-->
+                <!--#region 샘플 : 첫 번째 문단-->
+                <mui:BBCodeBlock BBCode="[b]볼드체로 글 쓰기[/b], 이어서 기본 모던 스타일의 텍스트를 'BBCodeBlock'에서 쓴다. &#13;&#10;&#13;&#10; 개행도 한 번 한 후,  [url=http://xamlspy.com]주소링크[/url], 를 이렇게 멋지게 걸어주자. &#13;&#10;&#13;&#10;그리고 다시 개행 후  [url=https://github.com/firstfloorsoftware/mui/wiki]또 url 주소 링크를 걸어주는 이 센스.[/url] 항상 마무리는 [b]볼드체[/b]이지요.  잘 활용해봅세" Margin="0,0,0,32" />
+                <!--#endregion-->
+                <!--#region 샘플 : 제목 2-->
+                <TextBlock Text="프로그램 특징" Style="{StaticResource Heading2}" />
+                <!--#endregion-->
+                <!--#region 샘플 : 두 번째 문단-->
+                <mui:BBCodeBlock BBCode="첫 번째 문단과 동일한 'BBCodeBlock이다." Margin="0,0,0,32"/>
+                <!--#endregion-->
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
