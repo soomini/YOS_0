@@ -13,24 +13,52 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+#region ODP.NET @ CONNECTIONSTRING namespace 추가
+using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
+using System.Data;
+using System.Configuration;
+#endregion
+
 namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 {
     /// <summary>
     /// Interaction logic for ControlsStylesSampleForm.xaml
     /// </summary>
+    /// 
     public partial class Person : UserControl
     {
+        #region 비연결기반 객체들 준비
+        private DataSet Lecturer_DS = new DataSet("Lecturer_DS");
+
+        private OracleCommandBuilder oraBuilder;
+
+        private OracleDataAdapter oraDA;
+
+        private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
+        #endregion
+
         public Person()
         {
             InitializeComponent();
-
-            this.Loaded += OnLoaded;
+            
+            this.Loaded += OnLoaded;           
         }
 
         void OnLoaded(object sender, RoutedEventArgs e)
         {
+            #region 데이터 가져오기 및 DataGrid에 추가
+            oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
+
+            oraBuilder = new OracleCommandBuilder(oraDA);
+
+            oraDA.Fill(Lecturer_DS, "LECTURER");
+
+            DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
+            #endregion
+
             // select first control on the form
-            Keyboard.Focus(this.TextFirstName);
+            Keyboard.Focus(this.TextFirstName);            
         }
     }
 }
