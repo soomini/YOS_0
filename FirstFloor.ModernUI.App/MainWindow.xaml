@@ -88,3 +88,5 @@
         <!--#endregion-->
     </mui:ModernWindow.MenuLinkGroups>
 </mui:ModernWindow>
+
+    <!--순환 초기화-->
