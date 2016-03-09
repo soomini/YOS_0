@@ -94,8 +94,11 @@
                 </StackPanel>
             <!--#endregion-->
             <!--#region 등록 버튼-->
-            <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
-            <!--#endregion-->
+                <StackPanel>
+                    <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
+                    <Button Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
+                </StackPanel>
+                <!--#endregion-->
             </StackPanel>
         </StackPanel>
 
