@@ -26,29 +26,79 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
     /// </summary>
     public partial class Person : UserControl
     {
-        string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
 
-        private OracleConnection Con = new OracleConnection();
+        private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
+        //private OracleConnection Con = new OracleConnection();
+
+        private DataSet PERSON_DS = new DataSet("PERSON_DS");
+
+        private OracleCommandBuilder oraBuilder;
         private OracleDataAdapter Adpt;
 
         public Person()
         {
             InitializeComponent();
-            
-            this.Loaded += OnLoaded;           
+
+            this.Loaded += OnLoaded;
         }
 
-        public void OnLoaded(object sender, RoutedEventArgs e)
+        void OnLoaded(object sender, RoutedEventArgs e)
         {
+            #region 데이터 가져오기 및 DataGrid에 추가
+
             Adpt = new OracleDataAdapter("SELECT * FROM PERSON", strOraConn);
-            DataTable dt = new DataTable();
+            
+            DataTable PERSON_dt = PERSON_DS.Tables["PERSON_dt"];
 
-            OracleCommandBuilder OraBuilder = new OracleCommandBuilder(Adpt);
+            oraBuilder = new OracleCommandBuilder(Adpt);
 
-            Adpt.Fill(dt);
+            Adpt.Fill(PERSON_DS, "PERSON_dt");
 
-            DG1.ItemsSource = dt.DefaultView;
+            DG1.ItemsSource = PERSON_DS.Tables["PERSON_dt"].DefaultView;
+            #endregion
 
+
+            //public Binding Add(string propertyName, Object dataSource, string dataMember);
+          
+            // select first control on the form
+            Keyboard.Focus(this.TxtName);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable PERSON_dt = PERSON_DS.Tables["PERSON_dt"];
+       
+            string Record = "";
+            foreach (DataRow R in PERSON_dt.Rows)
+            {
+                switch (R.RowState)
+                {
+                    case DataRowState.Added:
+                        Record=string.Format("추가: {0}", Convert.ToString(R["NAME"]));
+                        MessageBox.Show($"데이터가 추가되었습니다. {Record}");
+                        break;
+
+                    case DataRowState.Deleted:
+                        Record=string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
+                        MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
+                        break;
+
+                    case DataRowState.Modified:
+                        Record=string.Format("수정: {0}", Convert.ToString(R["NAME"]));
+                        MessageBox.Show($"데이터가 수정되었습니다. {Record}");
+                        break;
+                }
+            }
+            //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
+            //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
+            try
+            {
+                Adpt.Update(PERSON_DS, "PERSON_dt");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("에러 발생: " + ex.ToString());
+            }
         }
     }
 }

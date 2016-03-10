@@ -44,14 +44,14 @@
             <!--#endregion-->
             <!--#region 이름-->
                 <StackPanel>
-                    <Label Content="이름" Target="{Binding ElementName=TextFirstName}"/>
-                    <TextBox x:Name="TextFirstName" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                    <Label Content="이름" Target="{Binding ElementName=TxtName}"/>
+                    <TextBox x:Name="TxtName" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
             <!--#endregion-->
             <!--#region 직급-->
                 <StackPanel>
-                    <Label Content="직책" Target="{Binding ElementName=TextLastName}"/>
-                    <TextBox x:Name="TextLastName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                    <Label Content="직책" Target="{Binding ElementName=TxtJob}"/>
+                    <TextBox x:Name="TxtJob" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
             <!--#endregion-->
             <!--#region 성별-->
@@ -65,20 +65,20 @@
             <!--#endregion-->
             <!--#region 전화번호-->
                 <StackPanel>
-                    <Label Content="전화번호" Target="{Binding ElementName=TextCity}"/>
-                    <TextBox x:Name="TextCity" Width="150" />
+                    <Label Content="전화번호" Target="{Binding ElementName=TxtPhoneNumber}"/>
+                    <TextBox x:Name="TxtPhoneNumber" Width="150" />
                 </StackPanel>
             <!--#endregion-->
             <!--#region 생년월일-->
                 <StackPanel>
-                    <Label Content="생년월일" Target="{Binding ElementName=DateBirth}" />
-                    <DatePicker x:Name="DateBirth" />
+                    <Label Content="생년월일" Target="{Binding ElementName=TxtBirth}" />
+                    <DatePicker x:Name="TxtBirth" />
                 </StackPanel>
             <!--#endregion-->
             <!--#region 주소 : 도시-->
                 <StackPanel>
-                    <Label Content="도시" Target="{Binding ElementName=ComboState}"/>
-                    <ComboBox x:Name="ComboState" Width="150">
+                    <Label Content="도시" Target="{Binding ElementName=TxtAddress}"/>
+                    <ComboBox x:Name="TxtAddress" Width="150">
                         <ComboBoxItem Content="서울"/>
                         <ComboBoxItem Content="대전"/>
                         <ComboBoxItem Content="대구"/>
@@ -89,19 +89,19 @@
             <!--#endregion-->
             <!--#region 입력칸 : 주소 : 상세-->
                 <StackPanel>
-                    <Label Content="상세 주소" Target="{Binding ElementName=TextAddress}"/>
-                    <TextBox x:Name="TextAddress" Width="150" />
+                    <Label Content="상세 주소" Target="{Binding ElementName=TxtAddress2}"/>
+                    <TextBox x:Name="TxtAddress2" Width="150" />
                 </StackPanel>
             <!--#endregion-->
             <!--#region 등록 버튼-->
-            <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
+            <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" Click="Button_Click" />
             <!--#endregion-->
             </StackPanel>
         </StackPanel>
 
         <DockPanel>
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged" Width="150" >
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
                     <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
