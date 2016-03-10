@@ -103,9 +103,9 @@
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged" Width="150" >
                 <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
-                    <mui:DataGridTextColumn Header="종류" Binding="{Binding LastName}"/>
-                    <mui:DataGridTextColumn Header="전화번호" Binding="{Binding Email}"/>
+                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding LECTURERNAME}"/>
+                    <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
+                    <mui:DataGridTextColumn Header="전화번호" Binding="{Binding PHONENUMBER}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
