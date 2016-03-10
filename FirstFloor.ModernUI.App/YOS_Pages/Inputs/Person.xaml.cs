@@ -34,8 +34,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         public Person()
         {
             InitializeComponent();
-
-            this.Loaded += OnLoaded;
+            
+            this.Loaded += OnLoaded;           
         }
 
         public void OnLoaded(object sender, RoutedEventArgs e)
