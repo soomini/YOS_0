@@ -29,13 +29,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
     public partial class Person : UserControl
     {
         #region 비연결기반 객체들 준비
-        private DataSet Lecturer_DS = new DataSet("Lecturer_DS");
+        private DataSet PERSON_DS = new DataSet("PERSON_DS");
 
         private OracleCommandBuilder oraBuilder;
 
         private OracleDataAdapter oraDA;
 
-        private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
+        private string connStr = "User Id=dba_soo;Password=tnalsl;Data Source=MYORACLE";
         #endregion
 
         public Person()
@@ -48,13 +48,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         void OnLoaded(object sender, RoutedEventArgs e)
         {
             #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
+            oraDA = new OracleDataAdapter("SELECT * FROM PERSON", connStr);
 
             oraBuilder = new OracleCommandBuilder(oraDA);
 
-            oraDA.Fill(Lecturer_DS, "LECTURER");
+            oraDA.Fill(PERSON_DS, "PERSON");
 
-            DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
+            DG1.ItemsSource = PERSON_DS.Tables["PERSON"].DefaultView;
             #endregion
 
             // select first control on the form
