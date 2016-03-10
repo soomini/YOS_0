@@ -7,12 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-            <mui:ModernTab SelectedSource="/YOS_Pages/Inputs/Person.xaml" Layout="Tab">
-                <mui:ModernTab.Links>
-                    <mui:Link DisplayName="강사" Source="/YOS_Pages/Inputs/Person.xaml" />
-                    <mui:Link DisplayName="강좌" Source="/Content/LoremIpsumSplit.xaml" />
-                    <mui:Link DisplayName="직원" Source="/Content/LoremIpsumList.xaml" />
-                </mui:ModernTab.Links>
-            </mui:ModernTab>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="119*"/>
+        </Grid.RowDefinitions>
+        <mui:ModernTab SelectedSource="/YOS_Pages/Inputs/Person.xaml" Layout="Tab" Grid.RowSpan="2">
+            <mui:ModernTab.Links>
+                <mui:Link DisplayName="강사" Source="/YOS_Pages/Inputs/Person.xaml" />
+                <mui:Link DisplayName="강좌" Source="/Content/LoremIpsumSplit.xaml" />
+                <mui:Link DisplayName="직원" Source="/Content/LoremIpsumList.xaml" />
+            </mui:ModernTab.Links>
+        </mui:ModernTab>
     </Grid>
 </UserControl>

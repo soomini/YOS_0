@@ -13,13 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
+using System.Data;
+
+
 namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 {
+    //DataTable EXAM_EMP;
     /// <summary>
     /// Interaction logic for ControlsStylesSampleForm.xaml
     /// </summary>
     public partial class Person : UserControl
     {
+        string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
+
+        private OracleConnection Con = new OracleConnection();
+        private OracleDataAdapter Adpt;
+
         public Person()
         {
             InitializeComponent();
@@ -27,10 +38,17 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
             this.Loaded += OnLoaded;
         }
 
-        void OnLoaded(object sender, RoutedEventArgs e)
+        public void OnLoaded(object sender, RoutedEventArgs e)
         {
-            // select first control on the form
-            Keyboard.Focus(this.TextFirstName);
+            Adpt = new OracleDataAdapter("SELECT * FROM TABLE", strOraConn);
+            DataTable dt = new DataTable();
+
+            OracleCommandBuilder OraBuilder = new OracleCommandBuilder(Adpt);
+
+            Adpt.Fill(dt);
+
+            DG1.ItemsSource = dt.DefaultView;
+
         }
     }
 }
