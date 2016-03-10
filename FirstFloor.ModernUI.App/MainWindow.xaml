@@ -16,7 +16,7 @@
         <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />
         <!--#endregion-->
     </mui:ModernWindow.TitleLinks>
-
+ 
     <mui:ModernWindow.MenuLinkGroups>
         <!--#region 메뉴 : Home-->
         <mui:LinkGroup DisplayName="Home">
@@ -36,7 +36,7 @@
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <!--#endregion-->
-        <!--#region 메뉴 : 입력 -->
+        <!--#region 메뉴 : Input -->
         <mui:LinkGroup DisplayName="Input">
             <mui:LinkGroup.Links>
                 <mui:Link Source="/YOS_Pages/Input.xaml" />
