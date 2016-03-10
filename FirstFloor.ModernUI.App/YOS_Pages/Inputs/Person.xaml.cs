@@ -40,7 +40,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 
         public void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Adpt = new OracleDataAdapter("SELECT * FROM TABLE", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT * FROM PERSON", strOraConn);
             DataTable dt = new DataTable();
 
             OracleCommandBuilder OraBuilder = new OracleCommandBuilder(Adpt);
