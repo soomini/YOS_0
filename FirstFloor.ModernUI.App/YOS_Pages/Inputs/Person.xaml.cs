@@ -38,7 +38,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
         #endregion
 
-        private string strGENDER="";
+        private string strGENDER="";        
 
         public Person()
         {
@@ -53,7 +53,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 
             oraDA.Fill(Lecturer_DS, "LECTURER");
 
-            DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
+            DataTable DT = Lecturer_DS.Tables["LECTURER"];
+            DG1.ItemsSource = DT.DefaultView;
+            //DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
             #endregion
         }
 
@@ -63,14 +65,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
             Keyboard.Focus(this.TextFirstName);            
         }
 
+        #region Stackpanel 버튼 이벤트
         private void btn_INSERT_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 #region set nuwRow value
                 DataRow newInsertRow = Lecturer_DS.Tables["LECTURER"].NewRow();
-                // 시퀀스 사용으로 수정 필요
-                newInsertRow["LECTURERNO"] = 4;
+                // 시퀀스 사용으로 수정 필요 일단 증가연산자 사용함
+                newInsertRow["LECTURERNO"] = Lecturer_DS.Tables["LECTURER"].Rows.Count+1;
                 newInsertRow["LECTURERNAME"] = TextFirstName.Text.Trim();
                 newInsertRow["JOB"] = TextLastName.Text.Trim();
                 newInsertRow["GENDER"] = strGENDER;                
@@ -79,16 +82,25 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
                 newInsertRow["CITY"] = ((ComboBoxItem)ComboState.SelectedItem).Content.ToString();
                 newInsertRow["DETAILADDRESS"] = TextAddress.Text.Trim();
 
-                Lecturer_DS.Tables["LECTURER"].Rows.Add(newInsertRow);
+                //Lecturer_DS.Tables["LECTURER"].Rows.Add(newInsertRow); -> 첫번째 row부터 추가한다
+                //InsertAt() : DataRowCollection의 지정한 위치에 새 행을 삽입
+                Lecturer_DS.Tables["LECTURER"].Rows.InsertAt(newInsertRow, (Lecturer_DS.Tables["LECTURER"].Rows.Count)+1);
+                
                 #endregion
                 oraDA.Update(Lecturer_DS, "LECTURER");
-                MessageBox.Show("추가 성공");
+
+                MessageBox.Show("추가 성공");               
             }
             catch(Exception ex)
             {
                 MessageBox.Show("오류 : " + ex.ToString());
             }
         }
+
+        private void btn_DELETE_Click(object sender, RoutedEventArgs e)
+        {         
+        }
+        #endregion
 
         #region Radio value get
         private void RadioGendeWan_Checked(object sender, RoutedEventArgs e)
@@ -100,6 +112,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         {
             strGENDER = (string)(sender as RadioButton).Content;
         }
-        #endregion        
+        #endregion
+
+        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
