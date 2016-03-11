@@ -44,7 +44,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         {
             InitializeComponent();
             
-            this.Loaded += OnLoaded;
+            this.Loaded += OnLoaded;           
 
             #region 데이터 가져오기 및 DataGrid에 추가
             oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
