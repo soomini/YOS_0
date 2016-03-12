@@ -35,7 +35,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 
         private OracleDataAdapter oraDA;
 
-        private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
+        private string connStr = "User Id=DBA_SOO;Password=tnalsl;Data Source=myoracle";
         #endregion
 
         public Person()
@@ -48,7 +48,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         void OnLoaded(object sender, RoutedEventArgs e)
         {
             #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
+            oraDA = new OracleDataAdapter("SELECT * FROM PERSON", connStr);
 
             oraBuilder = new OracleCommandBuilder(oraDA);
 
