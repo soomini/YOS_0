@@ -29,23 +29,23 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
     public partial class Person : UserControl
     {
         #region 비연결기반 객체들 준비
-        private DataSet Lecturer_DS = new DataSet("Lecturer_DS");
+        //private DataSet Lecturer_DS = new DataSet("Lecturer_DS");
 
-        private OracleCommandBuilder oraBuilder;
+        //private OracleCommandBuilder oraBuilder;
 
-        private OracleDataAdapter oraDA;
+        //private OracleDataAdapter oraDA;
 
-        private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
+        //private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
         #endregion
 
         #region TextBox에 LECTURERNO 번호 얻기
 
-        private int intLECTURERNO;
+        //private int intLECTURERNO;
 
-        public int getintLECTURERNO
-        {
-            get { return intLECTURERNO; }
-        }
+        //public int getintLECTURERNO
+        //{
+        //    get { return intLECTURERNO; }
+        //}
 
         #endregion
 
@@ -56,13 +56,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
             this.Loaded += OnLoaded;
 
             #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
+            //oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
 
-            oraBuilder = new OracleCommandBuilder(oraDA);
+            //oraBuilder = new OracleCommandBuilder(oraDA);
 
-            oraDA.Fill(Lecturer_DS, "LECTURER");
+            //oraDA.Fill(Lecturer_DS, "LECTURER");
 
-            DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
+            //DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
             #endregion
         }
 
