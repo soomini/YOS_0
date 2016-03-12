@@ -38,15 +38,23 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
         #endregion
 
-        public Person()
+        #region TextBox에 LECTURERNO 번호 얻기
+
+        private int intLECTURERNO;
+
+        public int getintLECTURERNO
         {
-            InitializeComponent();
-            
-            this.Loaded += OnLoaded;           
+            get { return intLECTURERNO; }
         }
 
-        void OnLoaded(object sender, RoutedEventArgs e)
+        #endregion
+
+        public Person()
         {
+            InitializeComponent();            
+
+            this.Loaded += OnLoaded;
+
             #region 데이터 가져오기 및 DataGrid에 추가
             oraDA = new OracleDataAdapter("SELECT * FROM LECTURER", connStr);
 
@@ -56,7 +64,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 
             DG1.ItemsSource = Lecturer_DS.Tables["LECTURER"].DefaultView;
             #endregion
+        }
 
+        void OnLoaded(object sender, RoutedEventArgs e)
+        {
             // select first control on the form
             Keyboard.Focus(this.TextFirstName);            
         }
