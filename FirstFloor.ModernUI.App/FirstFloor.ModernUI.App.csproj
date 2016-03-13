@@ -93,6 +93,15 @@
     <Compile Include="YOS_Content\Home_Contents\Notice.xaml.cs">
       <DependentUpon>Notice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YOS_Content\AddCost.xaml.cs">
+      <DependentUpon>AddCost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course_Pages\Complete.xaml.cs">
+      <DependentUpon>Complete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course_Pages\Ongoing.xaml.cs">
+      <DependentUpon>Ongoing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YOS_Pages\Inputs\Person.xaml.cs">
       <DependentUpon>Person.xaml</DependentUpon>
     </Compile>
@@ -361,6 +370,18 @@
     <Page Include="YOS_Content\Home_Contents\Notice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YOS_Content\AddCost.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course_Pages\Complete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course_Pages\Ongoing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="YOS_Pages\Inputs\Person.xaml">
       <Generator>MSBuild:Compile</Generator>
