@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FirstFloor.ModernUI.App.YOS_Content
+namespace FirstFloor.ModernUI.App.YOS_Content.Home_Contents
 {
-    /// <summary>
-    /// Interaction logic for LoremIpsum.xaml
-    /// </summary>
-    public partial class ContentSample : UserControl
-    {
-        public ContentSample()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Notice.xaml에 대한 상호 작용 논리
+	/// </summary>
+	public partial class Notice : UserControl
+	{
+		public Notice()
+		{
+			InitializeComponent();
+		}
+	}
 }

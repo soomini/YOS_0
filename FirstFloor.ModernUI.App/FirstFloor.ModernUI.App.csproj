@@ -90,6 +90,9 @@
     <Compile Include="Content\ControlsStylesDataGrid.xaml.cs">
       <DependentUpon>ControlsStylesDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YOS_Content\Home_Contents\Notice.xaml.cs">
+      <DependentUpon>Notice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YOS_Pages\Inputs\Person.xaml.cs">
       <DependentUpon>Person.xaml</DependentUpon>
     </Compile>
@@ -121,9 +124,6 @@
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />
     <Compile Include="SampleMsgBoxCommand.cs" />
-    <Compile Include="YOS_Content\ContentSample.xaml.cs">
-      <DependentUpon>ContentSample.xaml</DependentUpon>
-    </Compile>
     <Compile Include="YOS_Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -358,6 +358,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="YOS_Content\Home_Contents\Notice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="YOS_Pages\Inputs\Person.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -478,10 +482,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="YOS_Content\ContentSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="YOS_Pages\Home.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -520,7 +520,9 @@
   <ItemGroup>
     <Resource Include="Assets\background.snowflakes.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="YOS_Assets\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

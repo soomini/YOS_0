@@ -9,10 +9,10 @@
                   Width="800" Height="700">
     
     <mui:ModernWindow.TitleLinks>
-        <!--#region 타이틀링크 샘플 : Settings-->
+        <!--#region 타이틀링크 : Settings-->
         <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
         <!--#endregion-->
-        <!--#region 타이틀링크 샘플 : Help-->
+        <!--#region 타이틀링크 : Help-->
         <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />
         <!--#endregion-->
     </mui:ModernWindow.TitleLinks>
@@ -44,13 +44,6 @@
         </mui:LinkGroup>
         <!--#endregion-->
 
-        <!--#region 메뉴 샘플 : Welcome-->
-        <!--<mui:LinkGroup DisplayName="Welcome">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Introduction" Source="/Pages/Introduction.xaml" />
-            </mui:LinkGroup.Links>
-        </mui:LinkGroup>-->
-        <!--#endregion-->
         <!--#region 메뉴 샘플 : Layout-->
         <mui:LinkGroup DisplayName="Layout">
             <mui:LinkGroup.Links>
