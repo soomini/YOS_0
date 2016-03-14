@@ -29,25 +29,25 @@
             </DockPanel.Resources>
             <!--#endregion-->
             <StackPanel DockPanel.Dock="Top" >
-                <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
-                <DatePicker x:Name="StartDate" />
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Top" >
-                <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
-                <DatePicker x:Name="EndDate" />
+                <Label Content="검색" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
+                <ComboBox IsEditable="True" Width="110">
+                    <ComboBoxItem Content="Item 1" />
+                    <ComboBoxItem Content="Item 2" />
+                    <ComboBoxItem Content="Item 3" />
+                    <ComboBoxItem Content="Item 4" />
+                    <ComboBoxItem Content="Item 5" />
+                </ComboBox>
             </StackPanel>
             <ScrollViewer>
                 <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
-                        <mui:DataGridTextColumn Header="직책" Binding="{Binding LastName}"/>
-                        <mui:DataGridCheckBoxColumn Header="검색" Binding="{Binding IsMember}" />
+                        <mui:DataGridTextColumn Header="강좌명"  Binding="{Binding FirstName}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
         </DockPanel>
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" />
-        <StackPanel MinWidth="250" Margin="0,0,-150,0" Grid.Column="1" d:IsHidden="True" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+        <StackPanel MinWidth="250" Margin="30,0,0,0" Grid.Column="2" d:IsHidden="True" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock Text="강좌 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
             <StackPanel x:Name="sp_Form" Orientation="Vertical">

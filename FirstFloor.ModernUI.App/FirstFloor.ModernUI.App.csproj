@@ -102,9 +102,6 @@
     <Compile Include="YOS_Pages\Course_Pages\Complete.xaml.cs">
       <DependentUpon>Complete.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Course_Pages\Ongoing_1.xaml.cs">
-      <DependentUpon>Ongoing_1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Content\ControlsStylesSampleForm.xaml.cs">
       <DependentUpon>ControlsStylesSampleForm.xaml</DependentUpon>
     </Compile>
@@ -389,10 +386,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="YOS_Pages\Course_Pages\Complete.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YOS_Pages\Course_Pages\Ongoing_1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

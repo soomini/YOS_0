@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using FirstFloor.ModernUI.Windows.Controls;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
 {
@@ -9,5 +11,18 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
         {
             InitializeComponent();
         }
-    }
+
+		private void CommonDialog_Click(object sender, RoutedEventArgs e)
+		{
+			var dlg = new ModernDialog
+			{
+				Title = "Common dialog",
+				Content = new YOS_Content.AddCost()
+			};
+			dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton };
+
+			dlg.ShowDialog();
+		}
+
+	}
 }
