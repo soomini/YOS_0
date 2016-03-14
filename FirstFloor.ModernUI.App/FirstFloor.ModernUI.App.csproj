@@ -145,8 +145,17 @@
     <Compile Include="YOS_Pages\Reference.xaml.cs">
       <DependentUpon>Reference.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\References\TeachingMaterial.xaml.cs">
-      <DependentUpon>TeachingMaterial.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\References\CourseCategory.xaml.cs">
+      <DependentUpon>CourseCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\References\ItemRate.xaml.cs">
+      <DependentUpon>ItemRate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\References\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\References\TeachingMaterialPrice.xaml.cs">
+      <DependentUpon>TeachingMaterialPrice.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -513,7 +522,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\References\TeachingMaterial.xaml">
+    <Page Include="YOS_Pages\References\CourseCategory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\References\ItemRate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\References\Patners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\References\TeachingMaterialPrice.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

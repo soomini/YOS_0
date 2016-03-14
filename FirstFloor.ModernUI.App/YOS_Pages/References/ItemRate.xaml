@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.References.TeachingMaterial"
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.References.ItemRate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock Text="교구 단가" Style="{StaticResource Heading2}" />
+                <TextBlock Text="항목별 요율" Style="{StaticResource Heading2}" />
                 <DataGrid>
                     
                 </DataGrid>

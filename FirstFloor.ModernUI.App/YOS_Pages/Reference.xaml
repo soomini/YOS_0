@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab SelectedSource="/YOS_Pages/Statuses/OfWhole.xaml" Layout="List">
+        <mui:ModernTab SelectedSource="/YOS_Pages/References/Patners.xaml" Layout="List">
             <mui:ModernTab.Links>
-                <mui:Link DisplayName="Partners" Source="/YOS_Pages/Statuses/OfWhole.xaml" />
-                <mui:Link DisplayName="항목별 요율" Source="/YOS_Pages/Statuses/Annual.xaml" />
-                <mui:Link DisplayName="강좌 분류" Source="/YOS_Pages/Statuses/Monthly.xaml" />
-                <mui:Link DisplayName="교구 단가" Source="/YOS_Pages/Statuses/Custom.xaml"/>
+                <mui:Link DisplayName="Partners" Source="/YOS_Pages/References/Patners.xaml" />
+                <mui:Link DisplayName="항목별 요율" Source="/YOS_Pages/References/ItemRate.xaml" />
+                <mui:Link DisplayName="강좌 분류" Source="/YOS_Pages/References/CourseCategory.xaml" />
+                <mui:Link DisplayName="교구 단가" Source="/YOS_Pages/References/TeachingMaterialPrice.xaml"/>
             </mui:ModernTab.Links>
         </mui:ModernTab>
     </Grid>
