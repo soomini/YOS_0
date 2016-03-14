@@ -142,20 +142,11 @@
     <Compile Include="YOS_Pages\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status.xaml.cs">
-      <DependentUpon>Status.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference.xaml.cs">
+      <DependentUpon>Reference.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Statuses\Custom.xaml.cs">
-      <DependentUpon>Custom.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Statuses\Annual.xaml.cs">
-      <DependentUpon>Annual.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Statuses\Monthly.xaml.cs">
-      <DependentUpon>Monthly.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Statuses\OfWhole.xaml.cs">
-      <DependentUpon>OfWhole.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\References\TeachingMaterial.xaml.cs">
+      <DependentUpon>TeachingMaterial.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -518,23 +509,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status.xaml">
+    <Page Include="YOS_Pages\Reference.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Statuses\Custom.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YOS_Pages\Statuses\Annual.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YOS_Pages\Statuses\Monthly.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YOS_Pages\Statuses\OfWhole.xaml">
+    <Page Include="YOS_Pages\References\TeachingMaterial.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

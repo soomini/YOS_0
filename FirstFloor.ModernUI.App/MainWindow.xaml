@@ -33,14 +33,13 @@
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <!--#endregion-->
-        <!--#region 메뉴 : Status-->
-        <mui:LinkGroup DisplayName="Status">
+        <!--#region 메뉴 : Patner-->
+        <mui:LinkGroup DisplayName="Reference">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="전체" Source="/YOS_Pages/Status.xaml" />
-                <mui:Link DisplayName="역할" Source="/Pages/LayoutBasic.xaml" />
-                <mui:Link DisplayName="비용" Source="/Pages/LayoutSplit.xaml" />
-                <mui:Link DisplayName="강의처" Source="/Pages/LayoutList.xaml"  />
-                <mui:Link DisplayName="강좌" Source="/Pages/LayoutTab.xaml" />
+                <mui:Link Source="/YOS_Pages/Reference.xaml" />
+                <!--<mui:Link DisplayName="항목별 요율" Source="/Pages/LayoutBasic.xaml" />
+                <mui:Link DisplayName="강좌 분류" Source="/Pages/LayoutSplit.xaml" />
+                <mui:Link DisplayName="교구 단가" Source="/Pages/LayoutList.xaml"  />-->
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <!--#endregion-->

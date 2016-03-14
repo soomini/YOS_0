@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FirstFloor.ModernUI.App.YOS_Pages.Statuses
+namespace FirstFloor.ModernUI.App.YOS_Pages
 {
     /// <summary>
-    /// Interaction logic for LayoutBasic.xaml
+    /// Interaction logic for ControlsStyles.xaml
     /// </summary>
-    public partial class OfWhole : UserControl
+    public partial class Reference : UserControl
     {
-        public OfWhole()
+        public Reference()
         {
             InitializeComponent();
         }
