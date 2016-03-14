@@ -94,8 +94,9 @@
             <!--#endregion-->
                 <!--#region 등록, 삭제 버튼-->
                 <StackPanel>
-                    <Button Name="btn_INSERT" Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" Click="btn_INSERT_Click" />
-                    <Button Name="btn_DELETE" Content="삭제" Margin="30,16,0,0" HorizontalAlignment="Left" Click="btn_DELETE_Click"/>
+                    <Button Name="btn_INSERT" Content="등록" Margin="0,16,0,0" HorizontalAlignment="Left" Click="btn_INSERT_Click" />
+                    <Button Name="btn_DELETE" Content="삭제" Margin="35,16,0,0" HorizontalAlignment="Left" Click="btn_DELETE_Click"/>
+                    <Button Name="btn_UPDATE" Content="수정" Margin="35,16,0,0" HorizontalAlignment="Left" Click="btn_UPDATE_Click" />
                 </StackPanel>
             <!--#endregion-->
             </StackPanel>

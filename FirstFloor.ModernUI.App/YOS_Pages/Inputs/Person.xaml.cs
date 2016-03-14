@@ -62,15 +62,50 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
         void OnLoaded(object sender, RoutedEventArgs e)
         {
             // select first control on the form
-            Keyboard.Focus(this.TextFirstName);            
+            Keyboard.Focus(this.TextFirstName);
         }
+
+        #region Radio value get
+        private void RadioGendeWan_Checked(object sender, RoutedEventArgs e)
+        {
+            strGENDER = (string)(sender as RadioButton).Content;
+        }
+
+        private void RadioGendeWoman_Checked(object sender, RoutedEventArgs e)
+        {
+            strGENDER = (string)(sender as RadioButton).Content;
+        }
+        #endregion
+
+        #region Cell click event 
+        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string expression = "LECTURERNO = " + (this.DG1.SelectedIndex + 1);
+            DataRow[] CellClickEventROW = Lecturer_DS.Tables["LECTURER"].Select(expression);
+
+            TextFirstName.Text = (string)CellClickEventROW[0][1];
+            TextLastName.Text = (string)CellClickEventROW[0][2];
+            if ((string)CellClickEventROW[0][3] == "남자")
+            {
+                RadioGenderMan.IsChecked = true;
+            }
+            else if ((string)CellClickEventROW[0][3] == "여자")
+            {
+                RadioGenderWoman.IsChecked = true;
+            }
+            TextCity.Text = (string)CellClickEventROW[0][4];
+            DateBirth.SelectedDate = ((DateTime)CellClickEventROW[0][5]);
+            ComboState.Text = (string)CellClickEventROW[0][6];
+            TextAddress.Text = (string)CellClickEventROW[0][7];
+        }
+        #endregion               
 
         #region Stackpanel 버튼 이벤트
         private void btn_INSERT_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                #region set nuwRow value
+                #region set newRow value
                 DataRow newInsertRow = Lecturer_DS.Tables["LECTURER"].NewRow();
                 // 시퀀스 사용으로 수정 필요 일단 증가연산자 사용함
                 newInsertRow["LECTURERNO"] = Lecturer_DS.Tables["LECTURER"].Rows.Count+1;
@@ -99,24 +134,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Inputs
 
         private void btn_DELETE_Click(object sender, RoutedEventArgs e)
         {         
-        }
-        #endregion
 
-        #region Radio value get
-        private void RadioGendeWan_Checked(object sender, RoutedEventArgs e)
-        {
-            strGENDER = (string)(sender as RadioButton).Content;
         }
 
-        private void RadioGendeWoman_Checked(object sender, RoutedEventArgs e)
-        {
-            strGENDER = (string)(sender as RadioButton).Content;
-        }
-        #endregion
-
-        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btn_UPDATE_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        #endregion       
     }
 }
