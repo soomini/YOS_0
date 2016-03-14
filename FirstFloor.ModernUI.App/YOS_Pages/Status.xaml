@@ -3,18 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:mui="http://firstfloorsoftware.com/ModernUI" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab SelectedSource="/YOS_Pages/Statuses/OfWhole.xaml" Layout="List">
-            <mui:ModernTab.Links>
-                <mui:Link DisplayName="전체 현황" Source="/YOS_Pages/Statuses/OfWhole.xaml" />
-                <mui:Link DisplayName="년도별 현황" Source="/YOS_Pages/Statuses/Annual.xaml" />
-                <mui:Link DisplayName="월별 현황" Source="/YOS_Pages/Statuses/Monthly.xaml" />
-                <mui:Link DisplayName="지정 기간별 현황" Source="/YOS_Pages/Statuses/Custom.xaml"/>
+            <mui:ModernTab SelectedSource="/YOS_Pages/Status_Pages/Whole.xaml" Layout="Tab">
+                <mui:ModernTab.Links>
+                    <mui:Link DisplayName="전체" Source="/YOS_Pages/Status_Pages/Whole.xaml" />
+                <mui:Link DisplayName="파트너 필터" Source="/YOS_Pages/Status_Pages/Patners.xaml" />
+                    <mui:Link DisplayName="역할 필터" />
+                    <mui:Link DisplayName="강좌 필터"/>
+                    <mui:Link DisplayName="사용자 정의 필터"/>
             </mui:ModernTab.Links>
-        </mui:ModernTab>
+            </mui:ModernTab>
     </Grid>
-
 </UserControl>

@@ -23,23 +23,30 @@ namespace FirstFloor.ModernUI.App.Content
     /// </summary>
     public partial class ControlsModernMenu : UserControl
     {
+		// 그룹의 개수
         private int groupId = 2;
+		// 그룹 하위에 있는 링크의 개수
         private int linkId = 5;
 
         public ControlsModernMenu()
         {
             InitializeComponent();
 
-            // add group command
+            // AddGroup(버튼명)의 실행내용 
             this.AddGroup.Command = new RelayCommand(o => {
-                this.Menu.LinkGroups.Add(new LinkGroup {
-                    DisplayName = string.Format(CultureInfo.InvariantCulture, "group {0}",
-                    ++groupId)
-                });
+				this.Menu.LinkGroups.Add(new LinkGroup {DisplayName = $"group {++groupId}"});
             });
 
-            // add link to selected group command
-            this.AddLink.Command = new RelayCommand(o => {
+			//this.AddGroup.Command = new RelayCommand(o => {
+			//	this.Menu.LinkGroups.Add(new LinkGroup
+			//	{
+			//		DisplayName = string.Format(CultureInfo.InvariantCulture, "group {0}",
+			//		++groupId)
+			//	});
+			//});
+
+			// add link to selected group command
+			this.AddLink.Command = new RelayCommand(o => {
                 this.Menu.SelectedLinkGroup.Links.Add(new Link {
                     DisplayName = string.Format(CultureInfo.InvariantCulture, "link {0}", ++linkId),
                     Source = new Uri(string.Format(CultureInfo.InvariantCulture, "/link{0}", linkId), UriKind.Relative)

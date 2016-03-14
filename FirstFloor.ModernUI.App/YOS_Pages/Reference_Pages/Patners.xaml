@@ -1,5 +1,5 @@
-﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Inputs.Person"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages.Patners" 
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -7,18 +7,29 @@
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel MinWidth="250" Margin="0, 0, 20, 0" Grid.Column="1" d:IsHidden="True">
+
+        <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
+                    <mui:DataGridTextColumn Header="구분" Binding="{Binding LastName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <StackPanel MinWidth="250" Grid.Column="1" d:IsHidden="True" Margin="0,0,-97,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock Text="강사 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
+
             <StackPanel x:Name="Form" Orientation="Vertical">
-            <!--#region 입력 항목 스택패널 스타일 설정-->
+                <!--#region 입력 항목 스택패널 스타일 설정-->
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type StackPanel}">
                         <Setter Property="Orientation" Value="Horizontal" />
@@ -35,26 +46,25 @@
                         <Setter Property="Padding" Value="0,3" />
                     </Style>
                 </StackPanel.Resources>
-                    <!--create viewmodel--> 
-            <!--#endregion-->
-            <!--#region 스택패널 바인딩 데이터 설정-->
+                <!--#endregion-->
+                <!--#region 스택패널 바인딩 데이터 설정-->
                 <StackPanel.DataContext>
                     <app:SampleFormViewModel />
                 </StackPanel.DataContext>
-            <!--#endregion-->
-            <!--#region 이름-->
+                <!--#endregion-->
+                <!--#region 이름-->
                 <StackPanel>
                     <Label Content="이름" Target="{Binding ElementName=TextFirstName}"/>
                     <TextBox x:Name="TextFirstName" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 직급-->
+                <!--#endregion-->
+                <!--#region 직급-->
                 <StackPanel>
                     <Label Content="직책" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="TextLastName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 성별-->
+                <!--#endregion-->
+                <!--#region 성별-->
                 <StackPanel>
                     <Label Content="성별" Target="{Binding ElementName=RadioGendeMale}"/>
                     <RadioButton x:Name="RadioGendeMale">
@@ -62,20 +72,20 @@
                     </RadioButton>
                     <RadioButton Content="여자" Margin="8,0,0,0" />
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 전화번호-->
+                <!--#endregion-->
+                <!--#region 전화번호-->
                 <StackPanel>
                     <Label Content="전화번호" Target="{Binding ElementName=TextCity}"/>
                     <TextBox x:Name="TextCity" Width="150" />
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 생년월일-->
+                <!--#endregion-->
+                <!--#region 생년월일-->
                 <StackPanel>
                     <Label Content="생년월일" Target="{Binding ElementName=DateBirth}" />
                     <DatePicker x:Name="DateBirth" />
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 주소 : 도시-->
+                <!--#endregion-->
+                <!--#region 주소 : 도시-->
                 <StackPanel>
                     <Label Content="도시" Target="{Binding ElementName=ComboState}"/>
                     <ComboBox x:Name="ComboState" Width="150">
@@ -86,32 +96,20 @@
                         <ComboBoxItem Content="제주"/>
                     </ComboBox>
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 입력칸 : 주소 : 상세-->
+                <!--#endregion-->
+                <!--#region 입력칸 : 주소 : 상세-->
                 <StackPanel>
                     <Label Content="상세 주소" Target="{Binding ElementName=TextAddress}"/>
                     <TextBox x:Name="TextAddress" Width="150" />
                 </StackPanel>
-            <!--#endregion-->
-            <!--#region 등록 버튼-->
+                <!--#endregion-->
+                <!--#region 등록 버튼-->
                 <StackPanel>
-            <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
+                    <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
                     <Button Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
-            <!--#endregion-->
+                <!--#endregion-->
             </StackPanel>
         </StackPanel>
-
-        <DockPanel>
-            <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
-                <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding LECTURERNAME}"/>
-                    <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
-                    <mui:DataGridTextColumn Header="전화번호" Binding="{Binding PHONENUMBER}"/>
-                    
-                </DataGrid.Columns>
-            </DataGrid>
-        </DockPanel>
     </Grid>
 </UserControl>

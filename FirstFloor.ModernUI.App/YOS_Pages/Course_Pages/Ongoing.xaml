@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Course_Pages.Ongoing" 
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Margin="0,0,0,0">
+            <!--#region 입력 항목 독패널 스타일 설정-->
+            <DockPanel.Resources>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Orientation" Value="Horizontal" />
+                    <Setter Property="Margin" Value="0,0,0,4" />
+                </Style>
+                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                    <Setter Property="Width" Value="50" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </DockPanel.Resources>
+            <!--#endregion-->
+            <StackPanel DockPanel.Dock="Top" >
+                <Label Content="검색" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
+                <ComboBox IsEditable="True" Width="110">
+                    <ComboBoxItem Content="Item 1" />
+                    <ComboBoxItem Content="Item 2" />
+                    <ComboBoxItem Content="Item 3" />
+                    <ComboBoxItem Content="Item 4" />
+                    <ComboBoxItem Content="Item 5" />
+                </ComboBox>
+            </StackPanel>
+            <ScrollViewer>
+                <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <mui:DataGridTextColumn Header="강좌명"  Binding="{Binding FirstName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </DockPanel>
+        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" />
+        <StackPanel MinWidth="250" Margin="30,0,0,0" Grid.Column="2" d:IsHidden="True" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <TextBlock Text="강좌 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
+            <StackPanel x:Name="sp_Form" Orientation="Vertical">
+                <!--#region 입력 항목 스택패널 스타일 설정-->
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="Margin" Value="0,0,0,4" />
+                    </Style>
+                    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                        <Setter Property="Width" Value="100" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+                        <Setter Property="Padding" Value="0,3" />
+                    </Style>
+                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                        <Setter Property="Padding" Value="0,3" />
+                    </Style>
+                </StackPanel.Resources>
+                <!--create viewmodel-->
+                <!--#endregion-->
+                <!--#region 스택패널 바인딩 데이터 설정-->
+                <StackPanel.DataContext>
+                    <app:SampleFormViewModel />
+                </StackPanel.DataContext>
+                <!--#endregion-->
+
+                <!--#region 강좌명-->
+                <StackPanel x:Name="sp_CorseName">
+                    <Label x:Name="lb_CourseName" Content="강좌명" Target="{Binding ElementName=tbx_Course}"/>
+                    <TextBox x:Name="tbx_Course" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 분류 : 목적별 분류-->
+                <StackPanel x:Name="sp_CategoryOfPurpose">
+                    <Label x:Name="lb_CategoryOfPurpose" Content="목적별 분류" Target="{Binding ElementName=ComboState}"/>
+                    <ComboBox x:Name="cbb_CategoryOfPurpose" Width="150">
+                        <ComboBoxItem Content="서울"/>
+                        <ComboBoxItem Content="대전"/>
+                        <ComboBoxItem Content="대구"/>
+                        <ComboBoxItem Content="부산"/>
+                        <ComboBoxItem Content="제주"/>
+                    </ComboBox>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 분류 : 기관별 분류-->
+                <StackPanel x:Name="sp_CategoryOfInstitution">
+                    <Label x:Name="lb_CategoryOfInstitution" Content="기관별 분류" Target="{Binding ElementName=ComboState}"/>
+                    <ComboBox x:Name="cbb_CategoryOfInstitution" Width="150">
+                        <ComboBoxItem Content="서울"/>
+                        <ComboBoxItem Content="대전"/>
+                        <ComboBoxItem Content="대구"/>
+                        <ComboBoxItem Content="부산"/>
+                        <ComboBoxItem Content="제주"/>
+                    </ComboBox>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 분류 : 대상별 분류-->
+                <StackPanel x:Name="sp_CategoryOfTarget">
+                    <Label x:Name="lb_CategoryOfTarget" Content="대상별 분류" Target="{Binding ElementName=ComboState}"/>
+                    <ComboBox x:Name="cbb_CategoryOfTarget" Width="150">
+                        <ComboBoxItem Content="서울"/>
+                        <ComboBoxItem Content="대전"/>
+                        <ComboBoxItem Content="대구"/>
+                        <ComboBoxItem Content="부산"/>
+                        <ComboBoxItem Content="제주"/>
+                    </ComboBox>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 분류 : 주제별 분류-->
+                <StackPanel x:Name="sp_CategoryOfSubject">
+                    <Label x:Name="lb_CategoryOfSubject" Content="주제별 분류" Target="{Binding ElementName=ComboState}"/>
+                    <ComboBox x:Name="cbb_CateroryOfSubject" Width="150">
+                        <ComboBoxItem Content="서울"/>
+                        <ComboBoxItem Content="대전"/>
+                        <ComboBoxItem Content="대구"/>
+                        <ComboBoxItem Content="부산"/>
+                        <ComboBoxItem Content="제주"/>
+                    </ComboBox>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region PM-->
+                <StackPanel x:Name="sp_PMName">
+                    <Label x:Name="lb_PMName" Content="PM" Target="{Binding ElementName=TextLastName}"/>
+                    <TextBox x:Name="tbx_PMName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 소개자-->
+                <StackPanel x:Name="sp_RecommanderName">
+                    <Label x:Name="lb_RecommanderName" Content="소개자" Target="{Binding ElementName=TextLastName}"/>
+                    <TextBox x:Name="tbx_RecommanderName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 강의처-->
+                <StackPanel x:Name="sp_Place">
+                    <Label x:Name="lb_Place" Content="강의처" Target="{Binding ElementName=TextLastName}"/>
+                    <TextBox x:Name="tbx_Place" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region 시작일자-->
+                <StackPanel x:Name="sp_StartDate">
+                    <Label x:Name="lb_StartDate" Content="시작일자" Target="{Binding ElementName=DateBirth}" />
+                    <DatePicker x:Name="dp_StartDate" />
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 종료일자-->
+                <StackPanel x:Name="sp_EndDate">
+                    <Label x:Name="lb_EndDate" Content="종료일자" Target="{Binding ElementName=DateBirth}" />
+                    <DatePicker x:Name="dp_EndDate" />
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region 강의 시간-->
+                <StackPanel x:Name="sp_Time">
+                    <Label x:Name="lb_Time" Content="강의 시간" Target="{Binding ElementName=TextLastName}"/>
+                    <TextBox x:Name="tbx_Time" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region 총 강의료-->
+                <StackPanel x:Name="sp_TotalMoney">
+                    <Label x:Name="lb_TotalMoney" Content="총 강의료" Target="{Binding ElementName=TextLastName}"/>
+                    <TextBox x:Name="tbx_TotalMoney" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                </StackPanel>
+                <!--#endregion-->
+
+
+                <!--#region 비용-->
+                <StackPanel x:Name="sp_Cost">
+                    <Label x:Name="lb_Cost" Content="비용" Target="{Binding ElementName=TextLastName}"/>
+                    <Button x:Name="btn_OpenCostResistrationWindow" Content="비용 등록"  Click="CommonDialog_Click"/>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region 비용 제외 강의료-->
+                <StackPanel x:Name="sp_NetProfit">
+                    <Label x:Name="lb_NetProfit_Property" Content="비용 제외 강의료" Target="{Binding ElementName=TextLastName}"/>
+                    <Label x:Name="lb_NetProfit_Value" Width="150" Content="자동 계산"/>
+                </StackPanel>
+                <!--#endregion-->
+
+
+
+                <!--#region 등록 버튼-->
+                <StackPanel x:Name="sp_Change">
+                    <Button x:Name="btn_Registration" Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
+                    <Button x:Name="btn_Cancel" Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
+                </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
