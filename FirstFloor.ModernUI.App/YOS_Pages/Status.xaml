@@ -7,12 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-            <mui:ModernTab SelectedSource="/YOS_Pages/Inputs/Person.xaml" Layout="Tab">
+            <mui:ModernTab SelectedSource="/YOS_Pages/Status_Pages/Whole.xaml" Layout="Tab">
                 <mui:ModernTab.Links>
-                    <mui:Link DisplayName="강사" Source="/YOS_Pages/Inputs/Person.xaml" />
-                    <mui:Link DisplayName="강좌" Source="/Content/LoremIpsumSplit.xaml" />
-                    <mui:Link DisplayName="직원" Source="/Content/LoremIpsumList.xaml" />
-                </mui:ModernTab.Links>
+                    <mui:Link DisplayName="전체" Source="/YOS_Pages/Status_Pages/Whole.xaml" />
+                <mui:Link DisplayName="파트너 필터" Source="/YOS_Pages/Status_Pages/Patners.xaml" />
+                    <mui:Link DisplayName="역할 필터" />
+                    <mui:Link DisplayName="강좌 필터"/>
+                    <mui:Link DisplayName="사용자 정의 필터"/>
+            </mui:ModernTab.Links>
             </mui:ModernTab>
     </Grid>
 </UserControl>

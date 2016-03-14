@@ -105,9 +105,6 @@
     <Compile Include="YOS_Pages\Course_Pages\Ongoing.xaml.cs">
       <DependentUpon>Ongoing.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Inputs\Person.xaml.cs">
-      <DependentUpon>Person.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Content\ControlsStylesSampleForm.xaml.cs">
       <DependentUpon>ControlsStylesSampleForm.xaml</DependentUpon>
     </Compile>
@@ -145,17 +142,23 @@
     <Compile Include="YOS_Pages\Reference.xaml.cs">
       <DependentUpon>Reference.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\References\CourseCategory.xaml.cs">
+    <Compile Include="YOS_Pages\Reference_Pages\CourseCategory.xaml.cs">
       <DependentUpon>CourseCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\References\ItemRate.xaml.cs">
+    <Compile Include="YOS_Pages\Reference_Pages\ItemRate.xaml.cs">
       <DependentUpon>ItemRate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\References\Patners.xaml.cs">
+    <Compile Include="YOS_Pages\Reference_Pages\Patners.xaml.cs">
       <DependentUpon>Patners.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\References\TeachingMaterialPrice.xaml.cs">
+    <Compile Include="YOS_Pages\Reference_Pages\TeachingMaterialPrice.xaml.cs">
       <DependentUpon>TeachingMaterialPrice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status_Pages\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status_Pages\Whole.xaml.cs">
+      <DependentUpon>Whole.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -390,10 +393,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Inputs\Person.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Content\ControlsStylesSampleForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -522,19 +521,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\References\CourseCategory.xaml">
+    <Page Include="YOS_Pages\Reference_Pages\CourseCategory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\References\ItemRate.xaml">
+    <Page Include="YOS_Pages\Reference_Pages\ItemRate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\References\Patners.xaml">
+    <Page Include="YOS_Pages\Reference_Pages\Patners.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\References\TeachingMaterialPrice.xaml">
+    <Page Include="YOS_Pages\Reference_Pages\TeachingMaterialPrice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status_Pages\Patners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status_Pages\Whole.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -550,7 +557,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="YOS_Assets\" />
-    <Folder Include="YOS_Pages\Status\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
