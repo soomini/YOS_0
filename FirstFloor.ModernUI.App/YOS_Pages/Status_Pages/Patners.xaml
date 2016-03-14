@@ -10,23 +10,41 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label Content="시작" Target="{Binding ElementName=DateBirth}" />
-                <DatePicker x:Name="DateBirth" />
+        <DockPanel Margin="0,0,0,0">
+            <!--#region 입력 항목 독패널 스타일 설정-->
+            <DockPanel.Resources>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Orientation" Value="Horizontal" />
+                    <Setter Property="Margin" Value="0,0,0,4" />
+                </Style>
+                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                    <Setter Property="Width" Value="50" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </DockPanel.Resources>
+            <!--#endregion-->
+            <StackPanel DockPanel.Dock="Top" >
+                <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
+                <DatePicker x:Name="StartDate" />
             </StackPanel>
-            <TextBlock DockPanel.Dock="Top" Text="파트너" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
-                <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
-                    <mui:DataGridTextColumn Header="직책" Binding="{Binding LastName}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <StackPanel DockPanel.Dock="Top" >
+                <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
+                <DatePicker x:Name="EndDate" />
+            </StackPanel>
+            <ScrollViewer>
+                <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
+                        <mui:DataGridTextColumn Header="직책" Binding="{Binding LastName}"/>
+                        <mui:DataGridCheckBoxColumn Header="검색" Binding="{Binding IsMember}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
         </DockPanel>
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" />
         <DockPanel Grid.Column="2" Margin="30,0,0,0">

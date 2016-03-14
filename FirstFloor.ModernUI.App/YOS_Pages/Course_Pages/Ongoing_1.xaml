@@ -1,5 +1,5 @@
-﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Course_Pages.Ongoing" 
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Course_Pages.Ongoing_1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -10,43 +10,19 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="27*" />
+            <ColumnDefinition Width="73*" />
         </Grid.ColumnDefinitions>
 
-        <DockPanel Margin="0,0,0,0">
-            <!--#region 입력 항목 독패널 스타일 설정-->
-            <DockPanel.Resources>
-                <Style TargetType="{x:Type StackPanel}">
-                    <Setter Property="Orientation" Value="Horizontal" />
-                    <Setter Property="Margin" Value="0,0,0,4" />
-                </Style>
-                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
-                    <Setter Property="Width" Value="50" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                </Style>
-            </DockPanel.Resources>
-            <!--#endregion-->
-            <StackPanel DockPanel.Dock="Top" >
-                <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
-                <DatePicker x:Name="StartDate" />
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Top" >
-                <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
-                <DatePicker x:Name="EndDate" />
-            </StackPanel>
-            <ScrollViewer>
-                <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
-                    <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
-                        <mui:DataGridTextColumn Header="직책" Binding="{Binding LastName}"/>
-                        <mui:DataGridCheckBoxColumn Header="검색" Binding="{Binding IsMember}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>
+        <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <TextBlock DockPanel.Dock="Top" Text="강좌 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <mui:DataGridTextColumn Header="강좌명"  Binding="{Binding FirstName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </DockPanel>
-        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" />
+
         <StackPanel MinWidth="250" Margin="0,0,-150,0" Grid.Column="1" d:IsHidden="True" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock Text="강좌 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
@@ -201,6 +177,5 @@
                 <!--#endregion-->
             </StackPanel>
         </StackPanel>
-
     </Grid>
 </UserControl>

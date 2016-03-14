@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab SelectedSource="/YOS_Pages/References/Patners.xaml" Layout="List">
+        <mui:ModernTab SelectedSource="/YOS_Pages/Reference_Pages/Patners.xaml" Layout="List">
             <mui:ModernTab.Links>
                 <mui:Link DisplayName="Partners" Source="/YOS_Pages/Reference_Pages/Patners.xaml" />
                 <mui:Link DisplayName="항목별 요율" Source="/YOS_Pages/Reference_Pages/ItemRate.xaml" />

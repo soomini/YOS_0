@@ -8,109 +8,58 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
 
-        <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-            <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
-                <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
-                    <mui:DataGridTextColumn Header="구분" Binding="{Binding LastName}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </DockPanel>
-
-        <StackPanel MinWidth="250" Grid.Column="1" d:IsHidden="True" Margin="0,0,-97,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-            <TextBlock Text="강사 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
-
-            <StackPanel x:Name="Form" Orientation="Vertical">
-                <!--#region 입력 항목 스택패널 스타일 설정-->
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type StackPanel}">
-                        <Setter Property="Orientation" Value="Horizontal" />
-                        <Setter Property="Margin" Value="0,0,0,4" />
-                    </Style>
-                    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
-                        <Setter Property="Width" Value="100" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
-                        <Setter Property="Padding" Value="0,3" />
-                    </Style>
-                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
-                        <Setter Property="Padding" Value="0,3" />
-                    </Style>
-                </StackPanel.Resources>
-                <!--create viewmodel-->
-                <!--#endregion-->
-                <!--#region 스택패널 바인딩 데이터 설정-->
-                <StackPanel.DataContext>
-                    <app:SampleFormViewModel />
-                </StackPanel.DataContext>
-                <!--#endregion-->
-                <!--#region 이름-->
-                <StackPanel>
-                    <Label Content="이름" Target="{Binding ElementName=TextFirstName}"/>
-                    <TextBox x:Name="TextFirstName" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 직급-->
-                <StackPanel>
-                    <Label Content="직책" Target="{Binding ElementName=TextLastName}"/>
-                    <TextBox x:Name="TextLastName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 성별-->
-                <StackPanel>
-                    <Label Content="성별" Target="{Binding ElementName=RadioGendeMale}"/>
-                    <RadioButton x:Name="RadioGendeMale">
-                        <TextBlock Text="남자"/>
-                    </RadioButton>
-                    <RadioButton Content="여자" Margin="8,0,0,0" />
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 전화번호-->
-                <StackPanel>
-                    <Label Content="전화번호" Target="{Binding ElementName=TextCity}"/>
-                    <TextBox x:Name="TextCity" Width="150" />
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 생년월일-->
-                <StackPanel>
-                    <Label Content="생년월일" Target="{Binding ElementName=DateBirth}" />
-                    <DatePicker x:Name="DateBirth" />
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 주소 : 도시-->
-                <StackPanel>
-                    <Label Content="도시" Target="{Binding ElementName=ComboState}"/>
-                    <ComboBox x:Name="ComboState" Width="150">
-                        <ComboBoxItem Content="서울"/>
-                        <ComboBoxItem Content="대전"/>
-                        <ComboBoxItem Content="대구"/>
-                        <ComboBoxItem Content="부산"/>
-                        <ComboBoxItem Content="제주"/>
-                    </ComboBox>
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 입력칸 : 주소 : 상세-->
-                <StackPanel>
-                    <Label Content="상세 주소" Target="{Binding ElementName=TextAddress}"/>
-                    <TextBox x:Name="TextAddress" Width="150" />
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region 등록 버튼-->
-                <StackPanel>
-                    <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
-                    <Button Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
-                </StackPanel>
-                <!--#endregion-->
+    <Grid d:LayoutOverrides="TopPosition, BottomPosition">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--#region 입력 항목 스택패널 스타일 설정-->
+        <Grid.Resources>
+            <Style TargetType="{x:Type StackPanel}">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Margin" Value="0,0,0,4" />
+                <Setter Property="Height" Value="25"/>
+            </Style>
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                <Setter Property="Margin" Value="0, 0, 20, 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <!--<Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="Padding" Value="0,3" />
+            </Style>
+            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                <Setter Property="Padding" Value="0,3" />
+            </Style>-->
+        </Grid.Resources>
+        <!--#endregion-->
+        <StackPanel Height="Auto" Margin="0,3,0,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Bottom">
+            <StackPanel >
+                <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
+                <DatePicker x:Name="StartDate" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="15,0,0,4" >
+                <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
+                <DatePicker x:Name="EndDate" />
             </StackPanel>
         </StackPanel>
+        <DataGrid x:Name="DG2" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="1" >
+            <DataGrid.Columns>
+                <mui:DataGridTextColumn Header="이름" />
+                <mui:DataGridTextColumn Header="직책" />
+                <mui:DataGridTextColumn Header="강좌명" />
+                <mui:DataGridTextColumn Header="역할" />
+                <mui:DataGridTextColumn Header="금액" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Grid Margin="0,9.92,-150,39.08" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 </UserControl>
