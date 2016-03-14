@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.References
 {
@@ -8,6 +9,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.References
         public CourseCategory()
         {
             InitializeComponent();
+			MessageBox.Show("");
         }
     }
 }

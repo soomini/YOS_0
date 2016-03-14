@@ -139,8 +139,8 @@
     <Compile Include="YOS_Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Input.xaml.cs">
-      <DependentUpon>Input.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Status.xaml.cs">
+      <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
     <Compile Include="YOS_Pages\Reference.xaml.cs">
       <DependentUpon>Reference.xaml</DependentUpon>
@@ -514,7 +514,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Input.xaml">
+    <Page Include="YOS_Pages\Status.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -550,6 +550,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="YOS_Assets\" />
+    <Folder Include="YOS_Pages\Status\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

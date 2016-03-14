@@ -10,6 +10,13 @@
         <ScrollViewer>
             <StackPanel MinWidth="200">
                 <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" />
+                <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
+                    <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="0,0,0,2" />
+                    <RadioButton x:Name="Purpose" Content="목적별" Margin="0,0,0,2"/>
+                    <RadioButton x:Name="Institution" Content="기관별" Margin="0,0,0,2"/>
+                    <RadioButton x:Name="Target" Content="대상별" Margin="0,0,0,2"/>
+                    <RadioButton x:Name="Subject" Content="주제별" Margin="0,0,0,2"/>
+                </StackPanel>
                 <DataGrid>
                     
                 </DataGrid>
