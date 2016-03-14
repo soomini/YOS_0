@@ -37,6 +37,7 @@
                     <ListBoxItem Content="Item 4" />
                     <ListBoxItem Content="Item 5" />
                 </ListBox>
+                
                 <TextBlock Text="LISTVIEW" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
                 <ListView Margin="0,0,0,16">
                     <ListViewItem Content="Item 1" />

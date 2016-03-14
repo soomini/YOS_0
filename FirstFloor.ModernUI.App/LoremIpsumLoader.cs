@@ -22,7 +22,7 @@ namespace FirstFloor.ModernUI.App
         protected override object LoadContent(Uri uri)
         {
             // return a new LoremIpsum user control instance no matter the uri
-            return new LoremIpsum();
+            return new Content.Loremlpsum();
         }
     }
 }
