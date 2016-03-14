@@ -17,7 +17,7 @@
         <StackPanel MinWidth="250" Margin="0,0,-150,0" Grid.Column="1" d:IsHidden="True" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock Text="강좌 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
-            <StackPanel x:Name="Form" Orientation="Vertical">
+            <StackPanel x:Name="sp_Form" Orientation="Vertical">
                 <!--#region 입력 항목 스택패널 스타일 설정-->
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type StackPanel}">
@@ -44,13 +44,13 @@
                 <!--#endregion-->
 
                 <!--#region 강좌명-->
-                <StackPanel>
+                <StackPanel x:Name="sp_CorseName">
                     <Label Content="강좌명" Target="{Binding ElementName=TextFirstName}"/>
                     <TextBox x:Name="TextFirstName" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 목적별 분류-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Category1">
                     <Label Content="목적별 분류" Target="{Binding ElementName=ComboState}"/>
                     <ComboBox x:Name="Category1" Width="150">
                         <ComboBoxItem Content="서울"/>
@@ -62,7 +62,7 @@
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 기관별 분류-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Category2">
                     <Label Content="기관별 분류" Target="{Binding ElementName=ComboState}"/>
                     <ComboBox x:Name="Category2" Width="150">
                         <ComboBoxItem Content="서울"/>
@@ -74,7 +74,7 @@
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 대상별 분류-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Category3">
                     <Label Content="대상별 분류" Target="{Binding ElementName=ComboState}"/>
                     <ComboBox x:Name="Category3" Width="150">
                         <ComboBoxItem Content="서울"/>
@@ -86,7 +86,7 @@
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 주제별 분류-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Category4">
                     <Label Content="주제별 분류" Target="{Binding ElementName=ComboState}"/>
                     <ComboBox x:Name="Category4" Width="150">
                         <ComboBoxItem Content="서울"/>
@@ -99,45 +99,45 @@
                 <!--#endregion-->
 
                 <!--#region PM-->
-                <StackPanel>
+                <StackPanel x:Name="sp_PMName">
                     <Label Content="PM" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="PMName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 소개자-->
-                <StackPanel>
+                <StackPanel x:Name="sp_RecommanderName">
                     <Label Content="소개자" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="RecommanderName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 강의처-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Target">
                     <Label Content="강의처" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="Place" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
 
                 <!--#region 시작일자-->
-                <StackPanel>
+                <StackPanel x:Name="sp_StartDate">
                     <Label Content="시작일자" Target="{Binding ElementName=DateBirth}" />
                     <DatePicker x:Name="StartDate" />
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 종료일자-->
-                <StackPanel>
+                <StackPanel x:Name="sp_EndDate">
                     <Label Content="종료일자" Target="{Binding ElementName=DateBirth}" />
                     <DatePicker x:Name="EndDate" />
                 </StackPanel>
                 <!--#endregion-->
 
                 <!--#region 강의 시간-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Time">
                     <Label Content="강의 시간" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="Time" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 총 강의료-->
-                <StackPanel>
+                <StackPanel x:Name="sp_TotalMoney">
                     <Label Content="총 강의료" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="Money" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
@@ -145,14 +145,14 @@
 
                 
                 <!--#region 비용-->
-                <StackPanel>
+                <StackPanel x:Name="sp_Cost">
                     <Label Content="비용" Target="{Binding ElementName=TextLastName}"/>
                     <Button Content="비용 등록"  Click="CommonDialog_Click"/>
                 </StackPanel>
                 <!--#endregion-->
 
                 <!--#region 비용 제외 강의료-->
-                <StackPanel>
+                <StackPanel x:Name="sp_NetProfit">
                     <Label Content="비용 제외 강의료" Target="{Binding ElementName=TextLastName}"/>
                     <Label x:Name="Revenues" Width="150" Content="자동 계산"/>
                 </StackPanel>
@@ -161,9 +161,9 @@
 
 
                 <!--#region 등록 버튼-->
-                <StackPanel>
-                    <Button Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
-                    <Button Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
+                <StackPanel x:Name="sp_Change">
+                    <Button x:Name="btn_Registration" Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" />
+                    <Button x:Name="btn_Cancel" Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
                 <!--#endregion-->
             </StackPanel>

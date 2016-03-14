@@ -1,4 +1,4 @@
-﻿<mui:ModernWindow x:Class="FirstFloor.ModernUI.App.MainWindow"
+﻿<mui:Page x:Class="FirstFloor.ModernUI.App.MainWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mui="http://firstfloorsoftware.com/ModernUI"
@@ -8,16 +8,16 @@
                   ContentSource="/YOS_Pages/Home.xaml"
                   Width="800" Height="700">
     
-    <mui:ModernWindow.TitleLinks>
+    <mui:Page.TitleLinks>
         <!--#region 타이틀링크 : Settings-->
         <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
         <!--#endregion-->
         <!--#region 타이틀링크 : Help-->
         <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />
         <!--#endregion-->
-    </mui:ModernWindow.TitleLinks>
+    </mui:Page.TitleLinks>
  
-    <mui:ModernWindow.MenuLinkGroups>
+    <mui:Page.MenuLinkGroups>
         <!--#region 메뉴 : Home-->
         <mui:LinkGroup DisplayName="Home">
             <mui:LinkGroup.Links>
@@ -87,7 +87,7 @@
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <!--#endregion-->
-    </mui:ModernWindow.MenuLinkGroups>
-</mui:ModernWindow>
+    </mui:Page.MenuLinkGroups>
+</mui:Page>
 
     <!--순환 초기화 -->
