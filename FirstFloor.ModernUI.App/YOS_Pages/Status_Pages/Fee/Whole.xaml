@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Status_Pages.Whole" 
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Status_Pages.Fee.Whole" 
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -33,7 +33,7 @@
             </Style>-->
         </Grid.Resources>
         <!--#endregion-->
-        <StackPanel Height="Auto" Margin="0,3,0,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Bottom">
+        <StackPanel Height="Auto" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Bottom">
             <StackPanel >
                 <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
                 <DatePicker x:Name="StartDate" />
@@ -45,11 +45,12 @@
         </StackPanel>
         <DataGrid x:Name="DG2" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="1" >
             <DataGrid.Columns>
-                <mui:DataGridTextColumn Header="이름" />
-                <mui:DataGridTextColumn Header="직책" />
                 <mui:DataGridTextColumn Header="강좌명" />
-                <mui:DataGridTextColumn Header="역할" />
-                <mui:DataGridTextColumn Header="금액" />
+                <mui:DataGridTextColumn Header="강의료" />
+                <mui:DataGridTextColumn Header="소개비" />
+                <mui:DataGridTextColumn Header="PM" />
+                <mui:DataGridTextColumn Header="모임회비" />
+                <mui:DataGridTextColumn Header="회사이익" />
             </DataGrid.Columns>
         </DataGrid>
 

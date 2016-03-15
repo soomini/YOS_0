@@ -137,6 +137,9 @@
     <Compile Include="YOS_Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YOS_Pages\Fee.xaml.cs">
+      <DependentUpon>Fee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YOS_Pages\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
@@ -155,10 +158,16 @@
     <Compile Include="YOS_Pages\Reference_Pages\TeachingMaterialPrice.xaml.cs">
       <DependentUpon>TeachingMaterialPrice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Patners.xaml.cs">
+    <Compile Include="YOS_Pages\Status_Pages\Fee\Patners.xaml.cs">
       <DependentUpon>Patners.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Whole.xaml.cs">
+    <Compile Include="YOS_Pages\Status_Pages\Fee\Whole.xaml.cs">
+      <DependentUpon>Whole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status_Pages\Course\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status_Pages\Course\Whole.xaml.cs">
       <DependentUpon>Whole.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -514,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="YOS_Pages\Fee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="YOS_Pages\Status.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -538,11 +551,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status_Pages\Patners.xaml">
+    <Page Include="YOS_Pages\Status_Pages\Fee\Patners.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status_Pages\Whole.xaml">
+    <Page Include="YOS_Pages\Status_Pages\Fee\Whole.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status_Pages\Course\Patners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status_Pages\Course\Whole.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
