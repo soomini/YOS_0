@@ -19,22 +19,22 @@
             </StackPanel>
             <ScrollViewer>
                 <StackPanel Orientation="Horizontal">
-                    <DataGrid x:Name="DGCat1" Height="211" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="5,0">
+                    <DataGrid x:Name="DGCat1" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="목적별 분류" Binding="{Binding PURPOSE}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat2" Height="211" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="5,0">
+                    <DataGrid x:Name="DGCat2" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="기관별 분류" Binding="{Binding INSTITUTION}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat3" Height="211" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="5,0">
+                    <DataGrid x:Name="DGCat3" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="대상별 분류" Binding="{Binding TARGET}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat4" Height="211" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="5,0">
+                    <DataGrid x:Name="DGCat4" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="주제별 분류" Binding="{Binding SUBJECT}"/>
                         </DataGrid.Columns>

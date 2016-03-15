@@ -16,13 +16,16 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
         //private OracleConnection Con = new OracleConnection();
 
-        private DataSet CATEGORY_DS1 = new DataSet("CATEGORY_DS");
-        private DataSet CATEGORY_DS2 = new DataSet("CATEGORY_DS2");
-        private DataSet CATEGORY_DS3 = new DataSet("CATEGORY_DS3");
-        private DataSet CATEGORY_DS4 = new DataSet("CATEGORY_DS4");
+        private DataSet CATEGORY_DS = new DataSet("CATEGORY_DS");
 
-        private OracleCommandBuilder oraBuilder; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
-        private OracleDataAdapter Adpt;
+        private OracleCommandBuilder oraBuilder1; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
+        private OracleCommandBuilder oraBuilder2;
+        private OracleCommandBuilder oraBuilder3;
+        private OracleCommandBuilder oraBuilder4;
+        private OracleDataAdapter Adpt1;
+        private OracleDataAdapter Adpt2;
+        private OracleDataAdapter Adpt3;
+        private OracleDataAdapter Adpt4;
 
         public CourseCategory()
         {
@@ -30,27 +33,30 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM SubjectCATEGORY", strOraConn);
-            Adpt = new OracleDataAdapter("SELECT * FROM TargetCATEGORY", strOraConn);
-            Adpt = new OracleDataAdapter("SELECT * FROM InstitutionCATEGORY", strOraConn);
-            Adpt = new OracleDataAdapter("SELECT * FROM PurposeCATEGORY", strOraConn);
+            Adpt1 = new OracleDataAdapter("SELECT * FROM PurposeCATEGORY", strOraConn);
+            Adpt2 = new OracleDataAdapter("SELECT * FROM InstitutionCATEGORY", strOraConn);
+            Adpt3 = new OracleDataAdapter("SELECT * FROM TargetCATEGORY", strOraConn);
+            Adpt4 = new OracleDataAdapter("SELECT * FROM SubjectCATEGORY", strOraConn);
 
-            DataTable SubjectCATEGORY_dt = CATEGORY_DS4.Tables["SubjectCATEGORY_dt"];
-            DataTable TargetCATEGORY_dt = CATEGORY_DS3.Tables["TargetCATEGORY_dt"];
-            DataTable InstitutionCATEGORY_dt = CATEGORY_DS2.Tables["InstitutionCATEGORY_dt"];
-            DataTable PurposeCATEGORY_dt = CATEGORY_DS1.Tables["PurposeCATEGORY_dt"];
+            DataTable PurposeCATEGORY_dt = CATEGORY_DS.Tables["PurposeCATEGORY_dt"];
+            DataTable InstitutionCATEGORY_dt = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"];
+            DataTable TargetCATEGORY_dt = CATEGORY_DS.Tables["TargetCATEGORY_dt"];
+            DataTable SubjectCATEGORY_dt = CATEGORY_DS.Tables["SubjectCATEGORY_dt"];
 
-            oraBuilder = new OracleCommandBuilder(Adpt);
+            oraBuilder1 = new OracleCommandBuilder(Adpt1);
+            oraBuilder2 = new OracleCommandBuilder(Adpt2);
+            oraBuilder3 = new OracleCommandBuilder(Adpt3);
+            oraBuilder4 = new OracleCommandBuilder(Adpt4);
 
-            Adpt.Fill(CATEGORY_DS4, "SubjectCATEGORY_dt");
-            Adpt.Fill(CATEGORY_DS3, "TargetCATEGORY_dt");
-            Adpt.Fill(CATEGORY_DS2, "InstitutionCATEGORY_dt");
-            Adpt.Fill(CATEGORY_DS1, "PurposeCATEGORY_dt");
+            Adpt1.Fill(CATEGORY_DS, "PurposeCATEGORY_dt");
+            Adpt2.Fill(CATEGORY_DS, "InstitutionCATEGORY_dt");
+            Adpt3.Fill(CATEGORY_DS, "TargetCATEGORY_dt");
+            Adpt4.Fill(CATEGORY_DS, "SubjectCATEGORY_dt");
 
-            DGCat4.ItemsSource = CATEGORY_DS4.Tables["SubjectCATEGORY_dt"].DefaultView;
-            DGCat3.ItemsSource = CATEGORY_DS3.Tables["TargetCATEGORY_dt"].DefaultView;
-            DGCat2.ItemsSource = CATEGORY_DS2.Tables["InstitutionCATEGORY_dt"].DefaultView;
-            DGCat1.ItemsSource = CATEGORY_DS1.Tables["PurposeCATEGORY_dt"].DefaultView;
+            DGCat1.ItemsSource = CATEGORY_DS.Tables["PurposeCATEGORY_dt"].DefaultView;
+            DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
+            DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
+            DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
             //DGCat.CanUserAddRows = false;
             #endregion
         }

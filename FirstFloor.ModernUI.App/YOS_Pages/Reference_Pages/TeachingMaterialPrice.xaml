@@ -10,10 +10,19 @@
         <StackPanel MinWidth="200">
             <TextBlock Text="단가표" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
             <ScrollViewer>
-                <DataGrid>
-
+                <DataGrid x:Name="EDUTOOL_DG1" ItemsSource="{Binding ''}" AutoGenerateColumns="False" AlternationCount="3" SelectionMode="Extended" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="교구번호" Binding="{Binding EDUCATIONTOOLNO}" />
+                        <DataGridTextColumn Header="교구이름" Binding="{Binding EDUCATIONTOOLNAME}" />
+                        <DataGridTextColumn Header="단가" Binding="{Binding PRICE}" />
+                    </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
+            <StackPanel MinWidth="200" Orientation="Horizontal" Margin="0,50,0,0">
+                <Button x:Name="btn_Insert" Content="추가" Click="btn_Insert_Click" Margin="0,20,0,0"/>
+                <Button x:Name="btn_Delete" Content="삭제" Margin="50,20,0,0" Click="btn_Delete_Click"/>
+            </StackPanel>
         </StackPanel>
+
     </Grid>
 </UserControl>
