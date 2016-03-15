@@ -39,7 +39,7 @@
                 <mui:Link DisplayName ="강좌 현황" Source="/YOS_Pages/Status.xaml" />
                 <mui:Link DisplayName ="강사 수당 현황" Source="/YOS_Pages/Status.xaml" />
                 <mui:Link DisplayName ="모임 회비" Source="/YOS_Pages/Status.xaml" />
-                <mui:Link DisplayName ="비용 현황" Source="/YOS_Pages/Status.xaml" />
+                <mui:Link DisplayName ="수수료 현황" Source="/YOS_Pages/Fee.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <!--#endregion-->
