@@ -18,9 +18,12 @@
                 <RadioButton x:Name="Subject" Content="주제별" Margin="0,0,0,2" GroupName="Category" FontSize="13.333" />
             </StackPanel>
             <ScrollViewer>
-                <DataGrid>
-
-                </DataGrid>
+                <StackPanel Orientation="Horizontal">
+                    <DataGrid d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="10,0"/>
+                    <DataGrid d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="10,0"/>
+                    <DataGrid d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="10,0"/>
+                    <DataGrid d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="10,0"/>
+                </StackPanel>
             </ScrollViewer>
         </StackPanel>
     </Grid>

@@ -10,7 +10,7 @@
         <StackPanel MinWidth="200">
             <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
             <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
-                <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="5,0,15,2" GroupName="ㄲesearcher" FontSize="13.333" />
+                <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="5,0,15,2" GroupName="Category" FontSize="13.333" />
                 <RadioButton x:Name="Purpose" Content="연구원" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" />
                 <RadioButton x:Name="Staff" Content="직원" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" />
             </StackPanel>
