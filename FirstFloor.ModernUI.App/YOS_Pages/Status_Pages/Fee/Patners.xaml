@@ -10,12 +10,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Margin="0,0,0,0">
+        <DockPanel Margin="0,0,0,0" VerticalAlignment="Top">
             <!--#region 입력 항목 독패널 스타일 설정-->
             <DockPanel.Resources>
                 <Style TargetType="{x:Type StackPanel}">
