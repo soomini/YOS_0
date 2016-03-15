@@ -13,16 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FirstFloor.ModernUI.App.YOS_Pages
+namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
 {
     /// <summary>
     /// Interaction logic for LayoutTab.xaml
     /// </summary>
-    public partial class Input : UserControl
+    public partial class Complete: UserControl
     {
-        public Input()
+        public Complete()
         {
             InitializeComponent();
+
+			
         }
     }
 }

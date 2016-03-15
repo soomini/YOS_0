@@ -17,50 +17,50 @@ namespace FirstFloor.ModernUI.Windows.Controls
     /// <summary>
     /// Represents a Modern UI styled window.
     /// </summary>
-    public class ModernWindow
+    public class Page
         : DpiAwareWindow
     {
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
-        public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register("BackgroundContent", typeof(object), typeof(ModernWindow));
+        public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register("BackgroundContent", typeof(object), typeof(Page));
         /// <summary>
         /// Identifies the MenuLinkGroups dependency property.
         /// </summary>
-        public static readonly DependencyProperty MenuLinkGroupsProperty = DependencyProperty.Register("MenuLinkGroups", typeof(LinkGroupCollection), typeof(ModernWindow));
+        public static readonly DependencyProperty MenuLinkGroupsProperty = DependencyProperty.Register("MenuLinkGroups", typeof(LinkGroupCollection), typeof(Page));
         /// <summary>
         /// Identifies the TitleLinks dependency property.
         /// </summary>
-        public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register("TitleLinks", typeof(LinkCollection), typeof(ModernWindow));
+        public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register("TitleLinks", typeof(LinkCollection), typeof(Page));
         /// <summary>
         /// Identifies the IsTitleVisible dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsTitleVisibleProperty = DependencyProperty.Register("IsTitleVisible", typeof(bool), typeof(ModernWindow), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsTitleVisibleProperty = DependencyProperty.Register("IsTitleVisible", typeof(bool), typeof(Page), new PropertyMetadata(false));
         /// <summary>
         /// Identifies the LogoData dependency property.
         /// </summary>
-        public static readonly DependencyProperty LogoDataProperty = DependencyProperty.Register("LogoData", typeof(Geometry), typeof(ModernWindow));
+        public static readonly DependencyProperty LogoDataProperty = DependencyProperty.Register("LogoData", typeof(Geometry), typeof(Page));
         /// <summary>
         /// Defines the ContentSource dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register("ContentSource", typeof(Uri), typeof(ModernWindow));
+        public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register("ContentSource", typeof(Uri), typeof(Page));
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = DependencyProperty.Register("ContentLoader", typeof(IContentLoader), typeof(ModernWindow), new PropertyMetadata(new DefaultContentLoader()));
+        public static readonly DependencyProperty ContentLoaderProperty = DependencyProperty.Register("ContentLoader", typeof(IContentLoader), typeof(Page), new PropertyMetadata(new DefaultContentLoader()));
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register("LinkNavigator", typeof(ILinkNavigator), typeof(ModernWindow), new PropertyMetadata(new DefaultLinkNavigator()));
+        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register("LinkNavigator", typeof(ILinkNavigator), typeof(Page), new PropertyMetadata(new DefaultLinkNavigator()));
 
         private Storyboard backgroundAnimation;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModernWindow"/> class.
+        /// Initializes a new instance of the <see cref="Page"/> class.
         /// </summary>
-        public ModernWindow()
+        public Page()
         {
-            this.DefaultStyleKey = typeof(ModernWindow);
+            this.DefaultStyleKey = typeof(Page);
 
             // create empty collections
             SetCurrentValue(MenuLinkGroupsProperty, new LinkGroupCollection());

@@ -31,7 +31,7 @@ namespace FirstFloor.ModernUI.App.Content
         {
             var dlg = new ModernDialog {
                 Title = "Common dialog",
-                Content = new LoremIpsum()
+                Content = new Loremlpsum()
             };
             dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton};
             dlg.ShowDialog();

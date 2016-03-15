@@ -18,7 +18,7 @@ namespace FirstFloor.ModernUI.App
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : ModernWindow
+    public partial class MainWindow : Windows.Controls.Page
     {
         public MainWindow()
         {

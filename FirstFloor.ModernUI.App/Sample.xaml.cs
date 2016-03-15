@@ -10,19 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FirstFloor.ModernUI.App.YOS_Pages.Statuses
+namespace FirstFloor.ModernUI.App
 {
-    /// <summary>
-    /// Interaction logic for LayoutBasic.xaml
-    /// </summary>
-    public partial class Custom : UserControl
-    {
-        public Custom()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Sample.xaml에 대한 상호 작용 논리
+	/// </summary>
+	public partial class Sample : Window
+	{
+		public Sample()
+		{
+			InitializeComponent();
+		}
+	}
 }

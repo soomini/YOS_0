@@ -2,9 +2,9 @@
 
 namespace FirstFloor.ModernUI.App.YOS_Pages
 {
-	public partial class Status : UserControl
+	public partial class Fee : UserControl
     {
-        public Status()
+        public Fee()
         {
             InitializeComponent();
         }
