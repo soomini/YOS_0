@@ -19,17 +19,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
         private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
         //private OracleConnection Con = new OracleConnection();
-
         private DataSet PERSON_DS = new DataSet("PERSON_DS");
-
         private OracleCommandBuilder oraBuilder; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
         private OracleDataAdapter Adpt;
+
+        private string strGENDER = "";
 
         public Patners()
         {
             InitializeComponent();
-
-            this.Loaded += OnLoaded;
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
@@ -40,21 +38,31 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             oraBuilder = new OracleCommandBuilder(Adpt);
 
             Adpt.Fill(PERSON_DS, "PERSON_dt");
-
             DG1.ItemsSource = PERSON_DS.Tables["PERSON_dt"].DefaultView;
             DG1.CanUserAddRows = false;
-            #endregion
-
-            //DataRowView DRView = (DataRowView)DG1.CurrentCell.Item;
-            //if (RadioGenderMale.Content == string.Format("남자"))
-            //{
-            //    this.RadioGenderMale.IsChecked = true;
-            //}
-            //else if(RadioGenderMale.Content.ToString = "여자")
-            //{
-            //    this.RadioGenderMale.IsChecked = true;
-            //}
         }
+        public void StackPannel_control_init()
+        {
+            TextFirstName.Text = null;
+            TextLastName.Text = null;
+            RadioGenderMan.IsChecked = false;
+            RadioGenderWoman.IsChecked = false;
+            TxtPhoneNumber.Text = null;
+            TxtBirth.SelectedDate = null;
+            TxtAddress.Text = null;
+            TxtAddress2.Text = null;
+        }
+        #region Radio value get
+        private void RadioGenderMan_Checked(object sender, RoutedEventArgs e)
+        {
+            strGENDER = (string)(sender as RadioButton).Content;
+        }
+        private void RadioGenderWoman_Checked(object sender, RoutedEventArgs e)
+        {
+            strGENDER = (string)(sender as RadioButton).Content;
+        }
+        #endregion
+
 
         void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -62,7 +70,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             // select first control on the form
             Keyboard.Focus(this.TextFirstName);
         }
-
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
             DataTable PERSON_dt = PERSON_DS.Tables["PERSON_dt"];
@@ -123,5 +130,32 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
 
         }
+
+        private void btn_Init_Click(object sender, RoutedEventArgs e)
+        {
+            StackPannel_control_init();
+        }
+
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
+                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
+                DataRow[] DeleteRow = PERSON_DS.Tables["PERSON_dt"].Select(expression);
+
+                PERSON_DS.Tables["PERSON_dt"].Rows[DG1.SelectedIndex].Delete();
+
+                Adpt.Update(PERSON_DS, "PERSON_dt");
+
+                MessageBox.Show("삭제 성공");
+                StackPannel_control_init();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("오류 : " + ex.ToString());
+            }
+        }
+        #endregion
     }
 }

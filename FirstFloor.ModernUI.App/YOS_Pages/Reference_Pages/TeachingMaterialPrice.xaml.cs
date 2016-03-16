@@ -26,8 +26,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
         #endregion
 
-        static int switchint = 0;
-
         public TeachingMaterialPrice()
         {
             InitializeComponent();
@@ -56,16 +54,17 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                     MessageBox.Show("추가 성공");
                     btn_Insert.Content = "추가";
                     EDUTOOL_DG1.IsReadOnly = true;
-                    switchint--;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("오류 : " + ex.ToString());
                 }
             }
-
-            btn_Insert.Content = "확인";
-            EDUTOOL_DG1.IsReadOnly = false;
+            else
+            {
+                btn_Insert.Content = "확인";
+                EDUTOOL_DG1.IsReadOnly = false;
+            }
         }
         #endregion
 

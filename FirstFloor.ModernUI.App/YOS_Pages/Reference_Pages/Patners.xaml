@@ -72,10 +72,8 @@
                 <!--#region 성별-->
                 <StackPanel>
                     <Label Content="성별" Target="{Binding ElementName=RadioGender}"/>
-                    <RadioButton x:Name="RadioGenderMale">
-                        <TextBlock Text="남자"/>
-                    </RadioButton>
-                    <RadioButton Content="여자" Margin="8,0,0,0" />
+                    <RadioButton x:Name="RadioGenderMan" Content="남자" GroupName="Gender" Checked="RadioGenderMan_Checked" />
+                    <RadioButton x:Name="RadioGenderWoman" Content="여자" Margin="8,0,0,0" GroupName="Gender" Checked="RadioGenderWoman_Checked" />
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 전화번호-->
@@ -111,8 +109,10 @@
                 <!--#endregion-->
                 <!--#region 등록 버튼-->
                 <StackPanel>
-                    <Button x:Name="Btn_Register" Content="등록" Margin="100,16,0,0" HorizontalAlignment="Left" Click="Btn_Register_Click" />
-                    <Button x:Name="Btn_Esc" Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />
+                    <Button x:Name="Btn_Register" Content="등록" Margin="0,25,0,0" HorizontalAlignment="Left" Click="Btn_Register_Click" />
+                    <!--<Button x:Name="btn_Update" Content="수정" Margin="5,25,0,0" HorizontalAlignment="Left" Click="btn_Update_Click" />-->
+                    <Button x:Name="btn_Init" Content="초기화" Margin="5,25,0,0" HorizontalAlignment="Left" Click="btn_Init_Click" />
+                    <Button x:Name="btn_Delete" Content="삭제" Margin="5,25,0,0" HorizontalAlignment="Left" Click="btn_Delete_Click" />
                 </StackPanel>
                 <!--#endregion-->
             </StackPanel>
