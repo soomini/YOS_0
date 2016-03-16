@@ -10,7 +10,7 @@
         <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="controls:ModernWindow">
+    <Style TargetType="controls:Page">
         <Setter Property="BackgroundContent" Value="{DynamicResource WindowBackgroundContent}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -26,7 +26,7 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernWindow">
+                <ControlTemplate TargetType="controls:Page">
                     <Border x:Name="WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Border.Background>
                             <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />

@@ -18,9 +18,9 @@ namespace FirstFloor.ModernUI.App.YOS_Content
     /// <summary>
     /// Interaction logic for LoremIpsum.xaml
     /// </summary>
-    public partial class ContentSample : UserControl
+    public partial class AddCost : UserControl
     {
-        public ContentSample()
+        public AddCost()
         {
             InitializeComponent();
         }

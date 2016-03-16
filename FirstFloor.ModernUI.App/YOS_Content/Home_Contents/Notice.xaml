@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Content.Home_Contents.Notice"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300">
+    <ScrollViewer>
+        <StackPanel >
+            <!--#region 프로그램명-->
+            <TextBlock Text="YStory Office Solution" Style="{StaticResource Heading1}" Margin="0,0,0,20"/>
+
+            <!--#endregion-->
+            <!--#region 공지사항-->
+            <DockPanel d:LayoutOverrides="TopPosition, BottomPosition">
+                    <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0,0,0,10" ><Run Text="공지 사항"/></TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" Width="100" Height="100" Margin="0,0,10,0">
+                        <Image x:Name="image" Margin="0,0,10,-162.44" HorizontalAlignment="Left" Width="100" Height="100" VerticalAlignment="Top"/>
+                    </Border>
+                    <mui:BBCodeBlock BBCode="[b]공지사항의 내용을 쓴다.[/b], 직원이 공지사항을 올릴 수 있도록 하고, 그 내용은 이 곳에 들어간다.  &#xA;&#xA; 왼쪽에 이미지를 하나 함께 게시할 수 있도록 한다.&#xA;&#xA;[url=http://xamlspy.com]주소링크[/url]를 걸 수도 있을 것이다. " Margin="0,0,0,37" d:LayoutOverrides="Height" DockPanel.Dock="Right" />
+                </DockPanel>
+            <!--#endregion-->
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
