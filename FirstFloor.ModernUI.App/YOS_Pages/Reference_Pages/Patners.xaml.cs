@@ -16,10 +16,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
     /// </summary>
     public partial class Patners : UserControl
     {
-
-        private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
-        //private OracleConnection Con = new OracleConnection();
-        private DataSet PERSON_DS = new DataSet("PERSON_DS");
+		private string strOraConn = "User Id=scott;Password=tiger;Data Source=ORCL";
+		//private OracleConnection Con = new OracleConnection();
+		private DataSet PERSON_DS = new DataSet("PERSON_DS");
         private OracleCommandBuilder oraBuilder; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
         private OracleDataAdapter Adpt;
 
@@ -31,7 +30,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM PERSON", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT * FROM LECTURER", strOraConn);
 
             DataTable PERSON_dt = PERSON_DS.Tables["PERSON_dt"];
 
@@ -100,17 +99,17 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 switch (R.RowState)
                 {
                     case DataRowState.Added:
-                        Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
+                        Record = string.Format("추가: {0}", Convert.ToString(R["LECTURERNAME"]));
                         MessageBox.Show($"데이터가 추가되었습니다. {Record}");
                         break;
 
                     case DataRowState.Deleted:
-                        Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
+                        Record = string.Format("삭제: {0}", Convert.ToString(R["LECTURERNAME", DataRowVersion.Original]));
                         MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
                         break;
 
                     case DataRowState.Modified:
-                        Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
+                        Record = string.Format("수정: {0}", Convert.ToString(R["LECTURERNAME"]));
                         MessageBox.Show($"데이터가 수정되었습니다. {Record}");
                         break;
                 }

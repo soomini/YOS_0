@@ -13,10 +13,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
     public partial class CourseCategory : UserControl
     {
 
-        private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
-        //private OracleConnection Con = new OracleConnection();
+		private string strOraConn = "User Id=scott;Password=tiger;Data Source=ORCL";
+		//private OracleConnection Con = new OracleConnection();
 
-        private DataSet CATEGORY_DS = new DataSet("CATEGORY_DS");
+		private DataSet CATEGORY_DS = new DataSet("CATEGORY_DS");
 
         private OracleCommandBuilder oraBuilder1; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
         private OracleCommandBuilder oraBuilder2;
