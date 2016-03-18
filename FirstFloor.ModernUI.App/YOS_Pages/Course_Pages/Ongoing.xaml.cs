@@ -18,6 +18,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
         private DataSet LECTURE_DS = new DataSet("LECTURE_DS");
         private OracleCommandBuilder oraBuilder;
         private OracleDataAdapter Adpt;
+        public object SelectedItem { get; set; }
+
 
         public Ongoing()
         {
@@ -33,6 +35,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
 
             Adpt.Fill(LECTURE_DS, "LECTURE_dt");
             DGLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            CBOXLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             DGLEC.CanUserAddRows = false;
 
             #endregion
@@ -102,6 +105,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
             //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
             //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
         
+        }
+
+        private void CBOXLEC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DGLEC.SelectedIndex = CBOXLEC.SelectedIndex;
         }
     }
 }
