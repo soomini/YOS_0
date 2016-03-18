@@ -60,7 +60,7 @@
                 <!--#region 이름-->
                 <StackPanel>
                     <Label Content="이름" Target="{Binding ElementName=TextFirstName}"/>
-                    <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.LECTURERNAME, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.NAME, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 직급-->
@@ -79,19 +79,19 @@
                 <!--#region 전화번호-->
                 <StackPanel>
                     <Label Content="전화번호" Target="{Binding ElementName=TxtPhoneNumber}"/>
-                    <TextBox x:Name="TxtPhoneNumber" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.PHONENUMBER, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="TxtPhoneNumber" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.PHONE_NUMBER, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 생년월일-->
                 <StackPanel>
                     <Label Content="생년월일" Target="{Binding ElementName=TxtBirth}" />
-                    <DatePicker x:Name="TxtBirth" Text="{Binding ElementName=DG1, Path=SelectedItem.BIRTHDATE, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker x:Name="TxtBirth" Text="{Binding ElementName=DG1, Path=SelectedItem.BIRTH, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 주소 : 도시-->
                 <StackPanel>
                     <Label Content="도시" Target="{Binding ElementName=TxtAddress}"/>
-                    <ComboBox x:Name="TxtAddress" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.CITY, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox x:Name="TxtAddress" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.ADDRESS, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}">
                         <ComboBoxItem Content="서울"/>
                         <ComboBoxItem Content="인천"/>
                         <ComboBoxItem Content="대전"/>
@@ -104,7 +104,7 @@
                 <!--#region 입력칸 : 주소 : 상세-->
                 <StackPanel>
                     <Label Content="상세 주소" Target="{Binding ElementName=TxtAddress2}"/>
-                    <TextBox x:Name="TxtAddress2" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.DETAILADDRESS, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="TxtAddress2" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.ADDRESS, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 등록 버튼-->
