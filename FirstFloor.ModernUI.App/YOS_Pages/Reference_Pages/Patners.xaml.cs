@@ -39,6 +39,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             Adpt.Fill(PERSON_DS, "PERSON_dt");
             DG1.ItemsSource = PERSON_DS.Tables["PERSON_dt"].DefaultView;
             DG1.CanUserAddRows = false;
+
+            #endregion
         }
         public void StackPannel_control_init()
         {
@@ -78,8 +80,21 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             {
                 //1. 체크박스.Checked == true라면 변수를 1 아니라면 변수를 2로 해서 저장하고 불러오는 방법
                 //2. 체크박스.Checked.ToString() 자체를 저장한 후 불러온 값이 "true"라면 남자 아니면 여자로 설정하는 방법
+                //string Gender;
 
+                //if (RadioGenderMan.Content.ToString()=="남자")
+                //{
+                //    RadioGenderMan.IsChecked = true;
+                //}
+
+                //if(PERSON_dt.Rows)
                 PERSON_dt.Rows.Add(PERSON_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, TxtPhoneNumber.Text, TxtBirth.Text, "", TxtAddress.Text, TxtAddress2.Text);
+
+
+                //if (RadioGenderMan.IsChecked == true)
+                //{
+                //    PERSON_dt.Rows = Convert.ToString();
+                //}
 
                 try
                 {
@@ -155,6 +170,5 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 MessageBox.Show("오류 : " + ex.ToString());
             }
         }
-        #endregion
     }
 }

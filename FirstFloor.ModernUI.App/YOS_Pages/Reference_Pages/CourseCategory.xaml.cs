@@ -13,10 +13,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
     public partial class CourseCategory : UserControl
     {
 
-		private string strOraConn = "User Id=scott;Password=tiger;Data Source=ORCL";
-		//private OracleConnection Con = new OracleConnection();
+        private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
+        //private string strOraConn = "User Id=scott;Password=tiger;Data Source=ORCL";
+        //private OracleConnection Con = new OracleConnection();
 
-		private DataSet CATEGORY_DS = new DataSet("CATEGORY_DS");
+        private DataSet CATEGORY_DS = new DataSet("CATEGORY_DS");
 
         private OracleCommandBuilder oraBuilder1; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
         private OracleCommandBuilder oraBuilder2;
@@ -26,6 +27,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         private OracleDataAdapter Adpt2;
         private OracleDataAdapter Adpt3;
         private OracleDataAdapter Adpt4;
+
+        static int Swap;
 
         public CourseCategory()
         {
@@ -61,6 +64,51 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             #endregion
         }
 
+        private void Purpose_Checked(object sender, RoutedEventArgs e)
+        {
+            DGCat1.Visibility = Visibility.Visible;
+            DGCat2.Visibility = Visibility.Hidden;
+            DGCat3.Visibility = Visibility.Hidden;
+            DGCat4.Visibility = Visibility.Hidden;
+        }
 
+        private void Institution_Checked(object sender, RoutedEventArgs e)
+        {
+            DGCat1.Visibility = Visibility.Collapsed;
+            DGCat2.Visibility = Visibility.Visible;
+            DGCat3.Visibility = Visibility.Hidden;
+            DGCat4.Visibility = Visibility.Hidden;
+        }
+
+        private void Target_Checked(object sender, RoutedEventArgs e)
+        {
+            DGCat1.Visibility = Visibility.Collapsed;
+            DGCat2.Visibility = Visibility.Collapsed;
+            DGCat3.Visibility = Visibility.Visible;
+            DGCat4.Visibility = Visibility.Hidden;
+        }
+
+        private void Subject_Checked(object sender, RoutedEventArgs e)
+        {
+            DGCat1.Visibility = Visibility.Collapsed;
+            DGCat2.Visibility = Visibility.Collapsed;
+            DGCat3.Visibility = Visibility.Collapsed;
+            DGCat4.Visibility = Visibility.Visible;
+        }
+
+        private void Whole_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Swap == 1)
+            {
+                DGCat1.Visibility = Visibility.Visible;
+                DGCat2.Visibility = Visibility.Visible;
+                DGCat3.Visibility = Visibility.Visible;
+                DGCat4.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Swap = 1;
+            }
+        }
     }
 }
