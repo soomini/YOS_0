@@ -22,8 +22,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
         private OracleDataAdapter oraDA_EDUTOOL;
 
-		//private string connStr = "User Id=scott;Password=tiger;Data Source=ORCL";
-		private string connStr = "User Id=dba_soo;Password=tnalsl;Data Source=MYORACLE";
+		private string connStr = "User Id=scott;Password=tiger;Data Source=orcl";
 
 		#endregion
 
@@ -32,7 +31,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             InitializeComponent();
 
             #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA_EDUTOOL = new OracleDataAdapter("SELECT * FROM EDUCATION_SUPPORT_TOOL", connStr);
+            oraDA_EDUTOOL = new OracleDataAdapter("SELECT * FROM EDUCATION_SUPPORT_TOOL ", connStr);
 
             oraBuilder_EDUTOOL = new OracleCommandBuilder(oraDA_EDUTOOL);
 

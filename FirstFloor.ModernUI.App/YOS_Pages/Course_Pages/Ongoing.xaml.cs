@@ -13,7 +13,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
 
     public partial class Ongoing : UserControl
     {
-        private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
+        private string strOraConn = "Data Source=orcl;User Id=scott;Password=tiger";
         //private OracleConnection Con = new OracleConnection();
         private DataSet LECTURE_DS = new DataSet("LECTURE_DS");
         private OracleCommandBuilder oraBuilder;

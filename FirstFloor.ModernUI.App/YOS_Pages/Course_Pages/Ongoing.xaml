@@ -33,7 +33,7 @@
                 <ComboBox x:Name="CBOXLEC" IsEditable="True" Width="110" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged"/>
             </StackPanel>
             <ScrollViewer>
-                <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn x:Name="dataGridTextColumn" Header="강좌명"  Binding="{Binding LECTURENAME}"/>
                         <mui:DataGridTextColumn x:Name="dataGridTextColumn1" Header="목적별" Visibility="Hidden" Binding="{Binding PURPOSECATEGORY}"/>

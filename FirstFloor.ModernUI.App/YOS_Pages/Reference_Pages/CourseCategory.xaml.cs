@@ -13,7 +13,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
     public partial class CourseCategory : UserControl
     {
 
-        private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
+        private string strOraConn = "Data Source=orcl;User Id=scott;Password=tiger";
         //private string strOraConn = "User Id=scott;Password=tiger;Data Source=ORCL";
         //private OracleConnection Con = new OracleConnection();
 
