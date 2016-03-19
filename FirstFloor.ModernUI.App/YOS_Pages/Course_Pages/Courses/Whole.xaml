@@ -28,9 +28,22 @@
                 </Style>
             </DockPanel.Resources>
             <!--#endregion-->
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <StackPanel Margin="0">
+                    <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
+                    <DatePicker x:Name="StartDate" />
+                </StackPanel>
+                <StackPanel Margin="10,0,0,0" >
+                    <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" Width="25" />
+                    <DatePicker x:Name="EndDate" />
+                </StackPanel>
+
+            </StackPanel>
+
             <StackPanel DockPanel.Dock="Top" >
                 <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
-                <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="220"/>
+                <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding SelectedItem.LECTURENAME, ElementName=DGLEC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="220"/>
             </StackPanel>
             <ScrollViewer Margin="0,0,15,0">
                 <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
@@ -141,7 +154,7 @@
                     </ComboBox>
                 </StackPanel>
                 <!--#endregion-->
-                
+
                 <!--#region PM-->
                 <StackPanel x:Name="sp_PMName">
                     <Label x:Name="lb_PMName" Content="PM" Target="{Binding ElementName=TextLastName}"/>
@@ -187,14 +200,6 @@
                 </StackPanel>
                 <!--#endregion-->
 
-
-                <!--#region 비용-->
-                <StackPanel x:Name="sp_Cost">
-                    <Label x:Name="lb_Cost" Content="비용" Target="{Binding ElementName=TextLastName}"/>
-                    <Button x:Name="btn_OpenCostResistrationWindow" Content="비용 등록"  Click="CommonDialog_Click"/>
-                </StackPanel>
-                <!--#endregion-->
-
                 <!--#region 비용 제외 강의료-->
                 <StackPanel x:Name="sp_NetProfit">
                     <Label x:Name="lb_NetProfit_Property" Content="비용 제외 강의료" Target="{Binding ElementName=TextLastName}"/>
@@ -204,9 +209,9 @@
 
 
 
-                <!--#region 등록 버튼-->
+                <!--#region 수정 버튼-->
                 <StackPanel x:Name="sp_Change">
-                    <Button x:Name="btn_Registration" Content="등록" Margin="180,16,0,0" HorizontalAlignment="Left" Click="btn_Registration_Click" />
+                    <Button x:Name="btn_Registration" Content="수정" Margin="180,16,0,0" HorizontalAlignment="Left" Click="btn_Registration_Click" />
                     <!--<Button x:Name="btn_Cancel" Content="취소" Margin="20,16,0,0" HorizontalAlignment="Left" />-->
                 </StackPanel>
                 <!--#endregion-->
