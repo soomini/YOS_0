@@ -2,9 +2,9 @@
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
 {
-	public partial class Course : UserControl
+	public partial class Complete : UserControl
     {
-        public Course()
+        public Complete()
         {
             InitializeComponent();
         }

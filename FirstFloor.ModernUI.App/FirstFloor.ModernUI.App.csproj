@@ -137,8 +137,8 @@
     <Compile Include="YOS_Pages\Fee.xaml.cs">
       <DependentUpon>Fee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Course_Pages\Course.xaml.cs">
-      <DependentUpon>Course.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Course_Pages\Complete.xaml.cs">
+      <DependentUpon>Complete.xaml</DependentUpon>
     </Compile>
     <Compile Include="YOS_Pages\Reference.xaml.cs">
       <DependentUpon>Reference.xaml</DependentUpon>
@@ -520,7 +520,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Course_Pages\Course.xaml">
+    <Page Include="YOS_Pages\Course_Pages\Complete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

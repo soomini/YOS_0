@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Margin="0,0,0,0">
+        <DockPanel Margin="0,5,0,0">
             <!--#region 입력 항목 독패널 스타일 설정-->
             <DockPanel.Resources>
                 <Style TargetType="{x:Type StackPanel}">
@@ -39,23 +39,23 @@
             <ScrollViewer>
                 <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="이름"  Binding="{Binding FirstName}"/>
-                        <mui:DataGridTextColumn Header="직책" Binding="{Binding LastName}"/>
-                        <mui:DataGridCheckBoxColumn Header="검색" Binding="{Binding IsMember}" />
+                        <mui:DataGridTextColumn Header="이름"  />
+                        <mui:DataGridTextColumn Header="분류" />
+                        <!--선택 항목은 체크박스로 표시 : 체크한 강사에 대한 세부항목이 결과 데이터그리드에 표시된다. 복수 선택 가능--> 
+                        <mui:DataGridCheckBoxColumn Header="선택" />
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
         </DockPanel>
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" />
         <DockPanel Grid.Column="2" Margin="30,0,0,0">
-            <TextBlock DockPanel.Dock="Top" Text="결과" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <DataGrid x:Name="DG2" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="이름" />
-                    <mui:DataGridTextColumn Header="직책" />
                     <mui:DataGridTextColumn Header="강좌명" />
                     <mui:DataGridTextColumn Header="역할" />
                     <mui:DataGridTextColumn Header="금액" />
+                    <mui:DataGridTextColumn Header="건수" />
+                    <mui:DataGridTextColumn Header="합계" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
