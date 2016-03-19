@@ -38,18 +38,25 @@
                 <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
                 <DatePicker x:Name="StartDate" />
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="15,0,0,4" >
+            <StackPanel Margin="15,0,0,4" >
                 <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
                 <DatePicker x:Name="EndDate" />
+            </StackPanel>
+            <StackPanel Margin="15,0,0,4" >
+                <Label Content="강좌명" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
+                <ComboBox Width="200"/>
             </StackPanel>
         </StackPanel>
         <DataGrid x:Name="DG2" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="1" >
             <DataGrid.Columns>
-                <mui:DataGridTextColumn Header="이름" />
-                <mui:DataGridTextColumn Header="직책" />
                 <mui:DataGridTextColumn Header="강좌명" />
-                <mui:DataGridTextColumn Header="역할" />
+                <mui:DataGridTextColumn Header="목적" />
+                <mui:DataGridTextColumn Header="기관" />
+                <mui:DataGridTextColumn Header="대상" />
+                <mui:DataGridTextColumn Header="주제" />
+                <mui:DataGridTextColumn Header="PM" />
                 <mui:DataGridTextColumn Header="금액" />
+                
             </DataGrid.Columns>
         </DataGrid>
 
