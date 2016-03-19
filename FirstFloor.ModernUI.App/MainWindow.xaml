@@ -29,16 +29,15 @@
         <mui:LinkGroup DisplayName="Course">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="진행 중 강좌" Source="/YOS_Pages/Course_Pages/Ongoing.xaml" />
-                <mui:Link DisplayName="진행 완료 강좌" Source="/YOS_Pages/Course_Pages/Complete.xaml" />
+                <mui:Link DisplayName="진행 완료 강좌" Source="/YOS_Pages/Course_Pages/Course.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <!--#endregion-->
         <!--#region 메뉴 : Status -->
         <mui:LinkGroup DisplayName="Status">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName ="강좌 현황" Source="/YOS_Pages/Status.xaml" />
-                <mui:Link DisplayName ="강사 수당 현황" Source="/YOS_Pages/Status.xaml" />
-                <mui:Link DisplayName ="모임 회비" Source="/YOS_Pages/Status.xaml" />
+                <mui:Link DisplayName ="강사 수당 현황" />
+                <mui:Link DisplayName ="모임 회비"  />
                 <mui:Link DisplayName ="수수료 현황" Source="/YOS_Pages/Fee.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>

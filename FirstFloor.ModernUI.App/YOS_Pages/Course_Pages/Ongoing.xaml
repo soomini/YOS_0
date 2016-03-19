@@ -10,12 +10,12 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="360"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Margin="0,0,0,0">
+        <DockPanel Margin="0">
             <!--#region 입력 항목 독패널 스타일 설정-->
             <DockPanel.Resources>
                 <Style TargetType="{x:Type StackPanel}">
@@ -30,9 +30,9 @@
             <!--#endregion-->
             <StackPanel DockPanel.Dock="Top" >
                 <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
-                <ComboBox x:Name="CBOXLEC" IsEditable="True" Width="110" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged"/>
+                <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="220"/>
             </StackPanel>
-            <ScrollViewer>
+            <ScrollViewer Margin="0,0,15,0">
                 <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn x:Name="dataGridTextColumn" Header="강좌명"  Binding="{Binding LECTURENAME}"/>
@@ -84,7 +84,7 @@
                 <!--#region 강좌명-->
                 <StackPanel x:Name="sp_CorseName">
                     <Label x:Name="lb_CourseName" Content="강좌명" Target="{Binding ElementName=tbx_Course}"/>
-                    <TextBox x:Name="tbx_Course" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_Course" Width="230" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 목적별 분류-->
