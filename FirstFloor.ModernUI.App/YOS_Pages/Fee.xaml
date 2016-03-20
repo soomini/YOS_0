@@ -7,10 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-            <mui:ModernTab SelectedSource="/YOS_Pages/Status_Pages/Fee/Whole.xaml" Layout="List">
+            <mui:ModernTab SelectedSource="/YOS_Pages/Status_Pages/Fee/Course.xaml" Layout="List">
                 <mui:ModernTab.Links>
-                    <mui:Link DisplayName="전체" Source="/YOS_Pages/Status_Pages/Fee/Whole.xaml" />
-                    <mui:Link DisplayName="강좌별 수수료 현황"  />
+                <mui:Link DisplayName="강좌별 수수료 현황" Source="/YOS_Pages/Status_Pages/Fee/Course.xaml"/>
                 <mui:Link DisplayName="파트너별 수수료 현황" Source="/YOS_Pages/Status_Pages/Fee/Patners.xaml"/>
                     <mui:Link DisplayName="회사 수익 현황"/>
                     <mui:Link DisplayName="미수금 현황"/>
