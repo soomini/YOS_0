@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\Binaries\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -99,9 +100,6 @@
     <Compile Include="YOS_Content\AddCost.xaml.cs">
       <DependentUpon>AddCost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Course_Pages\Complete.xaml.cs">
-      <DependentUpon>Complete.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Content\ControlsStylesSampleForm.xaml.cs">
       <DependentUpon>ControlsStylesSampleForm.xaml</DependentUpon>
     </Compile>
@@ -130,6 +128,9 @@
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />
     <Compile Include="SampleMsgBoxCommand.cs" />
+    <Compile Include="YOS_Pages\Course_Pages\Courses\Whole.xaml.cs">
+      <DependentUpon>Whole.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YOS_Pages\Course_Pages\Ongoing.xaml.cs">
       <DependentUpon>Ongoing.xaml</DependentUpon>
     </Compile>
@@ -139,8 +140,8 @@
     <Compile Include="YOS_Pages\Fee.xaml.cs">
       <DependentUpon>Fee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status.xaml.cs">
-      <DependentUpon>Status.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Course_Pages\Complete.xaml.cs">
+      <DependentUpon>Complete.xaml</DependentUpon>
     </Compile>
     <Compile Include="YOS_Pages\Reference.xaml.cs">
       <DependentUpon>Reference.xaml</DependentUpon>
@@ -163,11 +164,8 @@
     <Compile Include="YOS_Pages\Status_Pages\Fee\Whole.xaml.cs">
       <DependentUpon>Whole.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Course\Patners.xaml.cs">
+    <Compile Include="YOS_Pages\Course_Pages\Courses\Patners.xaml.cs">
       <DependentUpon>Patners.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Course\Whole.xaml.cs">
-      <DependentUpon>Whole.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -394,10 +392,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Course_Pages\Complete.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Content\ControlsStylesSampleForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -514,6 +508,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="YOS_Pages\Course_Pages\Courses\Whole.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="YOS_Pages\Course_Pages\Ongoing.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -526,7 +524,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status.xaml">
+    <Page Include="YOS_Pages\Course_Pages\Complete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -558,11 +556,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status_Pages\Course\Patners.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YOS_Pages\Status_Pages\Course\Whole.xaml">
+    <Page Include="YOS_Pages\Course_Pages\Courses\Patners.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

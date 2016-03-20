@@ -8,10 +8,10 @@ using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
 
-namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
+namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages.Courses
 {
 
-    public partial class Ongoing : UserControl
+    public partial class Whole : UserControl
     {
         private string strOraConn = "Data Source=orcl;User Id=scott;Password=tiger";
         //private OracleConnection Con = new OracleConnection();
@@ -21,7 +21,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course_Pages
         public object SelectedItem { get; set; }
 
 
-        public Ongoing()
+        public Whole()
         {
             InitializeComponent();
 

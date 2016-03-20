@@ -16,7 +16,7 @@
         <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />
         <!--#endregion-->
     </mui:Page.TitleLinks>
- 
+
     <mui:Page.MenuLinkGroups>
         <!--#region 메뉴 : Home-->
         <mui:LinkGroup DisplayName="Home">
@@ -36,9 +36,8 @@
         <!--#region 메뉴 : Status -->
         <mui:LinkGroup DisplayName="Status">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName ="강좌 현황" Source="/YOS_Pages/Status.xaml" />
-                <mui:Link DisplayName ="강사 수당 현황" Source="/YOS_Pages/Status.xaml" />
-                <mui:Link DisplayName ="모임 회비" Source="/YOS_Pages/Status.xaml" />
+                <mui:Link DisplayName ="강사 수당 현황" />
+                <mui:Link DisplayName ="모임 회비"  />
                 <mui:Link DisplayName ="수수료 현황" Source="/YOS_Pages/Fee.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
@@ -89,4 +88,4 @@
     </mui:Page.MenuLinkGroups>
 </mui:Page>
 
-    <!--순환 초기화 -->
+    <!--수민 초기화 -->
