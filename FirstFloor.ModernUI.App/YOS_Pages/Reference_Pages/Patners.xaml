@@ -14,9 +14,9 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+        <DockPanel Margin="0,0,10,0">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,10,0">
                 <DataGrid.Columns>
                     <!--<mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding LECTURERNO}"/>-->
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding LECTURERNAME}"/>
