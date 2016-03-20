@@ -11,8 +11,7 @@
                 <mui:ModernTab.Links>
                     <mui:Link DisplayName="전체" Source="/YOS_Pages/Course_Pages/Courses/Whole.xaml" />
                     <mui:Link DisplayName="파트너 필터" Source="/YOS_Pages/Course_Pages/Courses/Patners.xaml" />
-                    <mui:Link DisplayName="역할 필터" />
-                    <mui:Link DisplayName="사용자 정의 필터"/>
+                <mui:Link DisplayName="역할 필터" Source="/YOS_Pages/Course_Pages/Courses/Role.xaml"/>
             </mui:ModernTab.Links>
             </mui:ModernTab>
     </Grid>

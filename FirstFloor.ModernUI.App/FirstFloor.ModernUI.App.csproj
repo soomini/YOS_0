@@ -128,6 +128,9 @@
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />
     <Compile Include="SampleMsgBoxCommand.cs" />
+    <Compile Include="YOS_Pages\Course_Pages\Courses\Role.xaml.cs">
+      <DependentUpon>Role.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YOS_Pages\Course_Pages\Courses\Whole.xaml.cs">
       <DependentUpon>Whole.xaml</DependentUpon>
     </Compile>
@@ -507,6 +510,10 @@
     <Page Include="Pages\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YOS_Pages\Course_Pages\Courses\Role.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="YOS_Pages\Course_Pages\Courses\Whole.xaml">
       <Generator>MSBuild:Compile</Generator>
