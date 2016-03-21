@@ -6,14 +6,11 @@ using System.Windows.Input;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.Globalization;
 
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 {
-    //DataTable EXAM_EMP;
-    /// <summary>
-    /// Interaction logic for ControlsStylesSampleForm.xaml
-    /// </summary>
     public partial class Patners : UserControl
     {
 
@@ -28,7 +25,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         public Patners()
         {
             InitializeComponent();
-
+            
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt = new OracleDataAdapter("SELECT * FROM PERSON", strOraConn);
@@ -47,7 +44,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             TextFirstName.Text = null;
             TextLastName.Text = null;
-            RadioGenderMan.IsChecked = false;
+            RadioGenderMan.IsChecked = true;
             RadioGenderWoman.IsChecked = false;
             TxtPhoneNumber.Text = null;
             TxtBirth.SelectedDate = null;
@@ -63,6 +60,18 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             strGENDER = (string)(sender as RadioButton).Content;
         }
+
+        private string getGender()
+        {
+            if (RadioGenderMan.IsChecked == true)
+            {
+                return "남자";
+            }
+            else
+            {
+                return "여자";
+            }
+        }
         #endregion
 
 
@@ -75,27 +84,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
             DataTable PERSON_dt = PERSON_DS.Tables["PERSON_dt"];
-
-
+            
             if (DG1.SelectedIndex == -1)
             {
-                //1. 체크박스.Checked == true라면 변수를 1 아니라면 변수를 2로 해서 저장하고 불러오는 방법
-                //2. 체크박스.Checked.ToString() 자체를 저장한 후 불러온 값이 "true"라면 남자 아니면 여자로 설정하는 방법
-                //string Gender;
 
-                //if (RadioGenderMan.Content.ToString()=="남자")
-                //{
-                //    RadioGenderMan.IsChecked = true;
-                //}
-
-                //if(PERSON_dt.Rows)
-                PERSON_dt.Rows.Add(PERSON_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, TxtPhoneNumber.Text, TxtBirth.Text, "", TxtAddress.Text, TxtAddress2.Text);
-
-
-                //if (RadioGenderMan.IsChecked == true)
-                //{
-                //    PERSON_dt.Rows = Convert.ToString();
-                //}
+                PERSON_dt.Rows.Add(PERSON_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, TxtPhoneNumber.Text, TxtBirth.Text, getGender(), TxtAddress.Text, TxtAddress2.Text);
 
                 try
                 {
@@ -124,10 +117,19 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                         MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
                         break;
 
-                    case DataRowState.Modified:
+                    //case DataRowState.Modified:
+                    //    Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
+                    //    MessageBox.Show($"데이터가 수정되었습니다. {Record}");
+                    //    break;
+                }
+
+                foreach(DataColumn C in PERSON_dt.Columns)
+                {
+                    if(!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+                    {
                         Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
                         MessageBox.Show($"데이터가 수정되었습니다. {Record}");
-                        break;
+                    }
                 }
             }
 
@@ -140,6 +142,14 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 MessageBox.Show("에러 발생: " + ex.ToString());
             }
 
+            try
+            {
+                PERSON_dt.AcceptChanges();
+            }
+            catch
+            {
+
+            }
 
             //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
             //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
@@ -148,28 +158,36 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
         private void btn_Init_Click(object sender, RoutedEventArgs e)
         {
+            DG1.SelectedIndex = -1;
             StackPannel_control_init();
+            Btn_Register.Content = "등록";
         }
+
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
-                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
-                DataRow[] DeleteRow = PERSON_DS.Tables["PERSON_dt"].Select(expression);
+                //DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
+                //string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
+                //DataRow[] DeleteRow = PERSON_DS.Tables["PERSON_dt"].Select(expression);
 
                 PERSON_DS.Tables["PERSON_dt"].Rows[DG1.SelectedIndex].Delete();
 
                 Adpt.Update(PERSON_DS, "PERSON_dt");
 
                 MessageBox.Show("삭제 성공");
-                StackPannel_control_init();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("오류 : " + ex.ToString());
             }
+        }
+
+        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Btn_Register.Content = "업데이트";
         }
     }
 }

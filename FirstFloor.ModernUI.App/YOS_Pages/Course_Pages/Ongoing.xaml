@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="280"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -30,7 +30,7 @@
             <!--#endregion-->
             <StackPanel DockPanel.Dock="Top" >
                 <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
-                <ComboBox x:Name="CBOXLEC" IsEditable="True" Width="110" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged"/>
+                <ComboBox x:Name="CBOXLEC" IsEditable="True" Width="200" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged"/>
             </StackPanel>
             <ScrollViewer>
                 <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False">

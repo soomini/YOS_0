@@ -6,7 +6,13 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:converters="clr-namespace:CustomConverter">
+
+    <UserControl.Resources>
+        <converters:IVConverter x:Key="IVConverter"/>
+    </UserControl.Resources>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,7 +22,7 @@
 
         <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged">
                 <DataGrid.Columns>
                     <mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding ID}"/>
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
@@ -72,8 +78,9 @@
                 <!--#region 성별-->
                 <StackPanel>
                     <Label Content="성별" Target="{Binding ElementName=RadioGender}"/>
-                    <RadioButton x:Name="RadioGenderMan" Content="남자" GroupName="Gender" Checked="RadioGenderMan_Checked" IsChecked="{Binding BindingGroupName=남자 ,ElementName=DG1, Path=SelectedItem.GENDER, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <RadioButton x:Name="RadioGenderWoman" Content="여자" Margin="8,0,0,0" GroupName="Gender" Checked="RadioGenderWoman_Checked" IsChecked="{Binding ElementName=DG1, Path=SelectedItem.GENDER, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <RadioButton x:Name="RadioGenderMan" Content="남자" GroupName="Gender" Checked="RadioGenderMan_Checked" IsChecked="{Binding ElementName=DG1, Path=SelectedItem.GENDER, Converter={StaticResource IVConverter}, ConverterParameter=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <!-- BindingGroupName=남자 ,-->
+                    <RadioButton x:Name="RadioGenderWoman" Content="여자" Margin="8,0,0,0" GroupName="Gender" Checked="RadioGenderWoman_Checked" IsChecked="{Binding ElementName=DG1, Path=SelectedItem.GENDER, Converter={StaticResource IVConverter}, ConverterParameter=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 전화번호-->
