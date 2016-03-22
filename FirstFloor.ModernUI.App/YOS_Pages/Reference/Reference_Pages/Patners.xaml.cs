@@ -3,24 +3,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+#region ODP.NET 관련 네임스페이스
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
-
+#endregion
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 {
-    //DataTable EXAM_EMP;
-    /// <summary>
-    /// Interaction logic for ControlsStylesSampleForm.xaml
-    /// </summary>
     public partial class Patners : UserControl
     {
-		private string strOraConn = "User Id=scott;Password=tiger;Data Source=orcl";
-		//private OracleConnection Con = new OracleConnection();
 		private DataSet LECTURER_DS = new DataSet("LECTURER_DS");
-        private OracleCommandBuilder oraBuilder; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
-        private OracleDataAdapter Adpt;
 
         private string strGENDER = "";
 
@@ -28,19 +21,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         {
             InitializeComponent();
 
-            #region 데이터 가져오기 및 DataGrid에 추가
-
-            Adpt = new OracleDataAdapter("SELECT * FROM LECTURER", strOraConn);
-
             DataTable LECTURER_dt = LECTURER_DS.Tables["LECTURER_dt"];
 
-            oraBuilder = new OracleCommandBuilder(Adpt);
-
-            Adpt.Fill(LECTURER_DS, "LECTURER_dt");
             DG1.ItemsSource = LECTURER_DS.Tables["LECTURER_dt"].DefaultView;
             DG1.CanUserAddRows = false;
 
-            #endregion
         }
         public void StackPannel_control_init()
         {
@@ -67,8 +52,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         void OnLoaded(object sender, RoutedEventArgs e)
         {
-
-            // select first control on the form
             Keyboard.Focus(this.TextFirstName);
         }
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
@@ -78,27 +61,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
             if (DG1.SelectedIndex == -1)
             {
-				//1. 체크박스.Checked == true라면 변수를 1 아니라면 변수를 2로 해서 저장하고 불러오는 방법
-				//2. 체크박스.Checked.ToString() 자체를 저장한 후 불러온 값이 "true"라면 남자 아니면 여자로 설정하는 방법
-				//string Gender;
-
-				//if (RadioGenderMan.Content.ToString()=="남자")
-				//{
-				//    RadioGenderMan.IsChecked = true;
-				//}
-
-				//if(PERSON_dt.Rows)
 				LECTURER_dt.Rows.Add(LECTURER_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, TxtPhoneNumber.Text, TxtBirth.Text, "", TxtAddress.Text, TxtAddress2.Text);
-
-
-                //if (RadioGenderMan.IsChecked == true)
-                //{
-                //    PERSON_dt.Rows = Convert.ToString();
-                //}
 
                 try
                 {
-                    Adpt.Update(LECTURER_DS, "PERSON_dt");
+                //    Adpt.Update(LECTURER_DS, "PERSON_dt");
                     MessageBox.Show("추가가 완료되었습니다.");
                 }
                 catch (Exception ex)
@@ -132,17 +99,12 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
             try
             {
-                Adpt.Update(LECTURER_DS, "LECTURER_dt");
+          //      Adpt.Update(LECTURER_DS, "LECTURER_dt");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("에러 발생: " + ex.ToString());
             }
-
-
-            //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
-            //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
-
         }
 
         private void btn_Init_Click(object sender, RoutedEventArgs e)
@@ -160,7 +122,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
 				LECTURER_DS.Tables["LECTURER_dt"].Rows[DG1.SelectedIndex].Delete();
 
-                Adpt.Update(LECTURER_DS, "LECTURER_dt");
+             //   Adpt.Update(LECTURER_DS, "LECTURER_dt");
 
                 MessageBox.Show("삭제 성공");
                 StackPannel_control_init();

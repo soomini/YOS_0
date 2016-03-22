@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Threading;
 
 #region ODP.NET @ CONNECTIONSTRING namespace 추가
 using Oracle.ManagedDataAccess.Client;
@@ -6,6 +7,7 @@ using Oracle.ManagedDataAccess.Types;
 using System.Windows;
 using System.Data;
 using System;
+using System.IO;
 #endregion
 
 
@@ -22,24 +24,16 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private OracleDataAdapter oraDA_EDUTOOL;
 
-		private string connStr = "User Id=scott;Password=tiger;Data Source=orcl";
+        private string connStr = "User Id=scott;Password=tiger;Data Source=orcl";
+        static StringWriter stream = new StringWriter();
+        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
+        #endregion
 
-		#endregion
-
-		public TeachingMaterialPrice()
+        public TeachingMaterialPrice()
         {
             InitializeComponent();
-
-            #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA_EDUTOOL = new OracleDataAdapter("SELECT * FROM EDUCATION_SUPPORT_TOOL ", connStr);
-
-            oraBuilder_EDUTOOL = new OracleCommandBuilder(oraDA_EDUTOOL);
-
-            oraDA_EDUTOOL.Fill(EDUCATION_SUPPORT_TOOL_DS, "EDUCATION_SUPPORT_TOOL");
-
-            DataTable DT = EDUCATION_SUPPORT_TOOL_DS.Tables["EDUCATION_SUPPORT_TOOL"];
-            EDUTOOL_DG1.ItemsSource = DT.DefaultView;
-            #endregion
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("EDUCATION_SUPPORT_TOOL")));
         }
 
         #region 추가 button click event
@@ -88,5 +82,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             }
         }
         #endregion
+
+        private void EDUTOOL_DG1_LayoutUpdated(object sender, EventArgs e)
+        {
+            //UIDispatcher.Invoke(new Action(() => DT_1 = YOS.CAccessDB.getdt()));
+            UIDispatcher.Invoke(new Action(() => EDUTOOL_DG1.ItemsSource = YOS.CAccessDB.getds().Tables[0].DefaultView));//수신
+        }
     }
 }
