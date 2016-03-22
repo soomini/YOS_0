@@ -43,18 +43,18 @@
                 <DatePicker x:Name="EndDate" />
             </StackPanel>
         </StackPanel>
-        <DataGrid x:Name="DG2" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="1" >
+        <DataGrid x:Name="DGST" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="1" >
             <DataGrid.Columns>
-                <mui:DataGridTextColumn Header="이름" />
-                <mui:DataGridTextColumn Header="직책" />
-                <mui:DataGridTextColumn Header="강좌명" />
-                <mui:DataGridTextColumn Header="역할" />
-                <mui:DataGridTextColumn Header="금액" />
+                <mui:DataGridTextColumn Header="이름" Binding="{Binding NAME}"/>
+                <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
+                <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
+                <mui:DataGridTextColumn Header="역할" Binding="{Binding ROLE}"/>
+                <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT}"/>
             </DataGrid.Columns>
         </DataGrid>
 
 
-        <Grid Margin="0,9.92,-150,39.08" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.RowSpan="2">
+        <Grid Margin="0,10,0,-1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition Width="2"/>

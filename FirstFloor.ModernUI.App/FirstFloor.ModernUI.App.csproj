@@ -91,6 +91,7 @@
     <Compile Include="Content\ControlsStylesDataGrid.xaml.cs">
       <DependentUpon>ControlsStylesDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YOS_Pages\Reference_Pages\IVConverter.cs" />
     <Compile Include="Sample.xaml.cs">
       <DependentUpon>Sample.xaml</DependentUpon>
     </Compile>

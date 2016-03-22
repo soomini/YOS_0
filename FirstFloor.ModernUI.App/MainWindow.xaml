@@ -16,7 +16,7 @@
         <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />
         <!--#endregion-->
     </mui:Page.TitleLinks>
- 
+
     <mui:Page.MenuLinkGroups>
         <!--#region 메뉴 : Home-->
         <mui:LinkGroup DisplayName="Home">
@@ -89,4 +89,4 @@
     </mui:Page.MenuLinkGroups>
 </mui:Page>
 
-    <!--순환 초기화 -->
+    <!--수민 초기화 -->
