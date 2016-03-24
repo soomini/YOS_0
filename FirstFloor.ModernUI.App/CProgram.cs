@@ -48,9 +48,16 @@ namespace CSampleClient
         //Console.ReadKey();
         }
 
-        static public void SendMessage2(string dtmessage)
+        static public void SendMessage_update(string dtmessage)
         {
             CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_UPDATE);
+            msg.push(dtmessage);
+            game_servers[0].send(msg);
+        }
+
+        static public void SendMessage_delete(string dtmessage)
+        {
+            CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_DELETE);
             msg.push(dtmessage);
             game_servers[0].send(msg);
         }

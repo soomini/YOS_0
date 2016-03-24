@@ -12,6 +12,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Threading;
 
+
 namespace CSampleClient
 {
     using GameServer;
@@ -29,7 +30,7 @@ namespace CSampleClient
 
         private object threadLock = new object();
 
-        void IPeer.on_message(Const<byte[]> buffer)
+        async void IPeer.on_message(Const<byte[]> buffer)
 		{
             
             CPacket msg = new CPacket(buffer.Value, this);
@@ -38,12 +39,9 @@ namespace CSampleClient
 			{
 				case PROTOCOL.CHAT_MSG_ACK:
 					{                                               
-                            string text = msg.pop_string();
-                            Application.Current.Dispatcher.Invoke(
-                                new Action(() => YOS.CAccessDB.odpconn(text)));
-                        
-                           //Application.Current.Dispatcher.Invoke(DispatcherPriority.Send,
-                          //    new Action(() => YOS.CAccessDB.odpconn(text))); //dt 까지 만듬                
+                        string text = msg.pop_string();
+                        Application.Current.Dispatcher.Invoke(DispatcherPriority.Send,
+                            new Action(() => YOS.CAccessDB.odpconn(text)));
                     }
 					break;
                 case PROTOCOL.CHAT_MSG_UPDATE_ACK:

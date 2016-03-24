@@ -16,6 +16,7 @@ namespace YOS
     {
         static DataSet Ac_ds = new DataSet();
         static StringReader xmlSR;
+        static DataTable Ac_dt = new DataTable();
 
         static public void MyHandler(string message)
         {
@@ -25,12 +26,18 @@ namespace YOS
         static public void odpconn(string message)
         {            
             xmlSR = new StringReader(message);            
-            Ac_ds.ReadXml(xmlSR, XmlReadMode.ReadSchema);            
+            Ac_ds.ReadXml(xmlSR, XmlReadMode.ReadSchema);
+            Ac_dt = Ac_ds.Tables[0];      
+        }        
+        static public DataTable getdt()
+        {         
+            return Ac_dt;
         }
 
         static public DataSet getds()
         {
             return Ac_ds;
-        }        
+        }
+
     }
 }

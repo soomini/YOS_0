@@ -10,23 +10,17 @@ using System;
 using System.IO;
 #endregion
 
-
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 {
+    //되는 새로운 UI (3/23)
     public partial class TeachingMaterialPrice : UserControl
     {
-        //EDUTOOL
-
         #region 비연결기반 객체들 준비
-        private DataSet EDUCATION_SUPPORT_TOOL_DS = new DataSet("EDUCATION_SUPPORT_TOOL_DS");
-
-        private OracleCommandBuilder oraBuilder_EDUTOOL;
-
-        private OracleDataAdapter oraDA_EDUTOOL;
-
-        private string connStr = "User Id=scott;Password=tiger;Data Source=orcl";
         static StringWriter stream = new StringWriter();
         public Dispatcher UIDispatcher = Application.Current.Dispatcher;
+        static DataTable EDUCATIONTOOL_Dt = new DataTable();
+        static DataTable EDUCATIONTOOL_Dt_copy = new DataTable();
+        static DataSet EDUCATIONTOOL_Ds = new DataSet();
         #endregion
 
         public TeachingMaterialPrice()
@@ -43,9 +37,14 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             {
                 try
                 {
-                    oraDA_EDUTOOL.Update(EDUCATION_SUPPORT_TOOL_DS, "EDUCATION_SUPPORT_TOOL");
+                    CSampleClient.Program.SrvrConn();
+                    EDUCATIONTOOL_Dt_copy = EDUCATIONTOOL_Dt.Copy();
 
-                    MessageBox.Show("추가 성공");
+                    EDUCATIONTOOL_Ds.Tables.Add(EDUCATIONTOOL_Dt_copy);
+                    EDUCATIONTOOL_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
+                    CSampleClient.Program.SendMessage_update(stream.ToString());
+
+                    MessageBox.Show("교구 추가 성공");
                     btn_Insert.Content = "추가";
                     EDUTOOL_DG1.IsReadOnly = true;
                 }
@@ -69,12 +68,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             {
                 DataGridRow row = (DataGridRow)EDUTOOL_DG1.ItemContainerGenerator.ContainerFromIndex(EDUTOOL_DG1.SelectedIndex);
                 string expression = "EDUCATIONTOOLNAME = '" + ((TextBlock)(EDUTOOL_DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
-                DataRow[] DeleteRow = EDUCATION_SUPPORT_TOOL_DS.Tables["EDUCATION_SUPPORT_TOOL"].Select(expression);
+                DataRow[] DeleteRow = YOS.CAccessDB.getds().Tables[0].Select(expression);
 
-                EDUCATION_SUPPORT_TOOL_DS.Tables["EDUCATION_SUPPORT_TOOL"].Rows[EDUTOOL_DG1.SelectedIndex].Delete();
-                oraDA_EDUTOOL.Update(EDUCATION_SUPPORT_TOOL_DS, "EDUCATION_SUPPORT_TOOL");
+                YOS.CAccessDB.getds().Tables[0].Rows[EDUTOOL_DG1.SelectedIndex].Delete();
 
-                MessageBox.Show("삭제 성공");
+                CSampleClient.Program.SrvrConn();
+                YOS.CAccessDB.getds().WriteXml(stream, XmlWriteMode.WriteSchema);
+                CSampleClient.Program.SendMessage_delete(stream.ToString());
+
+                MessageBox.Show("교구 삭제 성공");
             }
             catch (Exception ex)
             {
@@ -85,8 +87,14 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private void EDUTOOL_DG1_LayoutUpdated(object sender, EventArgs e)
         {
-            //UIDispatcher.Invoke(new Action(() => DT_1 = YOS.CAccessDB.getdt()));
-            UIDispatcher.Invoke(new Action(() => EDUTOOL_DG1.ItemsSource = YOS.CAccessDB.getds().Tables[0].DefaultView));//수신
+            UIDispatcher.Invoke(new Action(() => EDUCATIONTOOL_Dt = YOS.CAccessDB.getdt()));
+            UIDispatcher.Invoke(new Action(() => EDUTOOL_DG1.ItemsSource = EDUCATIONTOOL_Dt.DefaultView));//수신
+        }
+
+        private void EDUTOOL_DG1_Loaded(object sender, RoutedEventArgs e)
+        {
+            //UIDispatcher.Invoke(new Action(() => EDUCATIONTOOL_Dt = YOS.CAccessDB.getdt()));
+            //UIDispatcher.Invoke(new Action(() => EDUTOOL_DG1.ItemsSource = EDUCATIONTOOL_Dt.DefaultView));//수신
         }
     }
-}
+} 

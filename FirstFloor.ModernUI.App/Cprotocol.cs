@@ -14,6 +14,8 @@ namespace GameServer
 		CHAT_MSG_ACK = 2,
         CHAT_MSG_UPDATE = 3,
         CHAT_MSG_UPDATE_ACK = 4,
-		END
-	}
+        CHAT_MSG_DELETE =5,
+        CHAT_MSG_DELETE_ACK = 6,
+        END
+    }
 }
