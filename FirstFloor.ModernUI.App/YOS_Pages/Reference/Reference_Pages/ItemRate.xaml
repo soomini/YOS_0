@@ -15,7 +15,7 @@
                 <RadioButton x:Name="Staff" Content="직원" Margin="0,0,15,2" GroupName="ITEMRATE" FontSize="13.333" Checked="Staff_Checked" />
             </StackPanel>
             <ScrollViewer>
-                <DataGrid x:Name="ItemRate_DG1" IsReadOnly="True" ItemsSource="{Binding ''}" AutoGenerateColumns="False">
+                <DataGrid x:Name="ItemRate_DG1" IsReadOnly="True" ItemsSource="{Binding ''}" AutoGenerateColumns="False" Loaded="ItemRate_DG1_Loaded" LayoutUpdated="ItemRate_DG1_LayoutUpdated">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="구분" Visibility="Hidden" Binding="{Binding ITEMRATENO}"/>
                         <DataGridTextColumn Header="항목" Binding="{Binding ITEMRATENAME}"/>
