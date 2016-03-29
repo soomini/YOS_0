@@ -30,21 +30,15 @@
             <StackPanel Margin="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <StackPanel Margin="0,0,15,0" HorizontalAlignment="Left" >
                     <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" Width="40" />
-                    <DatePicker x:Name="StartDate" />
+                    <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" />
                 </StackPanel>
                 <StackPanel Margin="0,3,15,0" HorizontalAlignment="Left" >
                     <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" Width="30" />
-                    <DatePicker x:Name="EndDate" />
+                    <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" />
                 </StackPanel>
                 <StackPanel Margin="0,3,0,0" HorizontalAlignment="Left" >
                     <Label Content="강좌명" Target="{Binding ElementName=EndDate}" FontWeight="Bold" Width="50" />
-                    <ComboBox IsEditable="True" Width="150">
-                        <ComboBoxItem Content="Item 1" />
-                        <ComboBoxItem Content="Item 2" />
-                        <ComboBoxItem Content="Item 3" />
-                        <ComboBoxItem Content="Item 4" />
-                        <ComboBoxItem Content="Item 5" />
-                    </ComboBox>
+                    <ComboBox x:Name="CB_ST_C" IsEditable="True" Width="150" Text="{Binding ElementName=DG_ST_C, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CB_ST_C_SelectionChanged" />
                 </StackPanel>
             </StackPanel>
         </DockPanel>
@@ -58,9 +52,9 @@
 
             <DockPanel Margin="0,5,10,0">
                 <TextBlock DockPanel.Dock="Top" Text="강좌 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-                <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid x:Name="DG_ST_C" ItemsSource="{Binding}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="강좌명" />
+                        <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
@@ -107,53 +101,53 @@
                     </StackPanel.DataContext>
                     <!--#region 강좌명-->
                     <StackPanel>
-                        <Label Content="강좌명" Target="{Binding ElementName=TextFirstName}"/>
-                        <TextBox x:Name="TextFirstName" Width="150" />
+                        <Label Content="강좌명"/>
+                        <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <!--#region 시작일자-->
                     <StackPanel>
-                        <Label Content="시작일자" Target="{Binding ElementName=TextFirstName}"/>
-                        <TextBox x:Name="Start" Width="150" />
+                        <Label Content="시작일자"/>
+                        <TextBox x:Name="Start" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.STARTDATE, StringFormat=yyyy-MM-dd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <!--#region 종료일자-->
                     <StackPanel>
-                        <Label Content="종료일자" Target="{Binding ElementName=TextFirstName}"/>
-                        <TextBox x:Name="End" Width="150" />
+                        <Label Content="종료일자"/>
+                        <TextBox x:Name="End" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.CLOSEDATE, StringFormat=yyyy-MM-dd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <!--#region 강의료-->
                     <StackPanel>
-                        <Label Content="강의료" Target="{Binding ElementName=TextFirstName}" Width="Auto"/>
+                        <Label Content="강의료" Width="Auto"/>
                         <Label Content="(65%)" Width="61" HorizontalAlignment="Left" Foreground="#FFA81919" />
                         <TextBox x:Name="Money" Width="150" />
                     </StackPanel>
                     <!--#region 소개비-->
                     <StackPanel>
-                        <Label Content="소개비" Target="{Binding ElementName=Commission}" Width="Auto"/>
+                        <Label Content="소개비" Width="Auto"/>
                         <Label Content="(10%)" Width="61" HorizontalAlignment="Left" Foreground="#FFA81919" />
                         <TextBox x:Name="Commission" Width="150" />
                     </StackPanel>
                     <!--#region 서류 및 제안영업-->
                     <StackPanel>
-                        <Label Content="제안영업" Target="{Binding ElementName=BusinessExpenses}" Width="Auto"/>
+                        <Label Content="제안영업" Width="Auto"/>
                         <Label Content="(10%)" Width="48" HorizontalAlignment="Left" Foreground="#FFA81919" />
                         <TextBox x:Name="BusinessExpenses" Width="150" />
                     </StackPanel>
                     <!--#region 모임회비-->
                     <StackPanel>
-                        <Label Content="모임회비" Target="{Binding ElementName=MembershipFee}" Width="Auto"/>
+                        <Label Content="모임회비" Width="Auto"/>
                         <Label Content="(10%)" Width="48" HorizontalAlignment="Left" Foreground="#FFA81919" />
                         <TextBox x:Name="MembershipFees" Width="150" />
                     </StackPanel>
                     <!--#region 회사이익-->
                     <StackPanel>
-                        <Label Content="회사이익" Target="{Binding ElementName=CorporationProfit}" Width="Auto"/>
+                        <Label Content="회사이익" Width="Auto"/>
                         <Label Content="(10%)" Width="48" HorizontalAlignment="Left" Foreground="#FFA81919" />
                         <TextBox x:Name="CorporationProfit" Width="150" />
                     </StackPanel>
                     <!--#region 총 합계-->
                     <StackPanel>
                         <Label Content="총 합계(100%)" Target="{Binding ElementName=TextFirstName}"/>
-                        <TextBox x:Name="Total" Width="150" />
+                        <TextBox x:Name="Total" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="Total_TextChanged"/>
                     </StackPanel>
 
                 </StackPanel>

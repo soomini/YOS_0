@@ -13,7 +13,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
     public partial class Ongoing : UserControl
     {
-        private string strOraConn = "Data Source=orcl;User Id=scott;Password=tiger";
+        private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
+        //private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
         //private OracleConnection Con = new OracleConnection();
         private DataSet LECTURE_DS = new DataSet("LECTURE_DS");
         private OracleCommandBuilder oraBuilder;
@@ -27,7 +28,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
+            //SELECT * FROM LECTURE
+            Adpt = new OracleDataAdapter("SELECT * FROM ONGOING", strOraConn);
 
             DataTable PERSON_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
@@ -100,16 +102,18 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             {
                 MessageBox.Show("에러 발생: " + ex.ToString());
             }
-
-
             //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
             //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
-        
         }
 
         private void CBOXLEC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DGLEC.SelectedIndex = CBOXLEC.SelectedIndex;
+        }
+
+        private void DGLEC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btn_Registration.Content = "업데이트";
         }
     }
 }

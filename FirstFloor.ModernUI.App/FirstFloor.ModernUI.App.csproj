@@ -91,7 +91,6 @@
     <Compile Include="Content\ControlsStylesDataGrid.xaml.cs">
       <DependentUpon>ControlsStylesDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Reference_Pages\IVConverter.cs" />
     <Compile Include="Sample.xaml.cs">
       <DependentUpon>Sample.xaml</DependentUpon>
     </Compile>
@@ -147,6 +146,7 @@
     <Compile Include="YOS_Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\IVConverter.cs" />
     <Compile Include="YOS_Pages\Status\CostStatus.xaml.cs">
       <DependentUpon>CostStatus.xaml</DependentUpon>
     </Compile>

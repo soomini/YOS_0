@@ -30,7 +30,8 @@ namespace CustomConverter //namespace FirstFloor.ModernUI.App
 
         public object ConvertBack(object value, Type t, object parameter, CultureInfo culture)
         {
-            try {
+            try
+            {
                 //return value.Equals(false) ? DependencyProperty.UnsetValue : parameter;
                 if (System.Convert.ToString(parameter) == "0")
                     return "남자";

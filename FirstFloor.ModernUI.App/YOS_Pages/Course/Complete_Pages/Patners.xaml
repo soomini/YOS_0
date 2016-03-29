@@ -30,19 +30,19 @@
             <!--#endregion-->
             <StackPanel DockPanel.Dock="Top" >
                 <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
-                <DatePicker x:Name="StartDate" />
+                <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" />
             </StackPanel>
             <StackPanel DockPanel.Dock="Top" >
                 <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
-                <DatePicker x:Name="EndDate" />
+                <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" />
             </StackPanel>
             <ScrollViewer>
-                <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid x:Name="DG_CO_PL" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="이름"  />
-                        <mui:DataGridTextColumn Header="분류" />
+                        <mui:DataGridTextColumn Header="이름" Binding="{Binding NAME}" />
+                        <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
                         <!--선택 항목은 체크박스로 표시 : 체크한 강사에 대한 세부항목이 결과 데이터그리드에 표시된다. 복수 선택 가능-->
-                        <mui:DataGridCheckBoxColumn Header="선택" />
+                        <mui:DataGridCheckBoxColumn x:Name="DG_CO_PLB" Header="선택" />
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
@@ -55,13 +55,13 @@
                 <RowDefinition Height="180"/>
             </Grid.RowDefinitions>
             <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin">
-                <DataGrid x:Name="DG2" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid x:Name="DG_CO_P" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="파트너명" />
-                        <mui:DataGridTextColumn Header="분류" />
-                        <mui:DataGridTextColumn Header="강좌명" />
-                        <mui:DataGridTextColumn Header="역할" />
-                        <mui:DataGridTextColumn Header="금액" />
+                        <mui:DataGridTextColumn Header="파트너명" Binding="{Binding NAME}" />
+                        <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
+                        <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
+                        <mui:DataGridTextColumn Header="역할" Binding="{Binding ROLE}" />
+                        <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
@@ -69,14 +69,14 @@
             <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="2">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="요약" Style="{StaticResource Heading2}" Margin="8,5,0,8"/>
-                    <DataGrid x:Name="DG3" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" >
+                    <DataGrid x:Name="DG_CO_PD" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" >
                         <DataGrid.Columns>
-                            <mui:DataGridTextColumn Header="파트너" />
-                            <mui:DataGridTextColumn Header="분류" />
-                            <mui:DataGridTextColumn Header="건수" />
+                            <mui:DataGridTextColumn Header="파트너" Binding="{Binding NAME}"/>
+                            <mui:DataGridTextColumn Header="분류"  Binding="{Binding JOB}"/>
+                            <mui:DataGridTextColumn Header="건수" Binding="{Binding C1}"/>
                             <mui:DataGridTextColumn Header="소계" />
                             <mui:DataGridTextColumn Header="총 건수" />
-                            <mui:DataGridTextColumn Header="총 합계" />
+                            <mui:DataGridTextColumn Header="총 합계"  Binding="{Binding AMOUNT}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
