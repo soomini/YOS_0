@@ -54,7 +54,7 @@
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" />
         <StackPanel MinWidth="250" Margin="30,0,0,0" Grid.Column="2" d:IsHidden="True" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock Text="강좌 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <mui:BBCodeBlock BBCode="강사 정보를 수정 또는 등록하시오." Margin="0,10,0,16"/>
+            <mui:BBCodeBlock BBCode="강좌 정보를 등록 또는 수정하시오." Margin="0,10,0,16"/>
             <StackPanel x:Name="sp_Form" Orientation="Vertical">
                 <!--#region 입력 항목 스택패널 스타일 설정-->
                 <StackPanel.Resources>
