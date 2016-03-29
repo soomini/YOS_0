@@ -10,9 +10,10 @@
 
     <Grid Margin="0,15,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="360"/>
+            <ColumnDefinition Width="330"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
         <DockPanel Margin="0">
@@ -32,7 +33,7 @@
                 <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
                 <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="220"/>
             </StackPanel>
-            <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+            <StackPanel x:Name="sp_ResistDelete" Margin="10,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
                 <Button x:Name="btn_Init" Content="새로운 강좌 등록" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" />
                 <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
             </StackPanel>
@@ -67,11 +68,23 @@
                         <Setter Property="Margin" Value="0,0,0,4" />
                     </Style>
                     <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
-                        <Setter Property="Width" Value="100" />
+                        <Setter Property="Width" Value="120" />
                         <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+
+                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Setter Property="Width" Value="170" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+                        <Setter Property="Width" Value="170" />
+                    </Style>
+                    <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource {x:Type DatePicker}}">
+                        <Setter Property="Width" Value="170" />
                     </Style>
                     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
                         <Setter Property="Padding" Value="0,3" />
+                        <Setter Property="Width" Value="200" />
                     </Style>
                     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
                         <Setter Property="Padding" Value="0,3" />
@@ -88,13 +101,13 @@
                 <!--#region 강좌명-->
                 <StackPanel x:Name="sp_CorseName">
                     <Label x:Name="lb_CourseName" Content="강좌명"/>
-                    <TextBox x:Name="tbx_Course" Width="230" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_Course"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 목적별 분류-->
                 <StackPanel x:Name="sp_CategoryOfPurpose">
                     <Label x:Name="lb_CategoryOfPurpose" Content="목적별 분류"/>
-                    <ComboBox x:Name="cbb_CategoryOfPurpose" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.PURPOSECATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
+                    <ComboBox x:Name="cbb_CategoryOfPurpose" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.PURPOSECATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                         <ComboBoxItem Content="일반강좌"/>
                         <ComboBoxItem Content="연수강좌"/>
                     </ComboBox>
@@ -103,7 +116,7 @@
                 <!--#region 분류 : 기관별 분류-->
                 <StackPanel x:Name="sp_CategoryOfInstitution">
                     <Label x:Name="lb_CategoryOfInstitution" Content="기관별 분류"/>
-                    <ComboBox x:Name="cbb_CategoryOfInstitution" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.INSTITUTIONCATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
+                    <ComboBox x:Name="cbb_CategoryOfInstitution" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.INSTITUTIONCATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                         <ComboBoxItem Content="교사연구(교육청)"/>
                         <ComboBoxItem Content="평생교육원"/>
                         <ComboBoxItem Content="여성인력개발센터"/>
@@ -117,7 +130,7 @@
                 <!--#region 분류 : 대상별 분류-->
                 <StackPanel x:Name="sp_CategoryOfTarget">
                     <Label x:Name="lb_CategoryOfTarget" Content="대상별 분류"/>
-                    <ComboBox x:Name="cbb_CategoryOfTarget" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.TARGETCATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
+                    <ComboBox x:Name="cbb_CategoryOfTarget"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.TARGETCATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                         <ComboBoxItem Content="초등학생"/>
                         <ComboBoxItem Content="중학생"/>
                         <ComboBoxItem Content="고등학생"/>
@@ -133,7 +146,7 @@
                 <!--#region 분류 : 주제별 분류-->
                 <StackPanel x:Name="sp_CategoryOfSubject">
                     <Label x:Name="lb_CategoryOfSubject" Content="주제별 분류"/>
-                    <ComboBox x:Name="cbb_CateroryOfSubject" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.SUBJECTCATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
+                    <ComboBox x:Name="cbb_CateroryOfSubject" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.SUBJECTCATEGORY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                         <ComboBoxItem Content="이야기 창작"/>
                         <ComboBoxItem Content="진로"/>
                         <ComboBoxItem Content="커뮤니케이션"/>
@@ -150,19 +163,19 @@
                 <!--#region PM-->
                 <StackPanel x:Name="sp_PMName">
                     <Label x:Name="lb_PMName" Content="PM"/>
-                    <TextBox x:Name="tbx_PMName" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_PMName" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 소개자-->
                 <StackPanel x:Name="sp_RecommanderName">
                     <Label x:Name="lb_RecommanderName" Content="소개자"/>
-                    <TextBox x:Name="tbx_RecommanderName" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_RecommanderName" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 강의처-->
                 <StackPanel x:Name="sp_Place">
                     <Label x:Name="lb_Place" Content="강의처"/>
-                    <TextBox x:Name="tbx_Place" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECPLACE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_Place" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECPLACE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
 
@@ -182,13 +195,13 @@
                 <!--#region 강의 시간-->
                 <StackPanel x:Name="sp_Time">
                     <Label x:Name="lb_Time" Content="강의 시간"/>
-                    <TextBox x:Name="tbx_Time" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURETIME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_Time" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURETIME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 총 강의료-->
                 <StackPanel x:Name="sp_TotalMoney">
                     <Label x:Name="lb_TotalMoney" Content="총 강의료"/>
-                    <TextBox x:Name="tbx_TotalMoney" Width="150" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_TotalMoney" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
 
@@ -203,19 +216,22 @@
                 <!--#region 비용 제외 강의료-->
                 <StackPanel x:Name="sp_NetProfit">
                     <Label x:Name="lb_NetProfit_Property" Content="비용 제외 강의료"/>
-                    <Label x:Name="lb_NetProfit_Value" Width="150" Content="     자동 계산"/>
+                    <Label x:Name="lb_NetProfit_Value" Content="     자동 계산"/>
                 </StackPanel>
                 <!--#endregion-->
 
-                <!--#region 업데이트 버튼-->
-                <!--#endregion-->
-
-                <!--#region 새로운 강좌 등록, 삭제 버튼-->
+                <!--#region 새로운 업데이트 버튼-->
             </StackPanel>
-            <StackPanel x:Name="sp_UpdateBtn" Margin="0,30,0,4">
+            <StackPanel x:Name="sp_UpdateBtn" Margin="70,30,0,4">
                 <Button x:Name="btn_Registration" Content="업데이트" Margin="10,0,0,0" HorizontalAlignment="Left" Click="btn_Registration_Click" Width="200" />
             </StackPanel>
         </StackPanel>
+        <StackPanel Grid.Column="3" Margin="0,37,0,0" Orientation="Vertical" d:LayoutOverrides="Height" HorizontalAlignment="Left">
+            <Label x:Name="lb_Ratio" Content="완료율" Margin="0" HorizontalAlignment="Center"/>
+            <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" Height="350" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1"  />
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"  Text="{Binding Value, ElementName=slider}"/>
 
+
+        </StackPanel>
     </Grid>
 </UserControl>
