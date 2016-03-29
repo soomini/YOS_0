@@ -115,5 +115,28 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
         {
             btn_Registration.Content = "업데이트";
         }
+
+        public void StackPannel_control_init()
+        {
+            tbx_Course.Text = null;
+            cbb_CategoryOfPurpose.Text = null;
+            cbb_CategoryOfInstitution.Text = null;
+            cbb_CategoryOfTarget.Text = null;
+            cbb_CateroryOfSubject.Text = null;
+            tbx_PMName.Text = null;
+            tbx_RecommanderName.Text = null;
+            tbx_Place.Text = null;
+            dp_StartDate.Text = null;
+            dp_EndDate.Text = null;
+            tbx_Time.Text = null;
+            tbx_TotalMoney.Text = null;
+        }
+
+        private void btn_Init_Click(object sender, RoutedEventArgs e)
+        {
+            DGLEC.SelectedIndex = -1;
+            StackPannel_control_init();
+            btn_Registration.Content = "등록";
+        }
     }
 }
