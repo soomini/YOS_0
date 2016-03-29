@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages.CourseCategory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:content="clr-namespace:FirstFloor.ModernUI.App.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <StackPanel MinWidth="200">
+            <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
+            <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
+                <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="5,0,15,2" GroupName="Category" FontSize="13.333" Checked="Whole_Checked" />
+                <RadioButton x:Name="Purpose" Content="목적별" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" Checked="Purpose_Checked" />
+                <RadioButton x:Name="Institution" Content="기관별" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" Checked="Institution_Checked" />
+                <RadioButton x:Name="Target" Content="대상별" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" Checked="Target_Checked"/>
+                <RadioButton x:Name="Subject" Content="주제별" Margin="0,0,0,2" GroupName="Category" FontSize="13.333" Checked="Subject_Checked" />
+            </StackPanel>
+            <ScrollViewer>
+                <StackPanel Orientation="Horizontal">
+                    <DataGrid x:Name="DGCat1" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="목적별 분류" Binding="{Binding PURPOSE}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="DGCat2" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="기관별 분류" Binding="{Binding INSTITUTION}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="DGCat3" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="대상별 분류" Binding="{Binding TARGET}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="DGCat4" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="주제별 분류" Binding="{Binding SUBJECT}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</UserControl>

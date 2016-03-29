@@ -101,9 +101,6 @@
     <Compile Include="YOS_Content\AddCost.xaml.cs">
       <DependentUpon>AddCost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Course_Pages\Complete.xaml.cs">
-      <DependentUpon>Complete.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Content\ControlsStylesSampleForm.xaml.cs">
       <DependentUpon>ControlsStylesSampleForm.xaml</DependentUpon>
     </Compile>
@@ -132,44 +129,53 @@
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />
     <Compile Include="SampleMsgBoxCommand.cs" />
-    <Compile Include="YOS_Pages\Course_Pages\Ongoing.xaml.cs">
+    <Compile Include="YOS_Pages\Course\Complete.xaml.cs">
+      <DependentUpon>Complete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Complete_Pages\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Complete_Pages\Role.xaml.cs">
+      <DependentUpon>Role.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Complete_Pages\Whole.xaml.cs">
+      <DependentUpon>Whole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Ongoing.xaml.cs">
       <DependentUpon>Ongoing.xaml</DependentUpon>
     </Compile>
     <Compile Include="YOS_Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Fee.xaml.cs">
-      <DependentUpon>Fee.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Status\CostStatus.xaml.cs">
+      <DependentUpon>CostStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status.xaml.cs">
-      <DependentUpon>Status.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Reference.xaml.cs">
+    <Compile Include="YOS_Pages\Reference\Reference.xaml.cs">
       <DependentUpon>Reference.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Reference_Pages\CourseCategory.xaml.cs">
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\CourseCategory.xaml.cs">
       <DependentUpon>CourseCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Reference_Pages\ItemRate.xaml.cs">
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\ItemRate.xaml.cs">
       <DependentUpon>ItemRate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Reference_Pages\Patners.xaml.cs">
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\Patners.xaml.cs">
       <DependentUpon>Patners.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Reference_Pages\TeachingMaterialPrice.xaml.cs">
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\TeachingMaterialPrice.xaml.cs">
       <DependentUpon>TeachingMaterialPrice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Fee\Patners.xaml.cs">
+    <Compile Include="YOS_Pages\Status\CostStatus_Pages\Chart.xaml.cs">
+      <DependentUpon>Chart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status\CostStatus_Pages\Course.xaml.cs">
+      <DependentUpon>Course.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status\CostStatus_Pages\Patners.xaml.cs">
       <DependentUpon>Patners.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Fee\Whole.xaml.cs">
-      <DependentUpon>Whole.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Course\Patners.xaml.cs">
-      <DependentUpon>Patners.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YOS_Pages\Status_Pages\Course\Whole.xaml.cs">
-      <DependentUpon>Whole.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Status\MembershipFee.xaml.cs">
+      <DependentUpon>MembershipFee.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -396,10 +402,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Course_Pages\Complete.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Content\ControlsStylesSampleForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -516,7 +518,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="YOS_Pages\Course_Pages\Ongoing.xaml">
+    <Page Include="YOS_Pages\Course\Complete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Complete_Pages\Patners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Complete_Pages\Role.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Complete_Pages\Whole.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Ongoing.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -524,47 +542,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Fee.xaml">
+    <Page Include="YOS_Pages\Status\CostStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status.xaml">
+    <Page Include="YOS_Pages\Reference\Reference.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Reference.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\CourseCategory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Reference_Pages\CourseCategory.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\ItemRate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Reference_Pages\ItemRate.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\Patners.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Reference_Pages\Patners.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\TeachingMaterialPrice.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Reference_Pages\TeachingMaterialPrice.xaml">
+    <Page Include="YOS_Pages\Status\CostStatus_Pages\Chart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status_Pages\Fee\Patners.xaml">
+    <Page Include="YOS_Pages\Status\CostStatus_Pages\Course.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status_Pages\Fee\Whole.xaml">
+    <Page Include="YOS_Pages\Status\CostStatus_Pages\Patners.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status_Pages\Course\Patners.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YOS_Pages\Status_Pages\Course\Whole.xaml">
+    <Page Include="YOS_Pages\Status\MembershipFee.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
