@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages.Patners" 
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Margin="0,0,0,0" VerticalAlignment="Top">
+            <!--#region 입력 항목 독패널 스타일 설정-->
+            <DockPanel.Resources>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Orientation" Value="Horizontal" />
+                    <Setter Property="Margin" Value="0,0,0,4" />
+                </Style>
+                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </DockPanel.Resources>
+            <!--#endregion-->
+            <StackPanel Margin="0,0,20,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <StackPanel Margin="0,0,15,0" HorizontalAlignment="Left" >
+                    <Label Content="시작" FontWeight="Bold" Width="40" />
+                    <DatePicker x:Name="StartDate" />
+                </StackPanel>
+                <StackPanel Margin="0,3,15,0" HorizontalAlignment="Left" >
+                    <Label Content="끝" FontWeight="Bold" Width="30" />
+                    <DatePicker x:Name="EndDate" />
+                </StackPanel>
+                <StackPanel Margin="0,3,0,0" HorizontalAlignment="Left" >
+                    <Label Content="파트너" FontWeight="Bold" Width="50" />
+                    <TextBox x:Name="CB_ST_P_T" Visibility="Hidden" Width="0" Text="{Binding ElementName=CB_ST_P, Path=Text, Mode=TwoWay}" TextChanged="CB_ST_P_T_TextChanged"/>
+                    <TextBox x:Name="CB_ST_P_T2" Visibility="Hidden" Width="0" Text="{Binding ElementName=DG_ST_P, Path=SelectedItem.NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="CB_ST_P_T2_TextChanged"/>
+                    <ComboBox x:Name="CB_ST_P" IsEditable="True" Width="110" Text="{Binding ElementName=DG_ST_P, Path=SelectedItem.NAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="NAME"/>
+                </StackPanel>
+                <StackPanel Margin="0,3,0,0" HorizontalAlignment="Left" >
+                    <CheckBox x:Name="CheckWhole" Content="전체" Margin="0,0,0,4" Checked="CheckWhole_Checked" Unchecked="CheckWhole_Unchecked"  />
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Row="1" Height="1" />
+        <DockPanel Grid.Row="2" Margin="0,10,0,0">
+            <TextBlock DockPanel.Dock="Top" Text="결과" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <DataGrid x:Name="DG_ST_P" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <mui:DataGridTextColumn Header="이름" Binding="{Binding NAME}"/>
+                    <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
+                    <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
+                    <mui:DataGridTextColumn Header="역할" Binding="{Binding ROLE}"/>
+                    <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages.ItemRate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:content="clr-namespace:FirstFloor.ModernUI.App.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel MinWidth="200">
+            <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
+            <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
+                <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="5,0,15,2" GroupName="ITEMRATE" FontSize="13.333" Checked="Whole_Checked" />
+                <RadioButton x:Name="Purpose" Content="연구원" Margin="0,0,15,2" GroupName="ITEMRATE" FontSize="13.333" Checked="Purpose_Checked" />
+                <RadioButton x:Name="Staff" Content="직원" Margin="0,0,15,2" GroupName="ITEMRATE" FontSize="13.333" Checked="Staff_Checked" />
+            </StackPanel>
+            <ScrollViewer>
+                <DataGrid x:Name="ItemRate_DG1" IsReadOnly="True" ItemsSource="{Binding ''}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="구분" Visibility="Hidden" Binding="{Binding ITEMRATENO}"/>
+                        <DataGridTextColumn Header="항목" Binding="{Binding ITEMRATENAME}"/>
+                        <DataGridTextColumn Header="연구원 비율" Visibility="Visible" Binding="{Binding RESEARCHER}"/>
+                        <DataGridTextColumn Header="직원 비율" Visibility="Visible" Binding="{Binding STAFF}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</UserControl>
