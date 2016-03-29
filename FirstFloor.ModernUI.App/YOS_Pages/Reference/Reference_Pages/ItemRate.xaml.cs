@@ -20,11 +20,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private OracleDataAdapter oraDA_ItemRate;
 
-		private string connStr = "User Id=scott;Password=tiger;Data Source=orcl";
+		private string connStr = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
 
-		#endregion
+        #endregion
 
-		static int switchint = 0;
+        static int switchint = 0;
 
         public ItemRate()
         {

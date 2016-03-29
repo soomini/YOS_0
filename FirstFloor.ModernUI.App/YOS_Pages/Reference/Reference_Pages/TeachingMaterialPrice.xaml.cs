@@ -22,11 +22,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private OracleDataAdapter oraDA_EDUTOOL;
 
-		private string connStr = "User Id=scott;Password=tiger;Data Source=orcl";
+		private string connStr = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
 
-		#endregion
+        #endregion
 
-		public TeachingMaterialPrice()
+        public TeachingMaterialPrice()
         {
             InitializeComponent();
 

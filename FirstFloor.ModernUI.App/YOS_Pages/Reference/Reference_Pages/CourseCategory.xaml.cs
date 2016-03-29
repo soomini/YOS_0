@@ -13,8 +13,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
     public partial class CourseCategory : UserControl
     {
 
-        private string strOraConn = "Data Source=orcl;User Id=scott;Password=tiger";
-        //private string strOraConn = "User Id=scott;Password=tiger;Data Source=ORCL";
+        private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
         //private OracleConnection Con = new OracleConnection();
 
         private DataSet CATEGORY_DS = new DataSet("CATEGORY_DS");
@@ -60,7 +59,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
             DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
             DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
-            //DGCat.CanUserAddRows = false;
+            DGCat1.IsReadOnly = true;
+            DGCat2.IsReadOnly = true;
+            DGCat3.IsReadOnly = true;
+            DGCat4.IsReadOnly = true;
             #endregion
         }
 

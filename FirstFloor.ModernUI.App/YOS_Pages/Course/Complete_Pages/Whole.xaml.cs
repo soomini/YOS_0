@@ -7,13 +7,15 @@ using System.Windows.Input;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.Collections.ObjectModel;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
 {
 
     public partial class Whole : UserControl
     {
-        private string strOraConn = "Data Source=orcl;User Id=scott;Password=tiger";
+        private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
+        //private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
         //private OracleConnection Con = new OracleConnection();
         private DataSet LECTURE_DS = new DataSet("LECTURE_DS");
         private OracleCommandBuilder oraBuilder;
@@ -27,9 +29,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
-
-            DataTable PERSON_dt = LECTURE_DS.Tables["LECTURE_dt"];
+            Adpt = new OracleDataAdapter("SELECT * FROM ONGOING", strOraConn);
+            //SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.SUBJECTCATEGORY, p.PROJMANAGER p.RECOMMENDER l.LECPLACE l.STARTDATE l.CLOSEDATE l.LECTURETIME l.LECTUREFEE FROM LECTURE l, PARTNERS p WHERE l.NAME = p.ID
+            DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
             oraBuilder = new OracleCommandBuilder(Adpt);
 
@@ -57,22 +59,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         {
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
-
             if (DGLEC.SelectedIndex == -1)
             {
 
-                LECTURE_dt.Rows.Add(tbx_Course.Text, cbb_CategoryOfPurpose.Text, cbb_CategoryOfInstitution.Text, cbb_CategoryOfTarget.Text, cbb_CateroryOfSubject.Text, tbx_PMName.Text, tbx_RecommanderName.Text, tbx_Place.Text, dp_StartDate.Text, dp_EndDate.Text, tbx_Time.Text, tbx_TotalMoney.Text);
-
-                try
-                {
-                    Adpt.Update(LECTURE_DS, "LECTURE_dt");
-                    MessageBox.Show("추가가 완료되었습니다.");
-                }
-                catch (Exception ex)
-                {
-                    LECTURE_dt.Rows.RemoveAt(LECTURE_dt.Rows.Count - 1);
-                    MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
-                }
+                MessageBox.Show("등록 불가! 현재 창에서는 수정만 가능합니다");
             }
 
             string Record = "";
@@ -100,16 +90,75 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             {
                 MessageBox.Show("에러 발생: " + ex.ToString());
             }
-
-
             //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
             //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
-        
         }
 
         private void CBOXLEC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DGLEC.SelectedIndex = CBOXLEC.SelectedIndex;
+        }
+
+        private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchDate();
+        }
+
+        private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchDate();
+
+            if (EndDate.SelectedDate <= StartDate.SelectedDate)
+            {
+                MessageBox.Show("시작일보다 빠름! 시작일 이후로 다시 선택해 주십시오.");
+                EndDate.SelectedDate = null;
+            }
+        }
+
+        private void searchDate()
+        {
+            string sd = String.Format("{0:yy-MM-dd}", StartDate.SelectedDate);
+            string ed = String.Format("{0:yy-MM-dd}", EndDate.SelectedDate);
+
+            string dynamicquery = "";
+            
+            if(sd != "" && ed != "")
+            {
+
+            }
+
+            if (sd != "")
+            {
+                dynamicquery += "CLOSEDATE >= to_date('" + sd + "', 'yy-mm-dd')";
+            }
+
+            if (ed != "")
+            {
+                if (dynamicquery != "")
+                    dynamicquery += " and ";
+                else
+                    dynamicquery += " ";
+
+                dynamicquery += "STARTDATE <= to_date('" + ed + "', 'yy-mm-dd')";
+            }
+
+            if (dynamicquery != "")
+                dynamicquery = " where " + dynamicquery;
+
+            Adpt = new OracleDataAdapter("SELECT * FROM LECTURE" + dynamicquery, strOraConn);
+            DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+
+            DGLEC.ItemsSource = null;
+            CBOXLEC.ItemsSource = null;
+
+            LECTURE_dt.Clear();
+
+            oraBuilder = new OracleCommandBuilder(Adpt);
+
+            Adpt.Fill(LECTURE_DS, "LECTURE_dt");
+            DGLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            CBOXLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            DGLEC.CanUserAddRows = false;
         }
     }
 }
