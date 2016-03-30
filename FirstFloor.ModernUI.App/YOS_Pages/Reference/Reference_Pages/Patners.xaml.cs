@@ -106,51 +106,37 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 }
             }
             else if((DG1.SelectedIndex > -1) && ((string)Btn_Register.Content == "수정"))
-            {               
-                //foreach (DataColumn C in PARTNERS_dt.Columns)
-                //{
-                //    if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
-                //    {
-                        
-                //    }
-                //}
-            }
-                
-            }            
-            //        string Record = "";
-            //        foreach (DataRow R in PARTNERS_dt.Rows)
-            //        {
-            //            switch (R.RowState)
-            //            {
-            //                case DataRowState.Added:
-            //                    Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
-            //                    MessageBox.Show($"데이터가 추가되었습니다. {Record}");
-            //                    break;
+            {
+                foreach (DataRow R in PARTNERS_Dt.Rows)
+                {               
+                    foreach (DataColumn C in PARTNERS_Dt.Columns)
+                    {
+                        if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+                        {
+                            try
+                            {
+                                PARTNERS_Ds.Reset();
+                                CSampleClient.Program.SrvrConn();
+                                PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
+                                PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
 
-            //                case DataRowState.Deleted:
-            //                    Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
-            //                    MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
-            //                    break;
-            //            }
+                                stream.Dispose();
+                                stream = new StringWriter();
 
-            //            foreach (DataColumn C in PARTNERS_dt.Columns)
-            //            {
-            //                if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
-            //                {
-            //                    Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
-            //                    MessageBox.Show($"데이터가 수정되었습니다. {Record}");
-            //                }
-            //            }
-            //        }
+                                PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
+                                CSampleClient.Program.SendMessage_update(stream.ToString());
 
-            //        try
-            //        {
-            //            Adpt.Update(LECTURER_DS, "LECTURER_dt");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("에러 발생: " + ex.ToString());
-            //        }
+                                MessageBox.Show("수정이 완료되었습니다.");
+                            }
+                            catch (Exception ex)
+                            {                                
+                                MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
+                            }
+                        }                        
+                    }
+                }
+            }                
+        }
         
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {

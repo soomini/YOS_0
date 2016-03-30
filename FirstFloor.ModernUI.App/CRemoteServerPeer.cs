@@ -44,7 +44,7 @@ namespace CSampleClient
                             new Action(() => YOS.CAccessDB.odpconn(text)));
                     }
 					break;
-                case PROTOCOL.CHAT_MSG_UPDATE_ACK:
+                case PROTOCOL.CHAT_MSG_INSERT_ACK:
                     {
 
                     }

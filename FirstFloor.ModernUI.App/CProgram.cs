@@ -58,7 +58,7 @@ namespace CSampleClient
 
         static public void SendMessage_insert(string dtmessage)
         {
-            CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_UPDATE);
+            CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_INSERT);
             msg.push(dtmessage);
             game_servers[0].send(msg);
         }
@@ -69,6 +69,14 @@ namespace CSampleClient
             msg.push(dtmessage);
             game_servers[0].send(msg);
         }
+
+        static public void SendMessage_update(string dtmessage)
+        {
+            CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_UPDATE);
+            msg.push(dtmessage);
+            game_servers[0].send(msg);
+        }
+
         /// <summary>
         /// 접속 성공시 호출될 콜백 매소드.
         /// </summary>
