@@ -16,10 +16,10 @@
 
         <DockPanel Margin="0,0,10,0">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,10,0">
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,10,0" LayoutUpdated="DG1_LayoutUpdated" Loaded="DG1_Loaded">
                 <DataGrid.Columns>
                     <!--<mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding LECTURERNO}"/>-->
-                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding LECTURERNAME}"/>
+                    <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
                     <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
                     <!--<mui:DataGridTextColumn Header="성별" Visibility="Visible" Binding="{Binding GENDER}"/>
                     <mui:DataGridTextColumn Header="전화번호" Binding="{Binding PHONENUMBER}"/>
@@ -60,7 +60,7 @@
                 <!--#region 이름-->
                 <StackPanel>
                     <Label Content="이름" Target="{Binding ElementName=TextFirstName}"/>
-                    <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.LECTURERNAME, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.NAME, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 직급-->

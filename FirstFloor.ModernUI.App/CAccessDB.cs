@@ -11,7 +11,6 @@ using FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages;
 
 namespace YOS
 {
-    //delegate DataTable GetDataTable();
     class CAccessDB
     {
         static DataSet Ac_ds = new DataSet();

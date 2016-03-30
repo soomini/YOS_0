@@ -38,7 +38,7 @@ namespace FreeNet
 		public void initialize()
 		{
 			this.max_connections = 10000;
-			this.buffer_size = 4096;
+			this.buffer_size = 10240;
 
 			this.buffer_manager = new BufferManager(this.max_connections * this.buffer_size * this.pre_alloc_count, this.buffer_size);
 			this.receive_event_args_pool = new SocketAsyncEventArgsPool(this.max_connections);
@@ -111,12 +111,12 @@ namespace FreeNet
 			SocketAsyncEventArgs receive_event_arg = new SocketAsyncEventArgs();
 			receive_event_arg.Completed += new EventHandler<SocketAsyncEventArgs>(receive_completed);
 			receive_event_arg.UserToken = token;
-			receive_event_arg.SetBuffer(new byte[4096], 0, 4096);
+			receive_event_arg.SetBuffer(new byte[10240], 0, 10240);
 
 			SocketAsyncEventArgs send_event_arg = new SocketAsyncEventArgs();
 			send_event_arg.Completed += new EventHandler<SocketAsyncEventArgs>(send_completed);
 			send_event_arg.UserToken = token;
-			send_event_arg.SetBuffer(new byte[4096], 0, 4096);
+			send_event_arg.SetBuffer(new byte[10240], 0, 10240);
 
 			begin_receive(socket, receive_event_arg, send_event_arg);
 		}

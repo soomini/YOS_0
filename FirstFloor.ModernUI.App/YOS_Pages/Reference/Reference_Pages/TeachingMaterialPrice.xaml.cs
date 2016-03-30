@@ -25,9 +25,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         public TeachingMaterialPrice()
         {
-            InitializeComponent();
-            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
-            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("EDUCATION_SUPPORT_TOOL")));
+            InitializeComponent();            
         }
 
         #region 추가 button click event
@@ -37,10 +35,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             {
                 try
                 {
+                    EDUCATIONTOOL_Ds.Reset();   
                     CSampleClient.Program.SrvrConn();
                     EDUCATIONTOOL_Dt_copy = EDUCATIONTOOL_Dt.Copy();
 
                     EDUCATIONTOOL_Ds.Tables.Add(EDUCATIONTOOL_Dt_copy);
+
+                    stream.Dispose();
+                    stream = new StringWriter();
+
                     EDUCATIONTOOL_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
                     CSampleClient.Program.SendMessage_update(stream.ToString());
 
@@ -72,6 +75,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
                 YOS.CAccessDB.getds().Tables[0].Rows[EDUTOOL_DG1.SelectedIndex].Delete();
 
+                stream.Dispose();
+                stream = new StringWriter();
+
                 CSampleClient.Program.SrvrConn();
                 YOS.CAccessDB.getds().WriteXml(stream, XmlWriteMode.WriteSchema);
                 CSampleClient.Program.SendMessage_delete(((TextBlock)(EDUTOOL_DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text);
@@ -87,15 +93,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         #endregion
 
         private void EDUTOOL_DG1_LayoutUpdated(object sender, EventArgs e)
-        {
+        {                       
             UIDispatcher.Invoke(new Action(() => EDUCATIONTOOL_Dt = YOS.CAccessDB.getdt()));
             UIDispatcher.Invoke(new Action(() => EDUTOOL_DG1.ItemsSource = EDUCATIONTOOL_Dt.DefaultView));//수신
         }
 
         private void EDUTOOL_DG1_Loaded(object sender, RoutedEventArgs e)
         {
-            //UIDispatcher.Invoke(new Action(() => EDUCATIONTOOL_Dt = YOS.CAccessDB.getdt()));
-            //UIDispatcher.Invoke(new Action(() => EDUTOOL_DG1.ItemsSource = EDUCATIONTOOL_Dt.DefaultView));//수신
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("EDUCATION_SUPPORT_TOOL")));
         }
     }
 } 

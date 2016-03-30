@@ -29,9 +29,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         public ItemRate()
         {
             InitializeComponent();
-
-            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
-            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("ITEMRATE")));
         }
 
         private void Purpose_Checked(object sender, RoutedEventArgs e)
@@ -64,8 +61,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private void ItemRate_DG1_Loaded(object sender, RoutedEventArgs e)
         {
-            //UIDispatcher.Invoke(new Action(() => ITEMRATE_Dt = YOS.CAccessDB.getdt()));
-            //UIDispatcher.Invoke(new Action(() => ItemRate_DG1.ItemsSource = ITEMRATE_Dt.DefaultView));//수신
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("ITEMRATE")));          
         }
 
         private void ItemRate_DG1_LayoutUpdated(object sender, EventArgs e)

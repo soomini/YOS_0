@@ -17,7 +17,14 @@ namespace CSampleClient
 	{
 		static List<IPeer> game_servers = new List<IPeer>();
 
-		static public void SrvrConn()
+        static string messagesave = null;
+
+        static public string getmsave()
+        {
+            return messagesave;
+        }
+
+        static public void SrvrConn()
 		{
 			CPacketBufferManager.initialize(2000);
 			// CNetworkService객체는 메시지의 비동기 송,수신 처리를 수행한다.
@@ -32,11 +39,12 @@ namespace CSampleClient
 			IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 7979);
 			connector.connect(endpoint);
 			System.Threading.Thread.Sleep(10);
-
         }
 
         static public void SendMessage(string message)
         {
+            messagesave = message;
+
             CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_REQ);
             msg.push(message);
             game_servers[0].send(msg);

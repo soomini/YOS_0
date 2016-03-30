@@ -199,7 +199,7 @@ namespace FreeNet
 			//	// 바디 사이즈 파싱.
 			//	Int16 body_size = BitConverter.ToInt16(state.buffer, 0);
 
-			//	if (body_size <= 0 || body_size > 40960)
+			//	if (body_size <= 0 || body_size > 102400)
 			//	{
 			//		state.workSocket.Close();
 			//		return;

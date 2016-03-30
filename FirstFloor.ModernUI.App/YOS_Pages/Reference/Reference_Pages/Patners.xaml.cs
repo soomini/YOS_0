@@ -2,28 +2,36 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 #region ODP.NET 관련 네임스페이스
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.IO;
 #endregion
+
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 {
     public partial class Patners : UserControl
     {
-		private DataSet LECTURER_DS = new DataSet("LECTURER_DS");
+		private DataSet LECTURER_DS = new DataSet("PARTNERS_DS");
 
         private string strGENDER = "";
+
+        static StringWriter stream = new StringWriter();
+        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
+        static DataTable PARTNERS_Dt = new DataTable();
+        static DataTable PARTNERS_Dt_copy = new DataTable();
+        static DataSet PARTNERS_Ds = new DataSet();
 
         public Patners()
         {
             InitializeComponent();
 
-            DataTable LECTURER_dt = LECTURER_DS.Tables["LECTURER_dt"];
-
-            DG1.ItemsSource = LECTURER_DS.Tables["LECTURER_dt"].DefaultView;
+            DataTable LECTURER_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
+            
             DG1.CanUserAddRows = false;
 
         }
@@ -56,7 +64,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         }
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            DataTable LECTURER_dt = LECTURER_DS.Tables["LECTURER_dt"];
+            DataTable LECTURER_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
 
 
             if (DG1.SelectedIndex == -1)
@@ -118,9 +126,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             {
                 DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
                 string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
-                DataRow[] DeleteRow = LECTURER_DS.Tables["LECTURER_dt"].Select(expression);
+                DataRow[] DeleteRow = LECTURER_DS.Tables["PARTNERS_Dt"].Select(expression);
 
-				LECTURER_DS.Tables["LECTURER_dt"].Rows[DG1.SelectedIndex].Delete();
+				LECTURER_DS.Tables["PARTNERS_Dt"].Rows[DG1.SelectedIndex].Delete();
 
              //   Adpt.Update(LECTURER_DS, "LECTURER_dt");
 
@@ -131,6 +139,18 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             {
                 MessageBox.Show("오류 : " + ex.ToString());
             }
+        }
+
+        private void DG1_LayoutUpdated(object sender, EventArgs e)
+        {
+            UIDispatcher.Invoke(new Action(() => PARTNERS_Dt = YOS.CAccessDB.getdt()));
+            UIDispatcher.Invoke(new Action(() => DG1.ItemsSource = PARTNERS_Dt.DefaultView));//수신
+        }
+
+        private void DG1_Loaded(object sender, RoutedEventArgs e)
+        {
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("PARTNERS")));
         }
     }
 }
