@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Threading;
 
 #region ODP.NET @ CONNECTIONSTRING namespace 추가
 using Oracle.ManagedDataAccess.Client;
@@ -6,6 +7,7 @@ using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Data;
 using System.Windows;
+using System.IO;
 #endregion
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
@@ -14,32 +16,19 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
     public partial class ItemRate : UserControl
     {
         #region 비연결기반 객체들 준비
-        private DataSet ITEMRATE_DS = new DataSet("ITEMRATE_DS");
+        static StringWriter stream = new StringWriter();
+        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
+        static DataTable ITEMRATE_Dt = new DataTable();
+        static DataTable ITEMRATE_Dt_copy = new DataTable();
+        static DataSet ITEMRATE_Ds = new DataSet();
 
-        private OracleCommandBuilder oraBuilder_ItemRate;
+		#endregion
 
-        private OracleDataAdapter oraDA_ItemRate;
-
-		private string connStr = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
-
-        #endregion
-
-        static int switchint = 0;
+		static int switchint = 0;
 
         public ItemRate()
         {
             InitializeComponent();
-
-            #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA_ItemRate = new OracleDataAdapter("SELECT * FROM ITEMRATE", connStr);
-
-            oraBuilder_ItemRate = new OracleCommandBuilder(oraDA_ItemRate);
-
-            oraDA_ItemRate.Fill(ITEMRATE_DS, "ITEMRATE");
-
-            DataTable DT = ITEMRATE_DS.Tables["ITEMRATE"];
-            ItemRate_DG1.ItemsSource = DT.DefaultView;
-            #endregion
         }
 
         private void Purpose_Checked(object sender, RoutedEventArgs e)
@@ -68,6 +57,18 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                 }
             }
             switchint++;
+        }
+
+        private void ItemRate_DG1_Loaded(object sender, RoutedEventArgs e)
+        {
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("ITEMRATE")));          
+        }
+
+        private void ItemRate_DG1_LayoutUpdated(object sender, EventArgs e)
+        {
+            UIDispatcher.Invoke(new Action(() => ITEMRATE_Dt = YOS.CAccessDB.getdt()));
+            UIDispatcher.Invoke(new Action(() => ItemRate_DG1.ItemsSource = ITEMRATE_Dt.DefaultView));//수신
         }
     }
 }

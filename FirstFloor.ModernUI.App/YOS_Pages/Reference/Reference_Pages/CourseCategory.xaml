@@ -18,23 +18,23 @@
                 <RadioButton x:Name="Subject" Content="주제별" Margin="0,0,0,2" GroupName="Category" FontSize="13.333" Checked="Subject_Checked" />
             </StackPanel>
             <ScrollViewer>
-                <StackPanel Orientation="Horizontal">
-                    <DataGrid x:Name="DGCat1" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="목적별 분류" Binding="{Binding PURPOSE}"/>
-                        </DataGrid.Columns>
+                <StackPanel Orientation="Horizontal">                    
+                    <DataGrid x:Name="DGCat1" Height="250" AutoGenerateColumns="True" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0" LayoutUpdated="DGCat1_LayoutUpdated" Loaded="DGCat1_Loaded">
+                        <!--<DataGrid.Columns>
+                            <DataGridTextColumn Header="목적별 분류" />
+                        </DataGrid.Columns>-->
                     </DataGrid>
-                    <DataGrid x:Name="DGCat2" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="기관별 분류" Binding="{Binding INSTITUTION}"/>
-                        </DataGrid.Columns>
+                    <DataGrid x:Name="DGCat2" Height="250" AutoGenerateColumns="True" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0" LayoutUpdated="DGCat2_LayoutUpdated" Loaded="DGCat2_Loaded">
+                        <!--<DataGrid.Columns>
+                            <DataGridTextColumn Header="기관별 분류" />
+                        </DataGrid.Columns>-->
                     </DataGrid>
-                    <DataGrid x:Name="DGCat3" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                    <DataGrid x:Name="DGCat3" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0" LayoutUpdated="DGCat3_LayoutUpdated" Loaded="DGCat3_Loaded">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="대상별 분류" Binding="{Binding TARGET}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat4" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                    <DataGrid x:Name="DGCat4" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0" LayoutUpdated="DGCat4_LayoutUpdated" Loaded="DGCat4_Loaded">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="주제별 분류" Binding="{Binding SUBJECT}"/>
                         </DataGrid.Columns>

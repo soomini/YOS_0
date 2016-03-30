@@ -22,9 +22,9 @@
 
         <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged">
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,10,0" LayoutUpdated="DG1_LayoutUpdated" Loaded="DG1_Loaded">
                 <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding ID}"/>
+                    <!--<mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding LECTURERNO}"/>-->
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
                     <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
                     <mui:DataGridTextColumn Header="성별" Visibility="Visible" Binding="{Binding GENDER}"/>

@@ -2,47 +2,38 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
+#region ODP.NET 관련 네임스페이스
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
-using System.Globalization;
+using System.IO;
+#endregion
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 {
     public partial class Patners : UserControl
     {
-
-        private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
-        //private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
-        //private OracleConnection Con = new OracleConnection();
-        private DataSet PARTNERS_DS = new DataSet("PARTNERS_DS");
-        private OracleCommandBuilder oraBuilder; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
-        private OracleDataAdapter Adpt;
+		private DataSet LECTURER_DS = new DataSet("PARTNERS_DS");
 
         //private DataRelation RelName;
         private string strGENDER = "";
+
+        static StringWriter stream = new StringWriter();
+        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
+        static DataTable PARTNERS_Dt = new DataTable();
+        static DataTable PARTNERS_Dt_copy = new DataTable();
+        static DataSet PARTNERS_Ds = new DataSet();
 
         public Patners()
         {
             InitializeComponent();
 
-            #region 데이터 가져오기 및 DataGrid에 추가
+            DataTable LECTURER_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
 
-            Adpt = new OracleDataAdapter("SELECT * FROM PARTNERS", strOraConn);
-
-            DataTable PARTNERS_dt = PARTNERS_DS.Tables["PARTNERS_dt"];
-
-            oraBuilder = new OracleCommandBuilder(Adpt);
-
-            Adpt.Fill(PARTNERS_DS, "PARTNERS_dt");
-            DG1.ItemsSource = PARTNERS_DS.Tables["PARTNERS_dt"].DefaultView;
             DG1.CanUserAddRows = false;
 
-            #endregion
-
-            //RelName= new DataRelation("partner", PARTNERS_DS.Tables["PARTNERS_dt"].Columns["NAME"],
-            //    PARTNERS_DS.Tables["PARTNERS_dt"].Columns{[""])        
         }
         public void StackPannel_control_init()
         {
@@ -80,22 +71,19 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
         void OnLoaded(object sender, RoutedEventArgs e)
         {
-
-            // select first control on the form
             Keyboard.Focus(this.TextFirstName);
         }
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            DataTable PARTNERS_dt = PARTNERS_DS.Tables["PARTNERS_dt"];
+            DataTable LECTURER_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
 
             if (DG1.SelectedIndex == -1)
             {
-
-                PARTNERS_dt.Rows.Add(PARTNERS_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, getGender(), TxtPhoneNumber.Text, TxtBirth.Text, TxtAddress.Text, TxtAddress2.Text);
+				LECTURER_dt.Rows.Add(LECTURER_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, TxtPhoneNumber.Text, TxtBirth.Text, "", TxtAddress.Text, TxtAddress2.Text);
 
                 try
                 {
-                    Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
+                    Adpt.Update(LECTURER_DS, "PERSON_dt");
                     MessageBox.Show("추가가 완료되었습니다.");
                 }
                 catch (Exception ex)
@@ -133,24 +121,12 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
             try
             {
-                Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
+                Adpt.Update(LECTURER_DS, "LECTURER_dt");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("에러 발생: " + ex.ToString());
             }
-
-            try
-            {
-                PARTNERS_dt.AcceptChanges();
-            }
-            catch
-            {
-
-            }
-            //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
-            //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
-
         }
 
         private void btn_Init_Click(object sender, RoutedEventArgs e)
@@ -164,9 +140,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             try
             {
-                PARTNERS_DS.Tables["PARTNERS_dt"].Rows[DG1.SelectedIndex].Delete();
+                DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
+                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
+                DataRow[] DeleteRow = LECTURER_DS.Tables["PARTNERS_Dt"].Select(expression);
 
-                Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
+				LECTURER_DS.Tables["PARTNERS_Dt"].Rows[DG1.SelectedIndex].Delete();
+
+             //   Adpt.Update(LECTURER_DS, "LECTURER_dt");
 
                 MessageBox.Show("삭제 성공");
 
@@ -177,9 +157,16 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             }
         }
 
-        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DG1_LayoutUpdated(object sender, EventArgs e)
         {
-            Btn_Register.Content = "업데이트";
+            UIDispatcher.Invoke(new Action(() => PARTNERS_Dt = YOS.CAccessDB.getdt()));
+            UIDispatcher.Invoke(new Action(() => DG1.ItemsSource = PARTNERS_Dt.DefaultView));//수신
+        }
+
+        private void DG1_Loaded(object sender, RoutedEventArgs e)
+        {
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("PARTNERS")));
         }
     }
 }
