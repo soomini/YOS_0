@@ -23,43 +23,12 @@
         <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged">
-                <DataGrid.GroupStyle>
-        <GroupStyle>
-            <GroupStyle.HeaderTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}" />
-                    </StackPanel>
-                </DataTemplate>
-            </GroupStyle.HeaderTemplate>
-            <GroupStyle.ContainerStyle>
-                <Style TargetType="{x:Type GroupItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                <Expander>
-                                    <Expander.Header>
-                                        <StackPanel Orientation="Horizontal">
-                                          <TextBlock Text="{Binding Path=Name}" />
-                                          <TextBlock Text="{Binding Path=ItemCount}"/>
-                                          <TextBlock Text="Items"/>
-                                        </StackPanel>
-                                    </Expander.Header>
-                                    <ItemsPresenter />
-                                </Expander>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </GroupStyle.ContainerStyle>
-        </GroupStyle>
-    </DataGrid.GroupStyle>
                 <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding ID}"/>
+                    <mui:DataGridTextColumn Header="사번" Visibility="Visible" Binding="{Binding ID}"/>
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
                     <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
-                    <mui:DataGridTextColumn Header="성별" Visibility="Visible" Binding="{Binding GENDER}"/>
-                    <mui:DataGridTextColumn Header="전화번호" Binding="{Binding PHONENUMBER}"/>
+                    <mui:DataGridTextColumn Header="성별" Visibility="Hidden" Binding="{Binding GENDER}"/>
+                    <mui:DataGridTextColumn Header="전화번호" Visibility="Hidden" Binding="{Binding PHONENUMBER}"/>
                     <mui:DataGridTextColumn Header="생년월일" Visibility="Hidden" Binding="{Binding BIRTHDATE}"/>
                     <mui:DataGridTextColumn Header="도시" Visibility="Hidden" Binding="{Binding CITY}"/>
                     <mui:DataGridTextColumn Header="상세 주소" Visibility="Hidden" Binding="{Binding DETAILADDRESS}"/>
