@@ -118,6 +118,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                 {
                     DataTable PurposeCATEGORY_dt = CATEGORY_DS.Tables["PurposeCATEGORY_dt"];
                     btn_Insert.Content = "추가/수정";
+                    btn_Delete.Content = "삭제";
                     //string Record = "";
                     //foreach (DataRow R in PurposeCATEGORY_dt.Rows)
                     //{
@@ -160,6 +161,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             else
             {
                 btn_Insert.Content = "업데이트";
+                btn_Delete.Content = "취소";
 
                 DGCat1.IsReadOnly = false;
                 DGCat2.IsReadOnly = false;
@@ -170,24 +172,42 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
-                CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
-                CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
-                CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
+            //if (Convert.ToString(btn_Delete.Content) == "취소")
+            //{
+            //    btn_Insert.Content = "추가/수정";
+            //    btn_Delete.Content = "삭제";
 
-                Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
-                Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
-                Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
-                Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
 
-                MessageBox.Show("삭제 성공");
+            //    DGCat1.ItemsSource = null;
+            //    DGCat2.ItemsSource = null;
+            //    DGCat3.ItemsSource = null;
+            //    DGCat4.ItemsSource = null;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("오류 : " + ex.ToString());
+            //    DGCat1.ItemsSource = CATEGORY_DS.Tables["PurposeCATEGORY_dt"].DefaultView;
+            //    DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
+            //    DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
+            //    DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
+            //}
+            else {
+                try
+                {
+                    CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
+
+                    Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                    Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                    Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                    Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+
+                    MessageBox.Show("삭제 성공");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("오류 : " + ex.ToString());
+                }
             }
         }
     }
