@@ -43,7 +43,7 @@ namespace FreeNet
 
 		public CPacket()
 		{
-			this.buffer = new byte[4096];
+			this.buffer = new byte[10240];
 		}
 
 		public Int16 pop_protocol_id()
@@ -102,7 +102,7 @@ namespace FreeNet
 		public void set_protocol(Int16 protocol_id)
 		{
 			this.protocol_id = protocol_id;
-			//this.buffer = new byte[4096];
+			//this.buffer = new byte[10240];
 
 			// 헤더는 나중에 넣을것이므로 데이터 부터 넣을 수 있도록 위치를 점프시켜놓는다.
 			this.position = Defines.HEADERSIZE;

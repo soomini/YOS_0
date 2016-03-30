@@ -22,7 +22,7 @@
 
         <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,10,0" LayoutUpdated="DG1_LayoutUpdated" Loaded="DG1_Loaded">
+            <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,10,0" LayoutUpdated="DG1_LayoutUpdated" Loaded="DG1_Loaded" IsReadOnly="True" SelectionChanged="DG1_SelectionChanged">
                 <DataGrid.Columns>
                     <!--<mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding LECTURERNO}"/>-->
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
@@ -116,9 +116,9 @@
                 <!--#endregion-->
                 <!--#region 등록 버튼-->
                 <StackPanel>
-                    <Button x:Name="Btn_Register" Content="등록" Margin="0,25,0,0" HorizontalAlignment="Left" Click="Btn_Register_Click" />
-                    <Button x:Name="btn_Init" Content="초기화" Margin="5,25,0,0" HorizontalAlignment="Left" Click="btn_Init_Click" />
-                    <Button x:Name="btn_Delete" Content="삭제" Margin="5,25,0,0" HorizontalAlignment="Left" Click="btn_Delete_Click" />
+                    <Button x:Name="Btn_Register" Content="등록" Margin="5,35,0,0" HorizontalAlignment="Left" Click="Btn_Register_Click" />
+                    <Button x:Name="btn_Delete" Content="삭제" Margin="25,35,0,0" HorizontalAlignment="Left" Click="btn_Delete_Click" />
+                    <Button x:Name="btn_Init" Content="초기화" Margin="25,35,0,0" HorizontalAlignment="Left" Click="btn_Init_Click" />                    
                 </StackPanel>
                 <!--#endregion-->
             </StackPanel>

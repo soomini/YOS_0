@@ -14,11 +14,8 @@ using System.IO;
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 {
     public partial class Patners : UserControl
-    {
-		private DataSet LECTURER_DS = new DataSet("PARTNERS_DS");
-
-        //private DataRelation RelName;
-        private string strGENDER = "";
+    {	
+        private string strGENDER = null;
 
         static StringWriter stream = new StringWriter();
         public Dispatcher UIDispatcher = Application.Current.Dispatcher;
@@ -30,11 +27,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             InitializeComponent();
 
-            DataTable LECTURER_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
-
-            DG1.CanUserAddRows = false;
-
+            //DataTable PARTNERS_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
+            //DG1.CanUserAddRows = false;
         }
+
+        void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.TextFirstName);
+        }
+
         public void StackPannel_control_init()
         {
             TextFirstName.Text = null;
@@ -46,6 +47,14 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             TxtAddress.Text = null;
             TxtAddress2.Text = null;
         }
+
+        private void btn_Init_Click(object sender, RoutedEventArgs e)
+        {
+            DG1.SelectedIndex = -1;
+            StackPannel_control_init();
+            Btn_Register.Content = "등록";
+        }
+
         #region Radio value get
         private void RadioGenderMan_Checked(object sender, RoutedEventArgs e)
         {
@@ -68,88 +77,100 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             }
         }
         #endregion
-
-        void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            Keyboard.Focus(this.TextFirstName);
-        }
+        
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            DataTable LECTURER_dt = LECTURER_DS.Tables["PARTNERS_Dt"];
-
-            if (DG1.SelectedIndex == -1)
+            if ((DG1.SelectedIndex == -1) && ((string)Btn_Register.Content == "등록"))
             {
-				LECTURER_dt.Rows.Add(LECTURER_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, TxtPhoneNumber.Text, TxtBirth.Text, "", TxtAddress.Text, TxtAddress2.Text);
+                PARTNERS_Dt.Rows.Add(PARTNERS_Dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, getGender(), TxtPhoneNumber.Text, TxtBirth.Text, TxtAddress.Text, TxtAddress2.Text);
 
                 try
                 {
-                    Adpt.Update(LECTURER_DS, "PERSON_dt");
+                    PARTNERS_Ds.Reset();
+                    CSampleClient.Program.SrvrConn();
+                    PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
+                    PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
+
+                    stream.Dispose();
+                    stream = new StringWriter();
+
+                    PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
+                    CSampleClient.Program.SendMessage_insert(stream.ToString());
+
                     MessageBox.Show("추가가 완료되었습니다.");
                 }
                 catch (Exception ex)
                 {
-                    PARTNERS_dt.Rows.RemoveAt(PARTNERS_dt.Rows.Count - 1);
+                    PARTNERS_Dt.Rows.RemoveAt(PARTNERS_Dt.Rows.Count - 1);
                     MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
                 }
             }
-
-            string Record = "";
-            foreach (DataRow R in PARTNERS_dt.Rows)
-            {
-                switch (R.RowState)
-                {
-                    case DataRowState.Added:
-                        Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
-                        MessageBox.Show($"데이터가 추가되었습니다. {Record}");
-                        break;
-
-                    case DataRowState.Deleted:
-                        Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
-                        MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
-                        break;
-                }
-
-                foreach (DataColumn C in PARTNERS_dt.Columns)
-                {
-                    if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
-                    {
-                        Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
-                        MessageBox.Show($"데이터가 수정되었습니다. {Record}");
-                    }
-                }
+            else if((DG1.SelectedIndex > -1) && ((string)Btn_Register.Content == "수정"))
+            {               
+                //foreach (DataColumn C in PARTNERS_dt.Columns)
+                //{
+                //    if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+                //    {
+                        
+                //    }
+                //}
             }
+                
+            }            
+            //        string Record = "";
+            //        foreach (DataRow R in PARTNERS_dt.Rows)
+            //        {
+            //            switch (R.RowState)
+            //            {
+            //                case DataRowState.Added:
+            //                    Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
+            //                    MessageBox.Show($"데이터가 추가되었습니다. {Record}");
+            //                    break;
 
-            try
-            {
-                Adpt.Update(LECTURER_DS, "LECTURER_dt");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("에러 발생: " + ex.ToString());
-            }
-        }
+            //                case DataRowState.Deleted:
+            //                    Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
+            //                    MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
+            //                    break;
+            //            }
 
-        private void btn_Init_Click(object sender, RoutedEventArgs e)
-        {
-            DG1.SelectedIndex = -1;
-            StackPannel_control_init();
-            Btn_Register.Content = "등록";
-        }
+            //            foreach (DataColumn C in PARTNERS_dt.Columns)
+            //            {
+            //                if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+            //                {
+            //                    Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
+            //                    MessageBox.Show($"데이터가 수정되었습니다. {Record}");
+            //                }
+            //            }
+            //        }
 
+            //        try
+            //        {
+            //            Adpt.Update(LECTURER_DS, "LECTURER_dt");
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("에러 발생: " + ex.ToString());
+            //        }
+        
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
-                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
-                DataRow[] DeleteRow = LECTURER_DS.Tables["PARTNERS_Dt"].Select(expression);
+                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[1].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
+                DataRow[] DeleteRow = YOS.CAccessDB.getds().Tables[0].Select(expression);
 
-				LECTURER_DS.Tables["PARTNERS_Dt"].Rows[DG1.SelectedIndex].Delete();
+                YOS.CAccessDB.getds().Tables[0].Rows[DG1.SelectedIndex].Delete();
 
-             //   Adpt.Update(LECTURER_DS, "LECTURER_dt");
+                stream.Dispose();
+                stream = new StringWriter();
 
-                MessageBox.Show("삭제 성공");
+                CSampleClient.Program.SrvrConn();
+                YOS.CAccessDB.getds().WriteXml(stream, XmlWriteMode.WriteSchema);
+                CSampleClient.Program.SendMessage_delete(((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text);
+                CSampleClient.Program.SendMessage_delete(stream.ToString());
 
+                MessageBox.Show("교구 삭제 성공");
             }
             catch (Exception ex)
             {
@@ -167,6 +188,14 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
             UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("PARTNERS")));
+        }
+
+        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(DG1.SelectedIndex != -1)
+            {
+                Btn_Register.Content = "수정";
+            }
         }
     }
 }

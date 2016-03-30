@@ -45,7 +45,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                     stream = new StringWriter();
 
                     EDUCATIONTOOL_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
-                    CSampleClient.Program.SendMessage_update(stream.ToString());
+                    CSampleClient.Program.SendMessage_insert(stream.ToString());
 
                     MessageBox.Show("교구 추가 성공");
                     btn_Insert.Content = "추가";
@@ -80,7 +80,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
                 CSampleClient.Program.SrvrConn();
                 YOS.CAccessDB.getds().WriteXml(stream, XmlWriteMode.WriteSchema);
-                CSampleClient.Program.SendMessage_delete(((TextBlock)(EDUTOOL_DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text);
+                CSampleClient.Program.SendMessage_delete(((TextBlock)(EDUTOOL_DG1.Columns[1].GetCellContent(row).Parent as DataGridCell).Content).Text);
                 CSampleClient.Program.SendMessage_delete(stream.ToString());             
 
                 MessageBox.Show("교구 삭제 성공");

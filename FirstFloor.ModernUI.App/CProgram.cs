@@ -56,7 +56,7 @@ namespace CSampleClient
         //Console.ReadKey();
         }
 
-        static public void SendMessage_update(string dtmessage)
+        static public void SendMessage_insert(string dtmessage)
         {
             CPacket msg = CPacket.create((short)PROTOCOL.CHAT_MSG_UPDATE);
             msg.push(dtmessage);
