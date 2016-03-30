@@ -23,6 +23,37 @@
         <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged">
+                <DataGrid.GroupStyle>
+        <GroupStyle>
+            <GroupStyle.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </GroupStyle.HeaderTemplate>
+            <GroupStyle.ContainerStyle>
+                <Style TargetType="{x:Type GroupItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                <Expander>
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                          <TextBlock Text="{Binding Path=Name}" />
+                                          <TextBlock Text="{Binding Path=ItemCount}"/>
+                                          <TextBlock Text="Items"/>
+                                        </StackPanel>
+                                    </Expander.Header>
+                                    <ItemsPresenter />
+                                </Expander>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </GroupStyle.ContainerStyle>
+        </GroupStyle>
+    </DataGrid.GroupStyle>
                 <DataGrid.Columns>
                     <mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding ID}"/>
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
