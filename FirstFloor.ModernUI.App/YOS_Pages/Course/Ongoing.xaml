@@ -45,8 +45,15 @@
                         <mui:DataGridTextColumn Header="기간별" Visibility="Hidden" Binding="{Binding INSTITUTIONCATEGORY}"/>
                         <mui:DataGridTextColumn Header="대상별" Visibility="Hidden" Binding="{Binding TARGETCATEGORY}"/>
                         <mui:DataGridTextColumn Header="주제별" Visibility="Hidden" Binding="{Binding SUBJECTCATEGORY}"/>
-                        <mui:DataGridTextColumn Header="PM" Binding="{Binding N1}"/>
-                        <mui:DataGridTextColumn Header="소개자" Visibility="Hidden" Binding="{Binding N2}"/>
+                        <!-- <mui:DataGridTextColumn Header="PMC" Visibility="Hidden" Binding="{Binding NC1}"/> -->
+                        <mui:DataGridTextColumn Header="PM" Visibility="Hidden" Binding="{Binding PROJMANAGER}"/>
+                        <mui:DataGridTextColumn x:Name="N1" Header="PM" Binding="{Binding N1}"/>
+                        <!-- <mui:DataGridTextColumn x:Name="N1" Header="PM"/>-->
+                        <!-- <mui:DataGridTextColumn Header="소개자C" Visibility="Hidden" Binding="{Binding NC2}"/> -->
+                        <mui:DataGridTextColumn Header="소개자" Visibility="Hidden" Binding="{Binding RECOMMENDER}"/>
+                        <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden" Binding="{Binding N2}"/>
+                        
+                        <!-- <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden"/>-->
                         <mui:DataGridTextColumn Header="강의처" Visibility="Hidden" Binding="{Binding LECPLACE}"/>
                         <mui:DataGridTextColumn Header="시작일자" Visibility="Hidden" Binding="{Binding STARTDATE}"/>
                         <mui:DataGridTextColumn Header="종료일자" Visibility="Hidden" Binding="{Binding CLOSEDATE}"/>
@@ -163,13 +170,20 @@
                 <!--#region PM-->
                 <StackPanel x:Name="sp_PMName">
                     <Label x:Name="lb_PMName" Content="PM"/>
+                    
                     <TextBox x:Name="tbx_PMName" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbN1" Text="" Visibility="Hidden" TextChanged="tbN1_TextChanged"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 소개자-->
                 <StackPanel x:Name="sp_RecommanderName">
                     <Label x:Name="lb_RecommanderName" Content="소개자"/>
+                    
                     <TextBox x:Name="tbx_RecommanderName" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbN2" Text="" Visibility="Hidden" TextChanged="tbN2_TextChanged"/>
+                    
+                    
+                    
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 강의처-->
