@@ -69,5 +69,42 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             }
             switchint++;
         }
+
+        private void btn_Insert_Click(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToString(btn_Insert.Content) == "확인")
+            {
+                try
+                {
+                    DataTable ITEMRATE = ITEMRATE_DS.Tables["ITEMRATE"];
+                    btn_Insert.Content = "수정";
+                    string Record = "";
+                    foreach (DataRow R in ITEMRATE.Rows)
+                    {
+                        foreach (DataColumn C in ITEMRATE.Columns)
+                        {
+                            if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+                            {
+                                Record = string.Format("수정: {0}", Convert.ToString(R["ITEMRATENAME"]));
+                                MessageBox.Show($"데이터가 수정되었습니다. {Record}");
+                            }
+                        }
+                    }
+                    oraDA_ItemRate.Update(ITEMRATE_DS, "ITEMRATE");
+
+                    ItemRate_DG1.IsReadOnly = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("에러 발생: " + ex.ToString());
+                }
+            }
+            else
+            {
+                btn_Insert.Content = "확인";
+
+                ItemRate_DG1.IsReadOnly = false;
+            }
+        }
     }
 }

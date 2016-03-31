@@ -5,6 +5,7 @@ using System.Windows;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.Linq;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 {
@@ -45,27 +46,17 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 
         private void Total_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                long tmoney = 0;
-                long.TryParse(Total.Text, out tmoney);
+			double totalMoney;
 
-                long money = (long)(tmoney * 0.65);
-                long comm = (long)(tmoney * 0.10);
-                long bexp = (long)(tmoney * 0.10);
-                long mfee = (long)(tmoney * 0.10);
-                long cpro = (long)(tmoney * 0.10);
+			char[] charToTrim = { ',' };
+			string result = Total.Text.Trim(charToTrim);
+			double.TryParse(result, out totalMoney);
 
-                Money.Text = money.ToString();
-                Commission.Text = comm.ToString();
-                BusinessExpenses.Text = bexp.ToString();
-                MembershipFees.Text = mfee.ToString();
-                CorporationProfit.Text = cpro.ToString();
-            }
-            catch
-            {
-
-            }
+			Money.Text = (totalMoney * 0.65).ToString();
+			Commission.Text = (totalMoney * 0.1).ToString();
+			BusinessExpenses.Text = (totalMoney * 0.1).ToString();
+			MembershipFees.Text = (totalMoney * 0.1).ToString();
+			CorporationProfit.Text = (totalMoney * 0.1).ToString();
         }
 
         private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

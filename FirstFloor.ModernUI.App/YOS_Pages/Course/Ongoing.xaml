@@ -33,8 +33,8 @@
                 <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
                 <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="220"/>
             </StackPanel>
-            <StackPanel x:Name="sp_ResistDelete" Margin="10,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-                <Button x:Name="btn_Init" Content="새로운 강좌 등록" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" />
+            <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+                <Button x:Name="btn_Init" Content="새로운 강좌 등록" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" Click="btn_Init_Click" />
                 <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
             </StackPanel>
             <ScrollViewer Margin="0,0,15,0" DockPanel.Dock="Top">
@@ -45,13 +45,21 @@
                         <mui:DataGridTextColumn Header="기간별" Visibility="Hidden" Binding="{Binding INSTITUTIONCATEGORY}"/>
                         <mui:DataGridTextColumn Header="대상별" Visibility="Hidden" Binding="{Binding TARGETCATEGORY}"/>
                         <mui:DataGridTextColumn Header="주제별" Visibility="Hidden" Binding="{Binding SUBJECTCATEGORY}"/>
-                        <mui:DataGridTextColumn Header="PM" Binding="{Binding N1}"/>
-                        <mui:DataGridTextColumn Header="소개자" Visibility="Hidden" Binding="{Binding N2}"/>
+                        <!-- <mui:DataGridTextColumn Header="PMC" Visibility="Hidden" Binding="{Binding NC1}"/> -->
+                        <mui:DataGridTextColumn Header="PM" Visibility="Hidden" Binding="{Binding PROJMANAGER}"/>
+                        <mui:DataGridTextColumn x:Name="N1" Header="PM" Binding="{Binding N1}"/>
+                        <!-- <mui:DataGridTextColumn x:Name="N1" Header="PM"/>-->
+                        <!-- <mui:DataGridTextColumn Header="소개자C" Visibility="Hidden" Binding="{Binding NC2}"/> -->
+                        <mui:DataGridTextColumn Header="소개자" Visibility="Hidden" Binding="{Binding RECOMMENDER}"/>
+                        <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden" Binding="{Binding N2}"/>
+                        
+                        <!-- <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden"/>-->
                         <mui:DataGridTextColumn Header="강의처" Visibility="Hidden" Binding="{Binding LECPLACE}"/>
                         <mui:DataGridTextColumn Header="시작일자" Visibility="Hidden" Binding="{Binding STARTDATE}"/>
                         <mui:DataGridTextColumn Header="종료일자" Visibility="Hidden" Binding="{Binding CLOSEDATE}"/>
                         <mui:DataGridTextColumn Header="시간" Visibility="Hidden" Binding="{Binding LECTURETIME}"/>
                         <mui:DataGridTextColumn Header="총 강의료" Visibility="Hidden" Binding="{Binding LECTUREFEE}"/>
+                        <mui:DataGridTextColumn Header="완료율" Visibility="Hidden" Binding="{Binding COMPLETERATE}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
@@ -101,7 +109,7 @@
                 <!--#region 강좌명-->
                 <StackPanel x:Name="sp_CorseName">
                     <Label x:Name="lb_CourseName" Content="강좌명"/>
-                    <TextBox x:Name="tbx_Course"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_Course"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 목적별 분류-->
@@ -163,13 +171,20 @@
                 <!--#region PM-->
                 <StackPanel x:Name="sp_PMName">
                     <Label x:Name="lb_PMName" Content="PM"/>
+                    
                     <TextBox x:Name="tbx_PMName" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbN1" Text="" Visibility="Hidden" TextChanged="tbN1_TextChanged"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 소개자-->
                 <StackPanel x:Name="sp_RecommanderName">
                     <Label x:Name="lb_RecommanderName" Content="소개자"/>
+                    
                     <TextBox x:Name="tbx_RecommanderName" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.N2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbN2" Text="" Visibility="Hidden" TextChanged="tbN2_TextChanged"/>
+                    
+                    
+                    
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 강의처-->
@@ -201,7 +216,7 @@
                 <!--#region 총 강의료-->
                 <StackPanel x:Name="sp_TotalMoney">
                     <Label x:Name="lb_TotalMoney" Content="총 강의료"/>
-                    <TextBox x:Name="tbx_TotalMoney" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_TotalMoney" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, StringFormat=\{0:N0\}}" />
                 </StackPanel>
                 <!--#endregion-->
 
@@ -228,9 +243,8 @@
         </StackPanel>
         <StackPanel Grid.Column="3" Margin="0,37,0,0" Orientation="Vertical" d:LayoutOverrides="Height" HorizontalAlignment="Left">
             <Label x:Name="lb_Ratio" Content="완료율" Margin="0" HorizontalAlignment="Center"/>
-            <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" Height="350" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1" />
-            <TextBox x:Name="txtCompleteRatio" Height="23" Width="30" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"  Text="{Binding Value, ElementName=slider, Mode=TwoWay}" />
-
+            <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" Height="350" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1" Value="{Binding ElementName=CBOXLEC, Path=SelectedItem.COMPLETERATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCompleteRatio" Height="23" Width="30" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.COMPLETERATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
     </Grid>
 </UserControl>
