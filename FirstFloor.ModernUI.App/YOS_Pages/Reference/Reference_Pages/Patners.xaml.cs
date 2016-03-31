@@ -22,6 +22,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         static DataTable PARTNERS_Dt = new DataTable();
         static DataTable PARTNERS_Dt_copy = new DataTable();
         static DataSet PARTNERS_Ds = new DataSet();
+        static DataRow updateRow_1;
+        static DataRow updateRow_2;
 
         public Patners()
         {
@@ -104,66 +106,40 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                     PARTNERS_Dt.Rows.RemoveAt(PARTNERS_Dt.Rows.Count - 1);
                     MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
                 }
-            }
+            }            
             else if((DG1.SelectedIndex > -1) && ((string)Btn_Register.Content == "수정"))
             {
-                foreach (DataRow R in PARTNERS_Dt.Rows)
-                {               
-                    foreach (DataColumn C in PARTNERS_Dt.Columns)
+                updateRow_2 = PARTNERS_Dt.Rows[DG1.SelectedIndex]; 
+                foreach (DataColumn C in PARTNERS_Dt.Columns)
+                {                        
+                    if (!updateRow_1[C, DataRowVersion.Proposed].Equals(updateRow_2[C, DataRowVersion.Current]))
                     {
-                        if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+                        try
                         {
-                            try
-                            {
-                                PARTNERS_Ds.Reset();
-                                CSampleClient.Program.SrvrConn();
-                                PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
-                                PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
+                            PARTNERS_Ds.Reset();
+                            CSampleClient.Program.SrvrConn();
+                            PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
+                            PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
 
-                                stream.Dispose();
-                                stream = new StringWriter();
+                            stream.Dispose();
+                            stream = new StringWriter();
 
-                                PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
-                                int a = PARTNERS_Dt.Rows.IndexOf(R);
+                            PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
 
-                                CSampleClient.Program.SendMessage_update(stream.ToString());
-                                CSampleClient.Program.SendMessage_update(stream.ToString());
-                                CSampleClient.Program.SendMessage_update(stream.ToString());
-                                MessageBox.Show("수정이 완료되었습니다. " + a);
-                            }
-                            catch (Exception ex)
-                            {                                
-                                MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
-                            }
-                        }                        
+                            CSampleClient.Program.SendMessage_update(stream.ToString());
+                            CSampleClient.Program.SendMessage_update(stream.ToString());
+                            CSampleClient.Program.SendMessage_update(stream.ToString());
+                            //   MessageBox.Show("수정이 완료되었습니다. " + a);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
+                        }
                     }
-                }
+                }               
             }
         }
-        //foreach (DataRow R in PARTNERS_dt.Rows)
-        //    {
-        //        switch (R.RowState)
-        //        {
-        //            case DataRowState.Added:
-        //                Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
-        //                MessageBox.Show($"데이터가 추가되었습니다. {Record}");
-        //                break;
 
-        //            case DataRowState.Deleted:
-        //                Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
-        //                MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
-        //                break;
-        //        }
-
-        //        foreach (DataColumn C in PARTNERS_dt.Columns)
-        //        {
-        //            if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
-        //            {
-        //                Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
-        //                MessageBox.Show($"데이터가 수정되었습니다. {Record}");
-        //            }
-        //        }
-        //    }
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -207,6 +183,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             if(DG1.SelectedIndex != -1)
             {
                 Btn_Register.Content = "수정";
+                updateRow_1 = PARTNERS_Dt.Rows[DG1.SelectedIndex];
             }
         }
     }
