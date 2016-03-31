@@ -48,15 +48,26 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             try
             {
-                //string tot = Convert.ToString(Total.Text);
-                long tmoney = 0;
-                //bool converter;
-                string tot2 = string.Format("{0:F0}", Total.Text);
-                long.TryParse(tot2, out tmoney);
+                double totalMoney;
 
-			char[] charToTrim = { ',' };
-			string result = Total.Text.Trim(charToTrim);
-			double.TryParse(result, out totalMoney);
+                char[] charToTrim = { ',' };
+                string result = Total.Text.Trim(charToTrim);
+                double.TryParse(result, out totalMoney);
+
+                //Money.Text = (totalMoney * 0.65).ToString();
+                //Commission.Text = (totalMoney * 0.1).ToString();
+                //BusinessExpenses.Text = (totalMoney * 0.1).ToString();
+                //MembershipFees.Text = (totalMoney * 0.1).ToString();
+                //CorporationProfit.Text = (totalMoney * 0.1).ToString();
+
+                //long tmoney = 0;
+                //long.TryParse(Total.Text, out tmoney);
+
+                long money = (long)(totalMoney * 0.65);
+                long comm = (long)(totalMoney * 0.10);
+                long bexp = (long)(totalMoney * 0.10);
+                long mfee = (long)(totalMoney * 0.10);
+                long cpro = (long)(totalMoney * 0.10);
 
                 Money.Text = string.Format("{0}", money.ToString("n0"));
                 Commission.Text = string.Format("{0}", comm.ToString("n0"));

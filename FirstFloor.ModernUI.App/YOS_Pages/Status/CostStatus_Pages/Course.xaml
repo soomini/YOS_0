@@ -148,7 +148,8 @@
                     <!--#region 총 합계-->
                     <StackPanel>
                         <Label Content="총 합계(100%)" Target="{Binding ElementName=TextFirstName}"/>
-                        <TextBox x:Name="Total" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}" TextChanged="Total_TextChanged"/>
+                        <TextBox x:Name="Total" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}" IsReadOnly="True" TextChanged="Total_TextChanged">
+                        </TextBox>
                     </StackPanel>
 
                 </StackPanel>
