@@ -132,5 +132,65 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
                 
             }
         }
+
+        private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchDate();
+        }
+
+        private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (EndDate.SelectedDate <= StartDate.SelectedDate)
+            {
+                MessageBox.Show("시작일보다 빠름! 시작일 이후로 다시 선택해 주십시오.");
+                EndDate.SelectedDate = null;
+            }
+        }
+
+        private void searchDate()
+        {
+            string sd = String.Format("{0:yy-MM-dd}", StartDate.SelectedDate);
+            string ed = String.Format("{0:yy-MM-dd}", EndDate.SelectedDate);
+
+            string dynamicquery = "";
+
+            if (sd != "" && ed != "")
+            {
+
+            }
+
+            if (sd != "")
+            {
+                dynamicquery += "CLOSEDATE >= to_date('" + sd + "', 'yy-mm-dd')";
+            }
+
+            if (ed != "")
+            {
+                if (dynamicquery != "")
+                    dynamicquery += " and ";
+                else
+                    dynamicquery += " ";
+
+                dynamicquery += "STARTDATE <= to_date('" + ed + "', 'yy-mm-dd')";
+            }
+
+            //if (dynamicquery != "")
+            //    dynamicquery = " where " + dynamicquery;
+
+            //Adpt = new OracleDataAdapter("SELECT * FROM LECTURE" + dynamicquery, strOraConn);
+            //DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+
+            //DG_ST_P.ItemsSource = null;
+            //DG_ST_P.ItemsSource = null;
+
+            //LECTURE_dt.Clear();
+
+            //oraBuilder = new OracleCommandBuilder(Adpt);
+
+            //Adpt.Fill(LECTURE_DS, "LECTURE_dt");
+            //DG_ST_P.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            //DG_ST_P.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            //DG_ST_P.CanUserAddRows = false;
+        }
     }
 }

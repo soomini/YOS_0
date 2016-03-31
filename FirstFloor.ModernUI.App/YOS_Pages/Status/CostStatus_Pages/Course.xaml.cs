@@ -47,8 +47,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             try
             {
+                //string tot = Convert.ToString(Total.Text);
                 long tmoney = 0;
-                long.TryParse(Total.Text, out tmoney);
+                //bool converter;
+                string tot2 = string.Format("{0:F0}", Total.Text);
+                long.TryParse(tot2, out tmoney);
 
                 long money = (long)(tmoney * 0.65);
                 long comm = (long)(tmoney * 0.10);
@@ -56,11 +59,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
                 long mfee = (long)(tmoney * 0.10);
                 long cpro = (long)(tmoney * 0.10);
 
-                Money.Text = money.ToString();
-                Commission.Text = comm.ToString();
-                BusinessExpenses.Text = bexp.ToString();
-                MembershipFees.Text = mfee.ToString();
-                CorporationProfit.Text = cpro.ToString();
+                Money.Text = string.Format("{0}", money.ToString("n0"));
+                Commission.Text = string.Format("{0}", comm.ToString("n0"));
+                BusinessExpenses.Text = string.Format("{0}", bexp.ToString("n0"));
+                MembershipFees.Text = string.Format("{0}", mfee.ToString("n0"));
+                CorporationProfit.Text = string.Format("{0}", cpro.ToString("n0"));
             }
             catch
             {

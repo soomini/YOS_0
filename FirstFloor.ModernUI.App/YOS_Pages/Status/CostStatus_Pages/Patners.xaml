@@ -30,11 +30,11 @@
             <StackPanel Margin="0,0,20,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <StackPanel Margin="0,0,15,0" HorizontalAlignment="Left" >
                     <Label Content="시작" FontWeight="Bold" Width="40" />
-                    <DatePicker x:Name="StartDate" />
+                    <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" />
                 </StackPanel>
                 <StackPanel Margin="0,3,15,0" HorizontalAlignment="Left" >
                     <Label Content="끝" FontWeight="Bold" Width="30" />
-                    <DatePicker x:Name="EndDate" />
+                    <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" />
                 </StackPanel>
                 <StackPanel Margin="0,3,0,0" HorizontalAlignment="Left" >
                     <Label Content="파트너" FontWeight="Bold" Width="50" />
@@ -56,7 +56,7 @@
                     <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
                     <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
                     <mui:DataGridTextColumn Header="역할" Binding="{Binding ROLE}"/>
-                    <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT}"/>
+                    <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT, StringFormat=\{0:N0\}}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
