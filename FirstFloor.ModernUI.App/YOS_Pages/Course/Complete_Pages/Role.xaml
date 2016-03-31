@@ -50,10 +50,9 @@
             <StackPanel x:Name="stpRoleCategory" Margin="0,15,0,0" Orientation="Vertical" DockPanel.Dock="Top">
                 <Label Content="역할 분류" Target="{Binding ElementName=EndDate}" FontWeight="Bold" Margin="0,0,0,10" Width="Auto" />
                 <ListBox d:LayoutOverrides="Height" Margin="0">
-                    <ListBoxItem Content="PM" />
-                    <ListBoxItem Content="소개 및 제안" />
-                    <ListBoxItem Content="강의" />
-                    <ListBoxItem Content="영업" />
+                    <ListBoxItem x:Name="LB_PM" Content="PM" Selected="LB_PM_Selected" />
+                    <ListBoxItem x:Name="LB_INT" Content="소개 및 제안" Selected="LB_INT_Selected" />
+                    <ListBoxItem x:Name="LB_LEC" Content="강의" Selected="LB_LEC_Selected" />
                 </ListBox>
             </StackPanel>
             <!--#endregion-->
@@ -71,6 +70,7 @@
             <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin">
                 <DataGrid x:Name="DG_CO_R" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
+                        <mui:DataGridTextColumn Header="담당자" Binding="{Binding p.NAME}" />
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />
                         <mui:DataGridTextColumn Header="종료일" Binding="{Binding CLOSEDATE, StringFormat=yyyy-MM-dd}" />
                         <mui:DataGridTextColumn Header="총 강좌료" Binding="{Binding LECTUREFEE, StringFormat=\{0:N0\}}" >
