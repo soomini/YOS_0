@@ -75,7 +75,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             }
 
 
-            Adpt = new OracleDataAdapter("SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.TARGETCATEGORY, l.SUBJECTCATEGORY, p1.ID \"NC1\", p1.NAME \"N1\", p2.ID \"NC2\", p2.NAME \"N2\", l.LECPLACE, l.STARTDATE, l.CLOSEDATE, l.LECTURETIME, l.LECTUREFEE FROM LECTURE l, PARTNERS p1, PARTNERS p2 WHERE l.PROJMANAGER = p1.ID AND l.RECOMMENDER = p2.ID", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.TARGETCATEGORY, l.SUBJECTCATEGORY, p1.ID \"NC1\", p1.NAME \"N1\", p2.ID \"NC2\", p2.NAME \"N2\", l.LECPLACE, l.STARTDATE, l.CLOSEDATE, l.LECTURETIME, l.LECTUREFEE, l.COMPLETERATE FROM LECTURE l, PARTNERS p1, PARTNERS p2 WHERE l.PROJMANAGER = p1.ID AND l.RECOMMENDER = p2.ID", strOraConn);
             //Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
             DataTable PERSON_dt = LECTURE_DS.Tables["LECTURE_dt"];
             oraBuilder = new OracleCommandBuilder(Adpt);
@@ -238,6 +238,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             dp_EndDate.Text = null;
             tbx_Time.Text = null;
             tbx_TotalMoney.Text = null;
+            txtCompleteRatio.Text = null;
+
         }
 
         private void btn_Init_Click(object sender, RoutedEventArgs e)

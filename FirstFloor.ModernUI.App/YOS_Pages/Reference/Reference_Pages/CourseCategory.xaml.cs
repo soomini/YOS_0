@@ -187,8 +187,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             //    DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
             //    DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
             //    DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
-            //}
-            else {
+         //}
+         //   else {
                 try
                 {
                     CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
@@ -209,6 +209,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                     MessageBox.Show("오류 : " + ex.ToString());
                 }
             }
-        }
+        //}
     }
 }
