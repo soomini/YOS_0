@@ -73,8 +73,20 @@
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />
                         <mui:DataGridTextColumn Header="종료일" Binding="{Binding CLOSEDATE, StringFormat=yyyy-MM-dd}" />
-                        <mui:DataGridTextColumn Header="총 강좌료" Binding="{Binding LECTUREFEE}" />
-                        <mui:DataGridTextColumn Header="역할  금액" />
+                        <mui:DataGridTextColumn Header="총 강좌료" Binding="{Binding LECTUREFEE, StringFormat=\{0:N0\}}" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </mui:DataGridTextColumn>
+                        <mui:DataGridTextColumn Header="역할  금액" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </mui:DataGridTextColumn>
 
                     </DataGrid.Columns>
                 </DataGrid>

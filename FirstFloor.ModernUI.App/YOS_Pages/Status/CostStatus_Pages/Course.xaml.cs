@@ -5,6 +5,7 @@ using System.Windows;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.Linq;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 {
@@ -53,11 +54,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
                 string tot2 = string.Format("{0:F0}", Total.Text);
                 long.TryParse(tot2, out tmoney);
 
-                long money = (long)(tmoney * 0.65);
-                long comm = (long)(tmoney * 0.10);
-                long bexp = (long)(tmoney * 0.10);
-                long mfee = (long)(tmoney * 0.10);
-                long cpro = (long)(tmoney * 0.10);
+			char[] charToTrim = { ',' };
+			string result = Total.Text.Trim(charToTrim);
+			double.TryParse(result, out totalMoney);
 
                 Money.Text = string.Format("{0}", money.ToString("n0"));
                 Commission.Text = string.Format("{0}", comm.ToString("n0"));
