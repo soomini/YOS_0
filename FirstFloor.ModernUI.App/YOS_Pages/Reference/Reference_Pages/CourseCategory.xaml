@@ -9,32 +9,37 @@
 
     <Grid>
         <StackPanel MinWidth="200">
-            <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
+            <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
+                <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
+                <Button x:Name="btn_Insert" Content="추가/수정" Margin="250,0,0,20" Click="btn_Insert_Click"/>
+                <!--<Button x:Name="btn_Cancel" Content="취소" Margin="20,0,0,20" Click="btn_Cancel_Click"/>-->
+                <Button x:Name="btn_Delete" Content="삭제" Margin="20,0,0,20" Click="btn_Delete_Click"/>
+            </StackPanel>
             <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
                 <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="5,0,15,2" GroupName="Category" FontSize="13.333" Checked="Whole_Checked" />
                 <RadioButton x:Name="Purpose" Content="목적별" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" Checked="Purpose_Checked" />
                 <RadioButton x:Name="Institution" Content="기관별" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" Checked="Institution_Checked" />
                 <RadioButton x:Name="Target" Content="대상별" Margin="0,0,15,2" GroupName="Category" FontSize="13.333" Checked="Target_Checked"/>
-                <RadioButton x:Name="Subject" Content="주제별" Margin="0,0,0,2" GroupName="Category" FontSize="13.333" Checked="Subject_Checked" />
+                <RadioButton x:Name="Subject" Content="주제별" Margin="0,0,0,2" GroupName="Category" FontSize="13.333" Checked="Subject_Checked"/>
             </StackPanel>
             <ScrollViewer>
                 <StackPanel Orientation="Horizontal">
-                    <DataGrid x:Name="DGCat1" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                    <DataGrid x:Name="DGCat1" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0"  IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="목적별 분류" Binding="{Binding PURPOSE}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat2" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                    <DataGrid x:Name="DGCat2" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0"  IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="기관별 분류" Binding="{Binding INSTITUTION}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat3" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                    <DataGrid x:Name="DGCat3" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0"  IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="대상별 분류" Binding="{Binding TARGET}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DGCat4" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0">
+                    <DataGrid x:Name="DGCat4" Height="250" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="1,0"  IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="주제별 분류" Binding="{Binding SUBJECT}"/>
                         </DataGrid.Columns>

@@ -59,6 +59,7 @@
                         <mui:DataGridTextColumn Header="종료일자" Visibility="Hidden" Binding="{Binding CLOSEDATE}"/>
                         <mui:DataGridTextColumn Header="시간" Visibility="Hidden" Binding="{Binding LECTURETIME}"/>
                         <mui:DataGridTextColumn Header="총 강의료" Visibility="Hidden" Binding="{Binding LECTUREFEE}"/>
+                        <mui:DataGridTextColumn Header="완료율" Visibility="Hidden" Binding="{Binding COMPLETERATE}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
@@ -97,8 +98,8 @@
                         <Setter Property="Padding" Value="0,3" />
                     </Style>
                 </StackPanel.Resources>
-                <!--create viewmodel-->
                 <!--#endregion-->
+                
                 <!--#region 스택패널 바인딩 데이터 설정-->
                 <StackPanel.DataContext>
                     <app:SampleFormViewModel />
@@ -242,10 +243,8 @@
         </StackPanel>
         <StackPanel Grid.Column="3" Margin="0,37,0,0" Orientation="Vertical" d:LayoutOverrides="Height" HorizontalAlignment="Left">
             <Label x:Name="lb_Ratio" Content="완료율" Margin="0" HorizontalAlignment="Center"/>
-            <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" Height="350" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1"  />
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"  Text="{Binding Value, ElementName=slider}"/>
-
-
+            <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" Height="350" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1" Value="{Binding ElementName=CBOXLEC, Path=SelectedItem.COMPLETERATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCompleteRatio" Height="23" Width="30" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.COMPLETERATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
     </Grid>
 </UserControl>

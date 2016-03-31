@@ -16,55 +16,26 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-            <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+        <DockPanel Margin="0,0,20,0">
+            <TextBlock DockPanel.Dock="Top" Text="강사 목록" Style="{StaticResource Heading2}" Margin="0,0,0,12" />
+            <ScrollViewer DockPanel.Dock="Top">
             <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG1_SelectionChanged">
-                <DataGrid.GroupStyle>
-        <GroupStyle>
-            <GroupStyle.HeaderTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}" />
-                    </StackPanel>
-                </DataTemplate>
-            </GroupStyle.HeaderTemplate>
-            <GroupStyle.ContainerStyle>
-                <Style TargetType="{x:Type GroupItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                <Expander>
-                                    <Expander.Header>
-                                        <StackPanel Orientation="Horizontal">
-                                          <TextBlock Text="{Binding Path=Name}" />
-                                          <TextBlock Text="{Binding Path=ItemCount}"/>
-                                          <TextBlock Text="Items"/>
-                                        </StackPanel>
-                                    </Expander.Header>
-                                    <ItemsPresenter />
-                                </Expander>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </GroupStyle.ContainerStyle>
-        </GroupStyle>
-    </DataGrid.GroupStyle>
                 <DataGrid.Columns>
-                    <mui:DataGridTextColumn Header="번호" Visibility="Hidden" Binding="{Binding ID}"/>
+                    <mui:DataGridTextColumn Header="사번" Visibility="Visible" Binding="{Binding ID}"/>
                     <mui:DataGridTextColumn Header="이름"  Binding="{Binding NAME}"/>
                     <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
-                    <mui:DataGridTextColumn Header="성별" Visibility="Visible" Binding="{Binding GENDER}"/>
-                    <mui:DataGridTextColumn Header="전화번호" Binding="{Binding PHONENUMBER}"/>
+                        <mui:DataGridTextColumn Header="성별" Visibility="Hidden" Binding="{Binding GENDER}"/>
+                        <mui:DataGridTextColumn Header="전화번호" Binding="{Binding PHONENUMBER}" Visibility="Hidden"/>
                     <mui:DataGridTextColumn Header="생년월일" Visibility="Hidden" Binding="{Binding BIRTHDATE}"/>
                     <mui:DataGridTextColumn Header="도시" Visibility="Hidden" Binding="{Binding CITY}"/>
                     <mui:DataGridTextColumn Header="상세 주소" Visibility="Hidden" Binding="{Binding DETAILADDRESS}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            </ScrollViewer>
         </DockPanel>
         <StackPanel MinWidth="250" Grid.Column="1" d:IsHidden="True" Margin="0,0,-97,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <TextBlock Text="강사 정보" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
@@ -87,25 +58,28 @@
                         <Setter Property="Padding" Value="0,3" />
                     </Style>
                 </StackPanel.Resources>
-                <!--create viewmodel-->
                 <!--#endregion-->
+                
                 <!--#region 스택패널 바인딩 데이터 설정-->
                 <StackPanel.DataContext>
                     <app:SampleFormViewModel />
                 </StackPanel.DataContext>
                 <!--#endregion-->
+                
                 <!--#region 이름-->
                 <StackPanel>
                     <Label Content="이름" Target="{Binding ElementName=TextFirstName}"/>
                     <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.NAME, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
+                
                 <!--#region 직급-->
                 <StackPanel>
                     <Label Content="직책" Target="{Binding ElementName=TextLastName}"/>
                     <TextBox x:Name="TextLastName" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.JOB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
+                
                 <!--#region 성별-->
                 <StackPanel>
                     <Label Content="성별" Target="{Binding ElementName=RadioGender}"/>
@@ -114,18 +88,21 @@
                     <RadioButton x:Name="RadioGenderWoman" Content="여자" Margin="8,0,0,0" GroupName="Gender" Checked="RadioGenderWoman_Checked" IsChecked="{Binding ElementName=DG1, Path=SelectedItem.GENDER, Converter={StaticResource IVConverter}, ConverterParameter=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <!--#endregion-->
+                
                 <!--#region 전화번호-->
                 <StackPanel>
                     <Label Content="전화번호" Target="{Binding ElementName=TxtPhoneNumber}"/>
                     <TextBox x:Name="TxtPhoneNumber" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.PHONENUMBER, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
+                
                 <!--#region 생년월일-->
                 <StackPanel>
                     <Label Content="생년월일" Target="{Binding ElementName=TxtBirth}" />
                     <DatePicker x:Name="TxtBirth" Text="{Binding ElementName=DG1, Path=SelectedItem.BIRTHDATE, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <!--#endregion-->
+                
                 <!--#region 주소 : 도시-->
                 <StackPanel>
                     <Label Content="도시" Target="{Binding ElementName=TxtAddress}"/>
@@ -139,12 +116,14 @@
                     </ComboBox>
                 </StackPanel>
                 <!--#endregion-->
+               
                 <!--#region 입력칸 : 주소 : 상세-->
                 <StackPanel>
                     <Label Content="상세 주소" Target="{Binding ElementName=TxtAddress2}"/>
                     <TextBox x:Name="TxtAddress2" Width="150" Text="{Binding ElementName=DG1, Path=SelectedItem.DETAILADDRESS, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <!--#endregion-->
+                
                 <!--#region 등록 버튼-->
                 <StackPanel>
                     <Button x:Name="Btn_Register" Content="등록" Margin="0,25,0,0" HorizontalAlignment="Left" Click="Btn_Register_Click" />

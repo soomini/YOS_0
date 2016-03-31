@@ -55,7 +55,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             dlg.ShowDialog();
         }
 
-        private void btn_Registration_Click(object sender, RoutedEventArgs e)
+        private void btn_Update_Click(object sender, RoutedEventArgs e)
         {
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
@@ -160,5 +160,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             CBOXLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             DGLEC.CanUserAddRows = false;
         }
-    }
+
+
+	}
 }
