@@ -133,6 +133,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 DT_search.Clear();
                 DT_search.Rows.Add(0, "", "", getGender(), "", TxtBirth.Text, "", "");
 
+                #region update compare
                 if ( (string)CellClickEventROW[0][1] != TextFirstName.Text.Trim() )
                 {
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][1] = TextFirstName.Text.Trim();
@@ -160,30 +161,40 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 if ((string)CellClickEventROW[0][7] != TxtAddress2.Text.Trim())
                 {
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][7] = TxtAddress2.Text.Trim();
-                }                
+                }
 
                 try
-                    {
-                        PARTNERS_Ds.Reset();
-                        CSampleClient.Program.SrvrConn();
-                        PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
-                        PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
+                {
+                    PARTNERS_Dt.AcceptChanges();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("오류오류 : " + ex);                    
+                }
+                #endregion
 
-                        stream.Dispose();
-                        stream = new StringWriter();
+                #region DB update connect
+                try
+                {
+                    PARTNERS_Ds.Reset();
+                    CSampleClient.Program.SrvrConn();
+                    PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
+                    PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
 
-                        PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
+                    stream.Dispose();
+                    stream = new StringWriter();
 
-                        CSampleClient.Program.SendMessage_update(stream.ToString());
-                        CSampleClient.Program.SendMessage_update(stream.ToString());
-                        CSampleClient.Program.SendMessage_update(stream.ToString());                        
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
-                    }
-                    MessageBox.Show("수정이 완료되었습니다. ");
-
+                    PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
+                                        
+                    CSampleClient.Program.SendMessage_update(DG1.SelectedIndex.ToString());
+                    CSampleClient.Program.SendMessage_update(stream.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
+                }
+                MessageBox.Show("수정이 완료되었습니다. ");
+                #endregion
             }
 
         }
