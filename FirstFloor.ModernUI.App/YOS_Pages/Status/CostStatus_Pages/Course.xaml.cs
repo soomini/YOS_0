@@ -46,7 +46,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 
         private void Total_TextChanged(object sender, TextChangedEventArgs e)
         {
+
 			double totalMoney;
+
+			// 
 
 			char[] charToTrim = { ',' };
 			string result = Total.Text.Trim(charToTrim);
@@ -57,6 +60,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 			BusinessExpenses.Text = (totalMoney * 0.1).ToString();
 			MembershipFees.Text = (totalMoney * 0.1).ToString();
 			CorporationProfit.Text = (totalMoney * 0.1).ToString();
+
+
         }
 
         private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
