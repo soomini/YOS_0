@@ -62,21 +62,6 @@
             <StackPanel MinWidth="250" d:IsHidden="True" Grid.ColumnSpan="2" Margin="10,0,0,0" Grid.Column="2">
                 <TextBlock Text="수수료 현황" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
                 <StackPanel x:Name="Form" Orientation="Vertical" Margin="0,5,0,4">
-                    <!--create viewmodel-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-
-                    <!--아래 항목의 요율은 참조 테이블의 요율과 바인딩하기-->
-
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
 
                     <!--#region 입력 항목 스택패널 스타일 설정-->
                     <StackPanel.Resources>
@@ -102,7 +87,7 @@
                     <!--#region 강좌명-->
                     <StackPanel>
                         <Label Content="강좌명"/>
-                        <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox x:Name="TextFirstName" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                     </StackPanel>
                     <!--#region 시작일자-->
                     <StackPanel>

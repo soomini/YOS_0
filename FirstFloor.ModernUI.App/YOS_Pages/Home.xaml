@@ -11,16 +11,15 @@
             <StackPanel >
                 <!--#region 프로그램명-->
                 <TextBlock Text="YStory Office Solution" Style="{StaticResource Heading1}" Margin="0,0,0,20"/>
-
                 <!--#endregion-->
+                
                 <!--#region 공지사항-->
                 <DockPanel d:LayoutOverrides="TopPosition, BottomPosition">
                     <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0,0,0,10" ><Run Text="공지 사항"/></TextBlock>
-                    
-                    <Label x:Name="label" Content="Label" Width="100"/>
-                    <mui:BBCodeBlock BBCode="[b]공지사항의 내용을 쓴다.[/b] &#xA;&#xA;직원이 공지사항을 올릴 수 있도록 하고, 그 내용은 이 곳에 들어간다.  &#xA;&#xA; 왼쪽에 이미지를 하나 함께 게시할 수 있도록 한다.&#xA;&#xA;[url=http://xamlspy.com]주소링크[/url]를 걸 수도 있을 것이다. " Margin="0,0,0,37" d:LayoutOverrides="Height" DockPanel.Dock="Right" />
+                    <FlowDocumentReader Height="300" DockPanel.Dock="Top"/>
                 </DockPanel>
                 <!--#endregion-->
+
                 <Grid Margin="40,20,110,0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -32,15 +31,25 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                <!--#region 버튼들-->
-                    <Button x:Name="btn1" Content="사용자메뉴1" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Button x:Name="btn2" Content="사용자메뉴2" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
-                    <Button x:Name="btn3" Content="사용자메뉴3" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
-                    <Button x:Name="btn4" Content="사용자메뉴4" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3"/>
-                    <Button x:Name="btn5" Content="사용자메뉴1" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
-                    <Button x:Name="btn6" Content="사용자메뉴2" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-                    <Button x:Name="btn7" Content="사용자메뉴3" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
-                    <Button x:Name="btn8" Content="사용자메뉴4" Margin="10" Width="120" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1"/>
+                    
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Height" Value="50" />
+                            <Setter Property="Width" Value="80" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Resources>
+
+                        <!--#region 버튼들-->
+                    <Button x:Name="btn1" Content="사용자메뉴1" Margin="10" />
+                    <Button x:Name="btn2" Content="사용자메뉴2" Margin="10" Grid.Column="1"/>
+                    <Button x:Name="btn3" Content="사용자메뉴3" Margin="10" Grid.Column="2"/>
+                    <Button x:Name="btn4" Content="사용자메뉴4" Margin="10"  Grid.Column="3"/>
+                    <Button x:Name="btn5" Content="사용자메뉴1" Margin="10" Grid.Row="1"/>
+                    <Button x:Name="btn6" Content="사용자메뉴2" Margin="10" Grid.Row="1" Grid.Column="1"/>
+                    <Button x:Name="btn7" Content="사용자메뉴3" Margin="10" Grid.Row="1" Grid.Column="2"/>
+                    <Button x:Name="btn8" Content="사용자메뉴4" Margin="10" Grid.Column="3" Grid.Row="1"/>
                 <!--#endregion-->
                 </Grid>
 
