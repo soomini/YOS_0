@@ -124,9 +124,12 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                                 stream = new StringWriter();
 
                                 PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
-                                CSampleClient.Program.SendMessage_update(stream.ToString());
+                                int a = PARTNERS_Dt.Rows.IndexOf(R);
 
-                                MessageBox.Show("수정이 완료되었습니다.");
+                                CSampleClient.Program.SendMessage_update(stream.ToString());
+                                CSampleClient.Program.SendMessage_update(stream.ToString());
+                                CSampleClient.Program.SendMessage_update(stream.ToString());
+                                MessageBox.Show("수정이 완료되었습니다. " + a);
                             }
                             catch (Exception ex)
                             {                                
@@ -135,9 +138,32 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                         }                        
                     }
                 }
-            }                
+            }
         }
-        
+        //foreach (DataRow R in PARTNERS_dt.Rows)
+        //    {
+        //        switch (R.RowState)
+        //        {
+        //            case DataRowState.Added:
+        //                Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
+        //                MessageBox.Show($"데이터가 추가되었습니다. {Record}");
+        //                break;
+
+        //            case DataRowState.Deleted:
+        //                Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
+        //                MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
+        //                break;
+        //        }
+
+        //        foreach (DataColumn C in PARTNERS_dt.Columns)
+        //        {
+        //            if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+        //            {
+        //                Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
+        //                MessageBox.Show($"데이터가 수정되었습니다. {Record}");
+        //            }
+        //        }
+        //    }
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
             try
