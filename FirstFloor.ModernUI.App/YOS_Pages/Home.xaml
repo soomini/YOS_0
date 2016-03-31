@@ -6,55 +6,46 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
-            <StackPanel >
-                <!--#region 프로그램명-->
-                <TextBlock Text="YStory Office Solution" Style="{StaticResource Heading1}" Margin="0,0,0,20"/>
-                <!--#endregion-->
-                
-                <!--#region 공지사항-->
-                <DockPanel d:LayoutOverrides="TopPosition, BottomPosition">
-                    <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0,0,0,10" ><Run Text="공지 사항"/></TextBlock>
-                    <FlowDocumentReader Height="300" DockPanel.Dock="Top"/>
-                </DockPanel>
-                <!--#endregion-->
+    <DockPanel d:LayoutOverrides="Width, Height" >
+        <!--#region 프로그램명-->
+        <TextBlock x:Name="tblTitle" Text="YStory Office Solution" Style="{StaticResource Heading1}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20"/>
+        <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ><Run Text="공지 사항"/></TextBlock>
+        <Grid x:Name="grdCustomButtons" Margin="0,30,0,0" d:LayoutOverrides="TopMargin, BottomMargin" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Height" Value="50" />
+                    <Setter Property="Width" Value="120" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="7,3" />
+                </Style>
+            </Grid.Resources>
 
-                <Grid Margin="40,20,110,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Grid.Resources>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Height" Value="50" />
-                            <Setter Property="Width" Value="80" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Style>
-                    </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                        <!--#region 버튼들-->
-                    <Button x:Name="btn1" Content="사용자메뉴1" Margin="10" />
-                    <Button x:Name="btn2" Content="사용자메뉴2" Margin="10" Grid.Column="1"/>
-                    <Button x:Name="btn3" Content="사용자메뉴3" Margin="10" Grid.Column="2"/>
-                    <Button x:Name="btn4" Content="사용자메뉴4" Margin="10"  Grid.Column="3"/>
-                    <Button x:Name="btn5" Content="사용자메뉴1" Margin="10" Grid.Row="1"/>
-                    <Button x:Name="btn6" Content="사용자메뉴2" Margin="10" Grid.Row="1" Grid.Column="1"/>
-                    <Button x:Name="btn7" Content="사용자메뉴3" Margin="10" Grid.Row="1" Grid.Column="2"/>
-                    <Button x:Name="btn8" Content="사용자메뉴4" Margin="10" Grid.Column="3" Grid.Row="1"/>
-                <!--#endregion-->
-                </Grid>
+            <Button x:Name="btn1" Content="사용자메뉴1" MouseRightButtonDown="btn1_Click" />
+            <Button x:Name="btn2" Content="사용자메뉴2"  Grid.Column="1" Margin="10,3"/>
+            <Button x:Name="btn3" Content="사용자메뉴3" Grid.Column="2"/>
+            <Button x:Name="btn4" Content="사용자메뉴4" Grid.Column="3"/>
+            <Button x:Name="btn5" Content="사용자메뉴1" Grid.Row="1"/>
+            <Button x:Name="btn6" Content="사용자메뉴2" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="btn7" Content="사용자메뉴3" Grid.Row="1" Grid.Column="2"/>
+            <Button x:Name="btn8" Content="사용자메뉴4" Grid.Column="3" Grid.Row="1"/>
+        </Grid>
+        <Border BorderBrush="#FFD6D4D4" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
+            <FlowDocumentPageViewer/>
+        </Border>
 
-            </StackPanel>
-        </ScrollViewer>
+        <!--#region 공지사항-->
 
-    </Grid>
+    </DockPanel>
 </UserControl>
