@@ -109,7 +109,7 @@
                 <!--#region 강좌명-->
                 <StackPanel x:Name="sp_CorseName">
                     <Label x:Name="lb_CourseName" Content="강좌명"/>
-                    <TextBox x:Name="tbx_Course"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_Course"  Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTURENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 분류 : 목적별 분류-->
@@ -216,7 +216,7 @@
                 <!--#region 총 강의료-->
                 <StackPanel x:Name="sp_TotalMoney">
                     <Label x:Name="lb_TotalMoney" Content="총 강의료"/>
-                    <TextBox x:Name="tbx_TotalMoney" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_TotalMoney" Text="{Binding ElementName=CBOXLEC, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, StringFormat=\{0:N0\}}" />
                 </StackPanel>
                 <!--#endregion-->
 
