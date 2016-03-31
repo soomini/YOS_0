@@ -59,10 +59,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
             DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
             DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
-            DGCat1.IsReadOnly = true;
-            DGCat2.IsReadOnly = true;
-            DGCat3.IsReadOnly = true;
-            DGCat4.IsReadOnly = true;
+
             #endregion
         }
 
@@ -112,5 +109,106 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                 Swap = 1;
             }
         }
+
+        private void btn_Insert_Click(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToString(btn_Insert.Content) == "업데이트")
+            {
+                try
+                {
+                    DataTable PurposeCATEGORY_dt = CATEGORY_DS.Tables["PurposeCATEGORY_dt"];
+                    btn_Insert.Content = "추가/수정";
+                    btn_Delete.Content = "삭제";
+                    //string Record = "";
+                    //foreach (DataRow R in PurposeCATEGORY_dt.Rows)
+                    //{
+                    //switch (R.RowState)
+                    //{
+                    //    case DataRowState.Added:
+                    //        Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
+                    //        MessageBox.Show($"데이터가 추가되었습니다. {Record}");
+                    //        break;
+
+                    //    case DataRowState.Deleted:
+                    //        Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
+                    //        MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
+                    //        break;
+                    //}
+                    //    foreach (DataColumn C in PurposeCATEGORY_dt.Columns)
+                    //    {
+                    //        if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
+                    //        {
+                    //            Record = string.Format("수정: {0}", Convert.ToString(R["PURPOSE"]));
+                    //            MessageBox.Show($"데이터가 수정되었습니다. {Record}");
+                    //        }
+                    //    }
+                    //} 
+                    Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                    Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                    Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                    Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+
+                    DGCat1.IsReadOnly = true;
+                    DGCat2.IsReadOnly = true;
+                    DGCat3.IsReadOnly = true;
+                    DGCat4.IsReadOnly = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("에러 발생: " + ex.ToString());
+                }
+            }
+            else
+            {
+                btn_Insert.Content = "업데이트";
+                btn_Delete.Content = "취소";
+
+                DGCat1.IsReadOnly = false;
+                DGCat2.IsReadOnly = false;
+                DGCat3.IsReadOnly = false;
+                DGCat4.IsReadOnly = false;
+            }
+        }
+
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            //if (Convert.ToString(btn_Delete.Content) == "취소")
+            //{
+            //    btn_Insert.Content = "추가/수정";
+            //    btn_Delete.Content = "삭제";
+
+
+            //    DGCat1.ItemsSource = null;
+            //    DGCat2.ItemsSource = null;
+            //    DGCat3.ItemsSource = null;
+            //    DGCat4.ItemsSource = null;
+
+            //    DGCat1.ItemsSource = CATEGORY_DS.Tables["PurposeCATEGORY_dt"].DefaultView;
+            //    DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
+            //    DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
+            //    DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
+         //}
+         //   else {
+                try
+                {
+                    CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
+
+                    Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                    Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                    Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                    Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+
+                    MessageBox.Show("삭제 성공");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("오류 : " + ex.ToString());
+                }
+            }
+        //}
     }
 }

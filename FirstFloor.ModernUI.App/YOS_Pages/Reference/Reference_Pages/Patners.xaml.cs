@@ -41,6 +41,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
             #endregion
 
+            //PARTNERS = new ListCollectionView(_PARTNERS);
+            //PARTNERS.GroupDescriptions.Add(new PropertyGroupDescription("Gender"));
+           
             //RelName= new DataRelation("partner", PARTNERS_DS.Tables["PARTNERS_dt"].Columns["NAME"],
             //    PARTNERS_DS.Tables["PARTNERS_dt"].Columns{[""])        
         }
