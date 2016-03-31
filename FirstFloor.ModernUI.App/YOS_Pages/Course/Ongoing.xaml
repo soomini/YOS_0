@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid Margin="0,15,0,0">
         <Grid.ColumnDefinitions>
@@ -50,7 +50,7 @@
                         <!-- <mui:DataGridTextColumn Header="소개자C" Visibility="Hidden" Binding="{Binding NC2}"/> -->
                         <mui:DataGridTextColumn Header="소개자" Visibility="Hidden" Binding="{Binding RECOMMENDER}"/>
                         <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden" Binding="{Binding N2}"/>
-                        <mui:DataGridTextColumn Header="강사" Visibility="Hidden" Binding="{Binding RECOMMENDER}"/>
+                        <mui:DataGridTextColumn Header="강사" Visibility="Hidden" Binding="{Binding LECTURER}"/>
                         <mui:DataGridTextColumn x:Name="N3" Header="강사" Visibility="Hidden" Binding="{Binding N3}"/>
                         <mui:DataGridTextColumn Header="강의처" Visibility="Hidden" Binding="{Binding LECPLACE}"/>
                         <mui:DataGridTextColumn Header="시작일자" Visibility="Hidden" Binding="{Binding STARTDATE}"/>

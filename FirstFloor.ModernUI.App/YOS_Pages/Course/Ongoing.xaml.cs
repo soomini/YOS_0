@@ -46,8 +46,26 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             #endregion
         }
 
+
+
         private void wUpdate()
         {
+            try
+            {
+                DGLEC.ItemsSource = null;
+                CBOXLEC.ItemsSource = null;
+
+                DataTable a1 = LECTURE_DS.Tables["LECTURE_dt"];
+                DataTable a2 = LECTUREO_DS.Tables["LECTUREO_dt"];
+                DataTable a3 = PARTNERS_DS.Tables["PARTNERS_dt"];
+                a1.Clear();
+                a2.Clear();
+                a3.Clear();
+            }
+            catch
+            {
+
+            }
             Adpt2 = new OracleDataAdapter("SELECT * FROM PARTNERS", strOraConn);
             oraBuilder2 = new OracleCommandBuilder(Adpt2);
             Adpt2.Fill(PARTNERS_DS, "PARTNERS_dt");
@@ -69,7 +87,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             LECTUREL.Clear();
             for (int i = 0; i < LECTUREO_dt.Rows.Count; i++)
             {
-                LECTUREL.Add(LECTUREO_dt.Rows[i].ItemArray[0].ToString(), i);
+                LECTUREL.Add(LECTUREO_dt.Rows[i].ItemArray[1].ToString(), i);
             }
 
             Adpt = new OracleDataAdapter("SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.TARGETCATEGORY, l.SUBJECTCATEGORY, p1.ID \"NC1\", p1.NAME \"N1\", p2.ID \"NC2\", p2.NAME \"N2\", p3.ID \"NC3\", p3.NAME \"N3\",l.LECPLACE, l.STARTDATE, l.CLOSEDATE, l.LECTURETIME, l.LECTUREFEE, l.COMPLETERATE FROM LECTURE l, PARTNERS p1, PARTNERS p2, PARTNERS p3 WHERE l.PROJMANAGER = p1.ID AND l.RECOMMENDER = p2.ID AND l.LECTURER = p3.ID", strOraConn);
@@ -150,22 +168,43 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
                 if (rowupdated == true)
                 {
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][1] = R.ItemArray[1];
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][2] = R.ItemArray[2];
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][3] = R.ItemArray[3];
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][4] = R.ItemArray[4];
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][5] = R.ItemArray[5];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][1] = R.ItemArray[1];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][2] = R.ItemArray[2];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][3] = R.ItemArray[3];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][4] = R.ItemArray[4];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][5] = R.ItemArray[5];
 
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][6] = R.ItemArray[7];
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][7] = R.ItemArray[9];
-                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][8] = R.ItemArray[10];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][6] = R.ItemArray[7];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][7] = R.ItemArray[9];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][8] = R.ItemArray[10];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][9] = R.ItemArray[11];
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][10] = R.ItemArray[12];
+
+                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][11] = R.ItemArray[13];
+
+                    //PARTNERS_dt.Rows[PLlinker[R.ItemArray[5].ToString()]][1] = R.ItemArray[6].ToString();
+                    //PARTNERS_dt.Rows[PLlinker[R.ItemArray[7].ToString()]][1] = R.ItemArray[8].ToString();
+
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][1] = R.ItemArray[0];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][2] = R.ItemArray[1];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][3] = R.ItemArray[2];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][4] = R.ItemArray[3];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][5] = R.ItemArray[4];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][6] = R.ItemArray[5];
+
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][7] = R.ItemArray[7];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][8] = R.ItemArray[9];
                     LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][9] = R.ItemArray[11];
                     LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][10] = R.ItemArray[12];
-
                     LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][11] = R.ItemArray[13];
+
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][12] = R.ItemArray[14];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][13] = R.ItemArray[15];
+                    LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][14] = R.ItemArray[16];
 
                     PARTNERS_dt.Rows[PLlinker[R.ItemArray[5].ToString()]][1] = R.ItemArray[6].ToString();
                     PARTNERS_dt.Rows[PLlinker[R.ItemArray[7].ToString()]][1] = R.ItemArray[8].ToString();
+                    PARTNERS_dt.Rows[PLlinker[R.ItemArray[9].ToString()]][1] = R.ItemArray[10].ToString();
                 }
             }
 
@@ -260,6 +299,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             {
                 PARTNERS_dt.Rows[PLlinker[LECTURE_dt.Rows[DGLEC.SelectedIndex].ItemArray[7].ToString()]].ItemArray[1] = tbN2.Text;
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }
