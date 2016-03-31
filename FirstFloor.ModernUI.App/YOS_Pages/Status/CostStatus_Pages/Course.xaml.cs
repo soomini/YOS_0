@@ -48,11 +48,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             try
             {
-                double totalMoney;
+			double totalMoney;
 
-                char[] charToTrim = { ',' };
-                string result = Total.Text.Trim(charToTrim);
-                double.TryParse(result, out totalMoney);
+			char[] charToTrim = { ',' };
+			string result = Total.Text.Trim(charToTrim);
+			double.TryParse(result, out totalMoney);
 
                 //Money.Text = (totalMoney * 0.65).ToString();
                 //Commission.Text = (totalMoney * 0.1).ToString();
