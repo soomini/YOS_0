@@ -20,6 +20,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         private OracleDataAdapter Adpt;
         private OracleDataAdapter Adpt1;
         private OracleDataAdapter Adpt2;
+
         public Patners()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             DG_CO_PL.CanUserAddRows = false;
             DG_CO_PD.CanUserAddRows = false;
             #endregion
-
+            
             //DG_CO_PD.Columns[3] = 
         }
 
