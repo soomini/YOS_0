@@ -46,22 +46,39 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 
         private void Total_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            try
+            {
 			double totalMoney;
-
-			// 
 
 			char[] charToTrim = { ',' };
 			string result = Total.Text.Trim(charToTrim);
 			double.TryParse(result, out totalMoney);
 
-			Money.Text = (totalMoney * 0.65).ToString();
-			Commission.Text = (totalMoney * 0.1).ToString();
-			BusinessExpenses.Text = (totalMoney * 0.1).ToString();
-			MembershipFees.Text = (totalMoney * 0.1).ToString();
-			CorporationProfit.Text = (totalMoney * 0.1).ToString();
+                //Money.Text = (totalMoney * 0.65).ToString();
+                //Commission.Text = (totalMoney * 0.1).ToString();
+                //BusinessExpenses.Text = (totalMoney * 0.1).ToString();
+                //MembershipFees.Text = (totalMoney * 0.1).ToString();
+                //CorporationProfit.Text = (totalMoney * 0.1).ToString();
 
+                //long tmoney = 0;
+                //long.TryParse(Total.Text, out tmoney);
 
+                long money = (long)(totalMoney * 0.65);
+                long comm = (long)(totalMoney * 0.10);
+                long bexp = (long)(totalMoney * 0.10);
+                long mfee = (long)(totalMoney * 0.10);
+                long cpro = (long)(totalMoney * 0.10);
+
+                Money.Text = string.Format("{0}", money.ToString("n0"));
+                Commission.Text = string.Format("{0}", comm.ToString("n0"));
+                BusinessExpenses.Text = string.Format("{0}", bexp.ToString("n0"));
+                MembershipFees.Text = string.Format("{0}", mfee.ToString("n0"));
+                CorporationProfit.Text = string.Format("{0}", cpro.ToString("n0"));
+            }
+            catch
+            {
+
+            }
         }
 
         private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
