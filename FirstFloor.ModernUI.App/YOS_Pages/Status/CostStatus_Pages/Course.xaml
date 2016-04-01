@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -53,7 +53,7 @@
 
             <DockPanel Margin="0,5,10,0" Grid.ColumnSpan="2">
                 <TextBlock DockPanel.Dock="Top" Text="강좌 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-                <DataGrid x:Name="DG_ST_C" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid x:Name="DG_ST_C" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
                     </DataGrid.Columns>
@@ -133,7 +133,7 @@
                     <!--#region 총 합계-->
                     <StackPanel>
                         <Label Content="총 합계(100%)" Target="{Binding ElementName=TextFirstName}"/>
-                        <TextBox x:Name="Total" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" IsReadOnly="True" TextChanged="Total_TextChanged">
+                        <TextBox x:Name="Total" Width="150" Text="{Binding ElementName=CB_ST_C, Path=SelectedItem.LECTUREFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}" IsReadOnly="True" TextChanged="Total_TextChanged">
                         </TextBox>
                     </StackPanel>
 

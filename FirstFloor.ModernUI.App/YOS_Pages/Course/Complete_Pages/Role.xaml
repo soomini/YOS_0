@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -68,7 +68,7 @@
                 <RowDefinition Height="180"/>
             </Grid.RowDefinitions>
             <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin">
-                <DataGrid x:Name="DG_CO_R" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid x:Name="DG_CO_R" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn Header="담당자" Binding="{Binding p.NAME}" />
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />

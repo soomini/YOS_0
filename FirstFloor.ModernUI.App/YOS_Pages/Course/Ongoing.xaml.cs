@@ -32,7 +32,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
         private Dictionary<string, int> PLlinker = new Dictionary<string, int>();
         public object SelectedItem { get; set; }
 
-
         public Ongoing()
         {
             InitializeComponent();
@@ -45,9 +44,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
             #endregion
         }
-
-
-
+        
         private void wUpdate()
         {
             try
@@ -55,12 +52,12 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
                 DGLEC.ItemsSource = null;
                 CBOXLEC.ItemsSource = null;
 
-                DataTable a1 = LECTURE_DS.Tables["LECTURE_dt"];
-                DataTable a2 = LECTUREO_DS.Tables["LECTUREO_dt"];
-                DataTable a3 = PARTNERS_DS.Tables["PARTNERS_dt"];
-                a1.Clear();
-                a2.Clear();
-                a3.Clear();
+                DataTable d1 = LECTURE_DS.Tables["LECTURE_dt"];
+                DataTable d2 = LECTUREO_DS.Tables["LECTUREO_dt"];
+                DataTable d3 = PARTNERS_DS.Tables["PARTNERS_dt"];
+                d1.Clear();
+                d2.Clear();
+                d3.Clear();
             }
             catch
             {
@@ -90,7 +87,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
                 LECTUREL.Add(LECTUREO_dt.Rows[i].ItemArray[1].ToString(), i);
             }
 
-            Adpt = new OracleDataAdapter("SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.TARGETCATEGORY, l.SUBJECTCATEGORY, p1.ID \"NC1\", p1.NAME \"N1\", p2.ID \"NC2\", p2.NAME \"N2\", p3.ID \"NC3\", p3.NAME \"N3\",l.LECPLACE, l.STARTDATE, l.CLOSEDATE, l.LECTURETIME, l.LECTUREFEE, l.COMPLETERATE FROM LECTURE l, PARTNERS p1, PARTNERS p2, PARTNERS p3 WHERE l.PROJMANAGER = p1.ID AND l.RECOMMENDER = p2.ID AND l.LECTURER = p3.ID", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.TARGETCATEGORY, l.SUBJECTCATEGORY, p1.ID \"NC1\", p1.NAME \"N1\", p2.ID \"NC2\", p2.NAME \"N2\", p3.ID \"NC3\", p3.NAME \"N3\",l.LECPLACE, l.STARTDATE, l.CLOSEDATE, l.LECTURETIME, l.LECTUREFEE, l.COMPLETERATE FROM LECTURE l, PARTNERS p1, PARTNERS p2, PARTNERS p3 WHERE l.PROJMANAGER = p1.ID AND l.RECOMMENDER = p2.ID AND l.LECTURER = p3.ID AND NOT(l.COMPLETERATE=10)", strOraConn);
             //Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
             DataTable PERSON_dt = LECTURE_DS.Tables["LECTURE_dt"];
             oraBuilder = new OracleCommandBuilder(Adpt);
@@ -168,23 +165,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
                 if (rowupdated == true)
                 {
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][1] = R.ItemArray[1];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][2] = R.ItemArray[2];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][3] = R.ItemArray[3];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][4] = R.ItemArray[4];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][5] = R.ItemArray[5];
-
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][6] = R.ItemArray[7];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][7] = R.ItemArray[9];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][8] = R.ItemArray[10];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][9] = R.ItemArray[11];
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][10] = R.ItemArray[12];
-
-                    //LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][11] = R.ItemArray[13];
-
-                    //PARTNERS_dt.Rows[PLlinker[R.ItemArray[5].ToString()]][1] = R.ItemArray[6].ToString();
-                    //PARTNERS_dt.Rows[PLlinker[R.ItemArray[7].ToString()]][1] = R.ItemArray[8].ToString();
-
                     LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][1] = R.ItemArray[0];
                     LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][2] = R.ItemArray[1];
                     LECTUREO_dt.Rows[LECTUREL[R.ItemArray[0].ToString()]][3] = R.ItemArray[2];
@@ -210,9 +190,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
             //try
             //{
-
             Adpt2.Update(PARTNERS_DS, "PARTNERS_dt");
-                Adpt3.Update(LECTUREO_DS, "LECTUREO_dt");
+            Adpt3.Update(LECTUREO_DS, "LECTUREO_dt");
             PARTNERS_dt.AcceptChanges();
             LECTUREO_dt.AcceptChanges();
 

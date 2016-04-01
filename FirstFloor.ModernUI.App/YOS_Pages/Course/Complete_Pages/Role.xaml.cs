@@ -22,6 +22,24 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG_CO_R.ItemsSource = null;
+
+                DataTable d1 = LECTURE_DS.Tables["LECTURE_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
@@ -126,6 +144,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         private void LB_LEC_Selected(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }
