@@ -188,6 +188,30 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         {
             //이 버튼을 클릭하면 선택한 강좌의 완료율이 10 -> 0 으로 변경되어야 함.
 
+            DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+
+            //foreach (DataRow R in LECTURE_dt.Rows)
+            //{
+                //string sd = String.Format("{0:yy-MM-dd}", StartDate.SelectedDate);
+                //string ed = String.Format("{0:yy-MM-dd}", EndDate.SelectedDate);
+
+                //////////////string select = Convert.ToString(DGLEC);
+
+                //MessageBox.Show($"{select}");
+                string s = "대구교육청 교사직무연수";
+                //string Record = "";
+                //s = Convert.ToString(R["LECTURENAME"]);
+                //MessageBox.Show("{0}", s);
+                if (s != "")
+                    s = " where LECTURENAME = '" + s + "' ";
+                Adpt = new OracleDataAdapter("UPDATE TABLE LECTURE SET COMPLETERATE=0", strOraConn);
+
+                //Record = string.Format("{0}", s);
+                MessageBox.Show($"{s} 강좌를 진행 중 강좌로 이동합니다.");
+            //}
+
+            Adpt.Update(LECTURE_DS, "LECTURE_dt");
+
         }
     }
 }
