@@ -27,9 +27,27 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DGLEC.ItemsSource = null;
+                CBOXLEC.ItemsSource = null;
+
+                DataTable d1 = LECTURE_DS.Tables["LECTURE_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM ONGOING", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT * FROM LECTURE WHERE COMPLETERATE=10", strOraConn);
             //SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.SUBJECTCATEGORY, p.PROJMANAGER p.RECOMMENDER l.LECPLACE l.STARTDATE l.CLOSEDATE l.LECTURETIME l.LECTUREFEE FROM LECTURE l, PARTNERS p WHERE l.NAME = p.ID
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
@@ -161,6 +179,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             DGLEC.CanUserAddRows = false;
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
+        }
 
-	}
+        private void btn_change_Click(object sender, RoutedEventArgs e)
+        {
+            //이 버튼을 클릭하면 선택한 강좌의 완료율이 10 -> 0 으로 변경되어야 함.
+
+        }
+    }
 }

@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid Margin="0,15,0,0">
         <Grid.ColumnDefinitions>
@@ -47,12 +47,11 @@
                         <!-- <mui:DataGridTextColumn Header="PMC" Visibility="Hidden" Binding="{Binding NC1}"/> -->
                         <mui:DataGridTextColumn Header="PM" Visibility="Hidden" Binding="{Binding PROJMANAGER}"/>
                         <mui:DataGridTextColumn x:Name="N1" Header="PM" Binding="{Binding N1}"/>
-                        <!-- <mui:DataGridTextColumn x:Name="N1" Header="PM"/>-->
                         <!-- <mui:DataGridTextColumn Header="소개자C" Visibility="Hidden" Binding="{Binding NC2}"/> -->
                         <mui:DataGridTextColumn Header="소개자" Visibility="Hidden" Binding="{Binding RECOMMENDER}"/>
                         <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden" Binding="{Binding N2}"/>
-
-                        <!-- <mui:DataGridTextColumn x:Name="N2" Header="소개자" Visibility="Hidden"/>-->
+                        <mui:DataGridTextColumn Header="강사" Visibility="Hidden" Binding="{Binding LECTURER}"/>
+                        <mui:DataGridTextColumn x:Name="N3" Header="강사" Visibility="Hidden" Binding="{Binding N3}"/>
                         <mui:DataGridTextColumn Header="강의처" Visibility="Hidden" Binding="{Binding LECPLACE}"/>
                         <mui:DataGridTextColumn Header="시작일자" Visibility="Hidden" Binding="{Binding STARTDATE}"/>
                         <mui:DataGridTextColumn Header="종료일자" Visibility="Hidden" Binding="{Binding CLOSEDATE}"/>
@@ -75,31 +74,7 @@
             <StackPanel x:Name="spForm" MinWidth="250" d:IsHidden="True" d:LayoutOverrides="TopPosition, BottomPosition" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0">
                 <mui:BBCodeBlock BBCode="진행 중 강좌 상세 내용" Margin="0,0,0,10" VerticalAlignment="Top" Width="250" HorizontalAlignment="Left"/>
                 <StackPanel x:Name="sp_Form" Orientation="Vertical">
-                    <!--#endregion-->
-
-                    <!--#endregion-->
-
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-
-                    <!--#endregion-->
-                    <!--#endregion-->
-                    <!--#endregion-->
-
-                    <!--#endregion-->
-                    <!--#endregion-->
-
-                    <!--#endregion-->
-                    <!--#endregion-->
-
-
-                    <!--#endregion-->
-
-                    <!--#endregion-->
-
+ 
                     <!--#region 새로운 업데이트 버튼-->
                     <!--#region 입력 항목 스택패널 스타일 설정-->
                     <StackPanel.Resources>
@@ -193,27 +168,20 @@
                     <!--#region PM-->
                     <StackPanel x:Name="sp_PMName">
                         <Label x:Name="lb_PMName" Content="PM"/>
-
                         <TextBox x:Name="tbx_PMName" Text="{Binding SelectedItem.N1, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                         <TextBox x:Name="tbN1" Text="" Visibility="Hidden" TextChanged="tbN1_TextChanged"/>
                     </StackPanel>
                     <!--#region 소개자-->
                     <StackPanel x:Name="sp_RecommanderName">
                         <Label x:Name="lb_RecommanderName" Content="소개자"/>
-
                         <TextBox x:Name="tbx_RecommanderName" Text="{Binding SelectedItem.N2, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                         <TextBox x:Name="tbN2" Text="" Visibility="Hidden" TextChanged="tbN2_TextChanged"/>
-
-
-
                     </StackPanel>
+                    <!--#region 강사-->
                     <StackPanel x:Name="sp_Lecturer">
                         <Label x:Name="lb_LecturerName" Content="강사"/>
-                        <TextBox x:Name="tbx_LecturerName" Text="{Binding SelectedItem.N2, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                        <TextBox x:Name="tbx_LecturerName" Text="{Binding SelectedItem.N3, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                         <TextBox x:Name="tbN3" Text="" Visibility="Hidden" TextChanged="tbN2_TextChanged"/>
-
-
-
                     </StackPanel>
                     <!--#region 강의처-->
                     <StackPanel x:Name="sp_Place">
@@ -238,7 +206,7 @@
                     <!--#region 총 강의료-->
                     <StackPanel x:Name="sp_TotalMoney">
                         <Label x:Name="lb_TotalMoney" Content="총 강의료"/>
-                        <TextBox x:Name="tbx_TotalMoney" Text="{Binding SelectedItem.LECTUREFEE, ElementName=CBOXLEC, Mode=TwoWay, StringFormat=\{0:N0\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                        <TextBox x:Name="tbx_TotalMoney" Text="{Binding SelectedItem.LECTUREFEE, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                     </StackPanel>
                     <!--#region 비용-->
                     <StackPanel x:Name="sp_Cost">
