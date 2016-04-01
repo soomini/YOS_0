@@ -183,5 +183,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         {
             wUpdate();
         }
+
+        private void btn_change_Click(object sender, RoutedEventArgs e)
+        {
+            //이 버튼을 클릭하면 선택한 강좌의 완료율이 10 -> 0 으로 변경되어야 함.
+
+        }
     }
 }

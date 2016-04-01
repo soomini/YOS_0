@@ -216,6 +216,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             }
             //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
             //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
+
+            wUpdate();
         }
 
         private void CBOXLEC_SelectionChanged(object sender, SelectionChangedEventArgs e)

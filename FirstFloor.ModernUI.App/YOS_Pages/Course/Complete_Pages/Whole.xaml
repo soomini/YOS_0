@@ -43,7 +43,7 @@
             </StackPanel>
 
             <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-                <Button x:Name="btn_Init" Content="진행 중 강좌로 변경" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" />
+                <Button x:Name="btn_change" Content="진행 중 강좌로 변경" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" Click="btn_change_Click" />
                 <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
             </StackPanel>
 
