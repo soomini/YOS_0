@@ -32,14 +32,38 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="btn1" Content="사용자메뉴1" MouseRightButtonDown="btn1_Click" />
-            <Button x:Name="btn2" Content="사용자메뉴2"  Grid.Column="1" Margin="10,3"/>
-            <Button x:Name="btn3" Content="사용자메뉴3" Grid.Column="2"/>
-            <Button x:Name="btn4" Content="사용자메뉴4" Grid.Column="3"/>
-            <Button x:Name="btn5" Content="사용자메뉴1" Grid.Row="1"/>
-            <Button x:Name="btn6" Content="사용자메뉴2" Grid.Row="1" Grid.Column="1"/>
-            <Button x:Name="btn7" Content="사용자메뉴3" Grid.Row="1" Grid.Column="2"/>
-            <Button x:Name="btn8" Content="사용자메뉴4" Grid.Column="3" Grid.Row="1"/>
+            <Button x:Name="btnCustomBtn1" Content="사용자메뉴1" >
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Course">
+                            <MenuItem x:Name="mniOngoingMenu" Header="진행 중 강좌" Click="SetCustomMenu" />
+                            <MenuItem x:Name="mniCompleteWholeMenu" Header="전체 진행 완료 강좌" Click="SetCustomMenu" />
+                            <MenuItem x:Name="mniCompletePatnersMenu" Header="파트너별 진행 완료 강좌" Click="SetCustomMenu"/>
+                            <MenuItem x:Name="mniCompleteRoleMenu" Header="역할별 진행 완료 강좌" Click="SetCustomMenu"/>
+                        </MenuItem>
+                        <MenuItem Header="Status">
+                            <MenuItem x:Name="mniCostStatusCourseMenu" Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                            <MenuItem x:Name="mniCostStatusPatnersMenu" Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                        </MenuItem>
+                        <MenuItem Header="Reference">
+                            <MenuItem x:Name="mniReferencePatnersMenu" Header="Patners" Click="SetCustomMenu"/>
+                            <MenuItem x:Name="mniReferenceItemRateMenu" Header="항목별 요율"/>
+                            <MenuItem x:Name="mniReferenceCourseCategoryMenu" Header="강좌 분류" Click="SetCustomMenu"/>
+                            <MenuItem x:Name="mniReferenceTeachingMaterialPriceMenu"  Header="교구 단가" Click="SetCustomMenu"/>
+                        </MenuItem>
+                        <MenuItem Header="Etc" Click="MenuItem_Click"/>
+                    </ContextMenu>
+
+                </Button.ContextMenu>
+
+            </Button>
+            <Button x:Name="btnCustomBtn2" Content="사용자메뉴2"  Grid.Column="1" Margin="10,3"/>
+            <Button x:Name="btnCustomBtn3" Content="사용자메뉴3" Grid.Column="2"/>
+            <Button x:Name="btnCustomBtn4" Content="사용자메뉴4" Grid.Column="3"/>
+            <Button x:Name="btnCustomBtn5" Content="사용자메뉴1" Grid.Row="1"/>
+            <Button x:Name="btnCustomBtn6" Content="사용자메뉴2" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="btnCustomBtn7" Content="사용자메뉴3" Grid.Row="1" Grid.Column="2"/>
+            <Button x:Name="btnCustomBtn8" Content="사용자메뉴4" Grid.Column="3" Grid.Row="1"/>
         </Grid>
         <Border BorderBrush="#FFD6D4D4" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
             <FlowDocumentPageViewer/>

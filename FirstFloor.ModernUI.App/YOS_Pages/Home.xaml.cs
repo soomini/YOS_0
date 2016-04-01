@@ -25,46 +25,24 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
             InitializeComponent();
         }
 
-		private MenuItem CreateCourseMenu(string header)
+		private void SetCustomMenu(object sender, RoutedEventArgs e)
 		{
-			var item = new MenuItem { Header = header };
-			item.Items.Add("진행 중 강좌");
-			item.Items.Add(new Separator());
-			item.Items.Add("전체 진행 완료 강좌");
-			item.Items.Add("파트너별 진행 완료 강좌");
-			item.Items.Add("역할별 진행 완료 강좌");
-			return item;
+			MenuItem selectedMenuItem = (MenuItem)sender;
+
+			MenuItem parentMenuItem = (MenuItem)selectedMenuItem.Parent;
+
+			Button btn = ((ContextMenu)parentMenuItem.Parent).PlacementTarget as Button;
+
+			btn.Content = selectedMenuItem.Header;
 		}
 
-		private MenuItem CreateStatusMenu(string header)
+		private void MenuItem_Click(object sender, RoutedEventArgs e)
 		{
-			var item = new MenuItem { Header = header };
-			item.Items.Add("강좌별 수수료 현황");
-			item.Items.Add("파트너별 수수료 현황");
-			return item;
-		}
+			MenuItem contextMenuItem = (MenuItem)sender;
 
-		private MenuItem CreateReferenceMenu(string header)
-		{
-			var item = new MenuItem { Header = header };
-			item.Items.Add("Patners");
-			item.Items.Add("항목별 요율");
-			item.Items.Add("강좌 분류");
-			item.Items.Add("교구 단가");
-			return item;
-		}
+			Button btn = ((ContextMenu)contextMenuItem.Parent).PlacementTarget as Button;
 
-
-		private void btn1_Click(object sender, RoutedEventArgs e)
-		{
-
-			var contextMenu = new ContextMenu();
-
-			contextMenu.Items.Add(CreateCourseMenu("Course"));
-			contextMenu.Items.Add(CreateStatusMenu("Status"));
-			contextMenu.Items.Add(CreateReferenceMenu("Reference"));
-
-			contextMenu.IsOpen = true;
+			btn.Content = contextMenuItem.Header;
 		}
 	}
 }
