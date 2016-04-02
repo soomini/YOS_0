@@ -10,7 +10,8 @@
         <StackPanel MinWidth="200">
             <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
             <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
-                <Button x:Name="btn_Insert" Content="수정" Margin="350,0,0,20" Click="btn_Insert_Click"/>
+                <!--<Button x:Name="btn_Insert" Content="수정" Margin="350,0,0,20" Click="btn_Insert_Click"/>-->
+                <Button x:Name="btn_Insert" Content="수정" Margin="350,0,0,20"/>
             </StackPanel>
             <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
                 <RadioButton x:Name="Whole" Content="전체" IsChecked="True" Margin="5,0,15,2" GroupName="ITEMRATE" FontSize="13.333" Checked="Whole_Checked" />

@@ -285,7 +285,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            wUpdate();
+           // wUpdate();
         }
     }
 }

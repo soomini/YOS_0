@@ -44,30 +44,30 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt1 = new OracleDataAdapter("SELECT * FROM PurposeCATEGORY", strOraConn);
-            Adpt2 = new OracleDataAdapter("SELECT * FROM InstitutionCATEGORY", strOraConn);
-            Adpt3 = new OracleDataAdapter("SELECT * FROM TargetCATEGORY", strOraConn);
-            Adpt4 = new OracleDataAdapter("SELECT * FROM SubjectCATEGORY", strOraConn);
+            //Adpt1 = new OracleDataAdapter("SELECT * FROM PurposeCATEGORY", strOraConn);
+            //Adpt2 = new OracleDataAdapter("SELECT * FROM InstitutionCATEGORY", strOraConn);
+            //Adpt3 = new OracleDataAdapter("SELECT * FROM TargetCATEGORY", strOraConn);
+            //Adpt4 = new OracleDataAdapter("SELECT * FROM SubjectCATEGORY", strOraConn);
 
-            DataTable PurposeCATEGORY_dt = CATEGORY_DS.Tables["PurposeCATEGORY_dt"];
-            DataTable InstitutionCATEGORY_dt = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"];
-            DataTable TargetCATEGORY_dt = CATEGORY_DS.Tables["TargetCATEGORY_dt"];
-            DataTable SubjectCATEGORY_dt = CATEGORY_DS.Tables["SubjectCATEGORY_dt"];
+            //DataTable PurposeCATEGORY_dt = CATEGORY_DS.Tables["PurposeCATEGORY_dt"];
+            //DataTable InstitutionCATEGORY_dt = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"];
+            //DataTable TargetCATEGORY_dt = CATEGORY_DS.Tables["TargetCATEGORY_dt"];
+            //DataTable SubjectCATEGORY_dt = CATEGORY_DS.Tables["SubjectCATEGORY_dt"];
 
-            oraBuilder1 = new OracleCommandBuilder(Adpt1);
-            oraBuilder2 = new OracleCommandBuilder(Adpt2);
-            oraBuilder3 = new OracleCommandBuilder(Adpt3);
-            oraBuilder4 = new OracleCommandBuilder(Adpt4);
+            //oraBuilder1 = new OracleCommandBuilder(Adpt1);
+            //oraBuilder2 = new OracleCommandBuilder(Adpt2);
+            //oraBuilder3 = new OracleCommandBuilder(Adpt3);
+            //oraBuilder4 = new OracleCommandBuilder(Adpt4);
 
-            Adpt1.Fill(CATEGORY_DS, "PurposeCATEGORY_dt");
-            Adpt2.Fill(CATEGORY_DS, "InstitutionCATEGORY_dt");
-            Adpt3.Fill(CATEGORY_DS, "TargetCATEGORY_dt");
-            Adpt4.Fill(CATEGORY_DS, "SubjectCATEGORY_dt");
+            //Adpt1.Fill(CATEGORY_DS, "PurposeCATEGORY_dt");
+            //Adpt2.Fill(CATEGORY_DS, "InstitutionCATEGORY_dt");
+            //Adpt3.Fill(CATEGORY_DS, "TargetCATEGORY_dt");
+            //Adpt4.Fill(CATEGORY_DS, "SubjectCATEGORY_dt");
 
-            DGCat1.ItemsSource = CATEGORY_DS.Tables["PurposeCATEGORY_dt"].DefaultView;
-            DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
-            DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
-            DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
+            //DGCat1.ItemsSource = CATEGORY_DS.Tables["PurposeCATEGORY_dt"].DefaultView;
+            //DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
+            //DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
+            //DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
 
             #endregion
         }
@@ -237,10 +237,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                                 }
                             }
                         }
-                        Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
-                        Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
-                        Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
-                        Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+                        //Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                        //Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                        //Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                        //Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
 
                         DGCat1.IsReadOnly = true;
                         DGCat2.IsReadOnly = true;
@@ -292,10 +292,10 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                     CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
                     CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
 
-                    Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
-                    Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
-                    Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
-                    Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+                    //Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                    //Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                    //Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                    //Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
 
                     MessageBox.Show("삭제 성공");
 
