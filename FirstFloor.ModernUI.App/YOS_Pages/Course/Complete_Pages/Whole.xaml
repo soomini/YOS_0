@@ -44,7 +44,7 @@
 
             <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
                 <Button x:Name="btn_change" Content="진행 중 강좌로 변경" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" Click="btn_change_Click" />
-                <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
+                <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" Click="btn_Cancel_Click" />
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Top" >
@@ -202,7 +202,7 @@
                 <!--#region 소개자-->
                 <StackPanel x:Name="sp_RecommanderName">
                     <Label x:Name="lb_RecommanderName" Content="소개자"/>
-                    <TextBox x:Name="tbx_RecommanderName" Text="{Binding SelectedItem.N1, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_RecommanderName" Text="{Binding SelectedItem.N2, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 강사-->

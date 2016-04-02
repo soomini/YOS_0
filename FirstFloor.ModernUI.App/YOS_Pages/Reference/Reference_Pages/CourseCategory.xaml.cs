@@ -33,6 +33,40 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+        private void wUpdate()
+        {
+            try
+            {
+                DGCat1.ItemsSource = null;
+                DGCat2.ItemsSource = null;
+                DGCat3.ItemsSource = null;
+                DGCat4.ItemsSource = null;
+
+                DGCat1.IsReadOnly = true;
+                DGCat2.IsReadOnly = true;
+                DGCat3.IsReadOnly = true;
+                DGCat4.IsReadOnly = true;
+
+                DataTable d1 = CATEGORY_DS.Tables["PurposeCATEGORY_dt"];
+                DataTable d2 = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"];
+                DataTable d3 = CATEGORY_DS.Tables["TargetCATEGORY_dt"];
+                DataTable d4 = CATEGORY_DS.Tables["SubjectCATEGORY_dt"];
+
+                d1.Clear();
+                d2.Clear();
+                d3.Clear();
+                d4.Clear();
+
+                btn_Insert.Content = "추가/수정";
+                btn_Delete.Content = "삭제";
+            }
+            catch
+            {
+
+            }
+
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt1 = new OracleDataAdapter("SELECT * FROM PurposeCATEGORY", strOraConn);
@@ -62,7 +96,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
             #endregion
         }
-
         private void Purpose_Checked(object sender, RoutedEventArgs e)
         {
             DGCat1.Visibility = Visibility.Visible;
@@ -121,23 +154,18 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                     btn_Delete.Content = "삭제";
                     string Record = "";
 
-                    //if (DGCat1.SelectedIndex == PurposeCATEGORY_dt.Rows.Count-1)
-                    //{
+                    try
+                    {
+                        Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                        MessageBox.Show("추가가 완료되었습니다.");
+                    }
+                    catch (Exception ex)
+                    {
+                        PurposeCATEGORY_dt.Rows.RemoveAt(PurposeCATEGORY_dt.Rows.Count - 1);
+                        MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
+                    }
 
-                    //    PurposeCATEGORY_dt.Rows.Add(PurposeCATEGORY_dt.Rows.Count + 1,DGCat1.);
-
-                    //    try
-                    //    {
-                    //        Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
-                    //        MessageBox.Show("추가가 완료되었습니다.");
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        PurposeCATEGORY_dt.Rows.RemoveAt(PurposeCATEGORY_dt.Rows.Count - 1);
-                    //        MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
-                    //    }
-                    //}
-                        foreach (DataRow R in PurposeCATEGORY_dt.Rows)
+                    foreach (DataRow R in PurposeCATEGORY_dt.Rows)
                         {
                             switch (R.RowState)
                             {
@@ -189,38 +217,34 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
-            //if (Convert.ToString(btn_Delete.Content) == "취소")
-            //{
-            //    btn_Insert.Content = "추가/수정";
-            //    btn_Delete.Content = "삭제";
+            if (Convert.ToString(btn_Delete.Content) == "취소")
+            {
+                btn_Insert.Content = "추가/수정";
+                btn_Delete.Content = "삭제";
 
-
-            //    DGCat1.ItemsSource = null;
-            //    DGCat2.ItemsSource = null;
-            //    DGCat3.ItemsSource = null;
-            //    DGCat4.ItemsSource = null;
-
-            //    DGCat1.ItemsSource = CATEGORY_DS.Tables["PurposeCATEGORY_dt"].DefaultView;
-            //    DGCat2.ItemsSource = CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].DefaultView;
-            //    DGCat3.ItemsSource = CATEGORY_DS.Tables["TargetCATEGORY_dt"].DefaultView;
-            //    DGCat4.ItemsSource = CATEGORY_DS.Tables["SubjectCATEGORY_dt"].DefaultView;
-         //}
-         //   else {
+                wUpdate();
+            }
+            else {
                 try
                 {
-                //if (DGCat1) ;
-                //{ }
-                    CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
-                    CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
-                    CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
-                    CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
+                    if(DGCat1.SelectedIndex != -1)
+                        CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
 
-                    Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
-                    Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
-                    Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
-                    Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+                    if (DGCat2.SelectedIndex != -1)
+                        CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
 
-                    MessageBox.Show("삭제 성공");
+                    if (DGCat3.SelectedIndex != -1)
+                        CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
+
+                    if (DGCat4.SelectedIndex != -1)
+                        CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
+
+                        Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                        Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                        Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                        Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+
+                        MessageBox.Show("삭제 성공");
 
                 }
                 catch (Exception ex)
@@ -228,6 +252,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                     MessageBox.Show("오류 : " + ex.ToString());
                 }
             }
-        //}
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
+        }
     }
 }
