@@ -87,14 +87,12 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			StackPanel stpButtons = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				HorizontalAlignment = HorizontalAlignment.Center,
-				Width = 530,
+				HorizontalAlignment = HorizontalAlignment.Right,
 				Height = 30
 			};
-			stpButtons.Children.Add(new Button { Content = "저장", Margin = new Thickness(0, 0, 0, 0)});
-			stpButtons.Children.Add(new Button { Content = "초기화", Margin = new Thickness(10, 0, 10, 0) });
-			stpButtons.Children.Add(new Button { Content = "게시", Margin = new Thickness(0, 0, 0, 0) });
-			stpButtons.HorizontalAlignment = HorizontalAlignment.Right;
+			stpButtons.Children.Add(new Button { Content = "저장", Margin = new Thickness(0, 0, 0, 0), Width = 90});
+			stpButtons.Children.Add(new Button { Content = "초기화", Margin = new Thickness(10, 0, 10, 0), Width = 90});
+			stpButtons.Children.Add(new Button { Content = "게시", Margin = new Thickness(0, 0, 0, 0), Width = 90 });
 			#endregion
 
 
