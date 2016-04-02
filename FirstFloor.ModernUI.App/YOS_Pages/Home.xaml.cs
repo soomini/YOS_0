@@ -83,14 +83,28 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			wnd.Height = 350;
 			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-			StackPanel stpNotice = new StackPanel();
+			#region 버튼 스택패널 구현
+			StackPanel stpButtons = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				Width = 530,
+				Height = 30
+			};
+			stpButtons.Children.Add(new Button { Content = "저장", Margin = new Thickness(0, 0, 0, 0)});
+			stpButtons.Children.Add(new Button { Content = "초기화", Margin = new Thickness(10, 0, 10, 0) });
+			stpButtons.Children.Add(new Button { Content = "게시", Margin = new Thickness(0, 0, 0, 0) });
+			stpButtons.HorizontalAlignment = HorizontalAlignment.Right;
+			#endregion
+
+
+			StackPanel stpNotice = new StackPanel(); 
 			stpNotice.Children.Add(new RichTextBox
 			{
 				Width = 530, Height = 250, Margin = new Thickness(0,0,0,5)
 			});
+			stpNotice.Children.Add(stpButtons);
 
-			//StackPanel stpButtons = 
-			stpNotice.Children.Add(new Button());
 			
 
 
