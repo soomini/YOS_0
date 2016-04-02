@@ -41,6 +41,9 @@
     <StartupObject>FirstFloor.ModernUI.App.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FreeNet">
+      <HintPath>..\FreeNet\bin\Debug\FreeNet.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\Binaries\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
@@ -70,6 +73,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BingImage.cs" />
+    <Compile Include="CAccessDB.cs" />
     <Compile Include="Content\ContentLoaderImages.xaml.cs">
       <DependentUpon>ContentLoaderImages.xaml</DependentUpon>
     </Compile>
@@ -91,8 +95,17 @@
     <Compile Include="Content\ControlsStylesDataGrid.xaml.cs">
       <DependentUpon>ControlsStylesDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Inputs\Person.xaml.cs">
-      <DependentUpon>Person.xaml</DependentUpon>
+    <Compile Include="CProgram.cs" />
+    <Compile Include="Cprotocol.cs" />
+    <Compile Include="CRemoteServerPeer.cs" />
+    <Compile Include="Sample.xaml.cs">
+      <DependentUpon>Sample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Content\Home_Contents\Notice.xaml.cs">
+      <DependentUpon>Notice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Content\AddCost.xaml.cs">
+      <DependentUpon>AddCost.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\ControlsStylesSampleForm.xaml.cs">
       <DependentUpon>ControlsStylesSampleForm.xaml</DependentUpon>
@@ -122,29 +135,54 @@
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />
     <Compile Include="SampleMsgBoxCommand.cs" />
-    <Compile Include="YOS_Content\ContentSample.xaml.cs">
-      <DependentUpon>ContentSample.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Course\Complete.xaml.cs">
+      <DependentUpon>Complete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Complete_Pages\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Complete_Pages\Role.xaml.cs">
+      <DependentUpon>Role.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Complete_Pages\Whole.xaml.cs">
+      <DependentUpon>Whole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Course\Ongoing.xaml.cs">
+      <DependentUpon>Ongoing.xaml</DependentUpon>
     </Compile>
     <Compile Include="YOS_Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Input.xaml.cs">
-      <DependentUpon>Input.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\IVConverter.cs" />
+    <Compile Include="YOS_Pages\Status\CostStatus.xaml.cs">
+      <DependentUpon>CostStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Status.xaml.cs">
-      <DependentUpon>Status.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference\Reference.xaml.cs">
+      <DependentUpon>Reference.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Statuses\Custom.xaml.cs">
-      <DependentUpon>Custom.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\CourseCategory.xaml.cs">
+      <DependentUpon>CourseCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Statuses\Annual.xaml.cs">
-      <DependentUpon>Annual.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\ItemRate.xaml.cs">
+      <DependentUpon>ItemRate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Statuses\Monthly.xaml.cs">
-      <DependentUpon>Monthly.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Pages\Statuses\OfWhole.xaml.cs">
-      <DependentUpon>OfWhole.xaml</DependentUpon>
+    <Compile Include="YOS_Pages\Reference\Reference_Pages\TeachingMaterialPrice.xaml.cs">
+      <DependentUpon>TeachingMaterialPrice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status\CostStatus_Pages\Chart.xaml.cs">
+      <DependentUpon>Chart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status\CostStatus_Pages\Course.xaml.cs">
+      <DependentUpon>Course.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status\CostStatus_Pages\Patners.xaml.cs">
+      <DependentUpon>Patners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YOS_Pages\Status\MembershipFee.xaml.cs">
+      <DependentUpon>MembershipFee.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -359,7 +397,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="YOS_Pages\Inputs\Person.xaml">
+    <Page Include="Sample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YOS_Content\Home_Contents\Notice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YOS_Content\AddCost.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -479,7 +525,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="YOS_Content\ContentSample.xaml">
+    <Page Include="YOS_Pages\Course\Complete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Complete_Pages\Patners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Complete_Pages\Role.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Complete_Pages\Whole.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Course\Ongoing.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -487,27 +549,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Input.xaml">
+    <Page Include="YOS_Pages\Status\CostStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Status.xaml">
+    <Page Include="YOS_Pages\Reference\Reference.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Statuses\Custom.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\CourseCategory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Statuses\Annual.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\ItemRate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Statuses\Monthly.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\Patners.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YOS_Pages\Statuses\OfWhole.xaml">
+    <Page Include="YOS_Pages\Reference\Reference_Pages\TeachingMaterialPrice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status\CostStatus_Pages\Chart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status\CostStatus_Pages\Course.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status\CostStatus_Pages\Patners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Pages\Status\MembershipFee.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -521,7 +599,9 @@
   <ItemGroup>
     <Resource Include="Assets\background.snowflakes.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="YOS_Assets\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

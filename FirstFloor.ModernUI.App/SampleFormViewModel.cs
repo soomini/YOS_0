@@ -11,7 +11,8 @@ namespace FirstFloor.ModernUI.App
     public class SampleFormViewModel
         : NotifyPropertyChanged, IDataErrorInfo
     {
-        private string firstName = "Default Value";
+        //수정 1
+        private string firstName;
         private string lastName;
 
         public string FirstName
@@ -49,10 +50,14 @@ namespace FirstFloor.ModernUI.App
             {
                 if (columnName == "FirstName") {
                     return string.IsNullOrEmpty(this.firstName) ? "Required value" : null;
+
+                    // 수정 2
+                    if (columnName == "LastName")
+                    {
+                        return string.IsNullOrEmpty(this.lastName) ? "Required value" : null;
+                    }
                 }
-                if (columnName == "LastName") {
-                    return string.IsNullOrEmpty(this.lastName) ? "Required value" : null;
-                }
+               
                 return null;
             }
         }

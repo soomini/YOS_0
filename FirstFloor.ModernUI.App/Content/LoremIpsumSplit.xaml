@@ -13,8 +13,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <content:LoremIpsum Margin="{StaticResource SplitLeft}" />
+        <content:Loremlpsum Margin="{StaticResource SplitLeft}" />
         <GridSplitter Grid.Column="1" />
-        <content:LoremIpsum Grid.Column="2" Margin="{StaticResource SplitRight}" />
+        <content:Loremlpsum Grid.Column="2" Margin="{StaticResource SplitRight}" />
     </Grid>
 </UserControl>
