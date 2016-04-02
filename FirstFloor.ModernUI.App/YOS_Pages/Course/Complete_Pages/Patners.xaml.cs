@@ -19,19 +19,38 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         //private OracleCommandBuilder oraBuilder2;
         private OracleDataAdapter Adpt;
         private OracleDataAdapter Adpt1;
-        private OracleDataAdapter Adpt2;
+        //private OracleDataAdapter Adpt2;
         public Patners()
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG_CO_P.ItemsSource = null;
+
+                DataTable d1 = STATUS_DS.Tables["STATUS_dt"];
+                DataTable d2 = STATUS_DS.Tables["STATUS_dt1"];
+
+                d1.Clear();
+                d2.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
-           
+
             Adpt = new OracleDataAdapter("SELECT p.NAME, p.JOB, s.LECTURENAME, s.ROLE, s.AMOUNT FROM STATUS s, PARTNERS p WHERE s.NAME=p.ID", strOraConn);
             Adpt1 = new OracleDataAdapter("SELECT DISTINCT p.NAME, p.JOB FROM STATUS s, PARTNERS p WHERE s.NAME=p.ID ORDER BY NAME", strOraConn);
             //Adpt2 = new OracleDataAdapter("SELECT COUNT(*) \"C1\" FROM STATUS s, PARTNERS p WHERE s.NAME=p.ID AND p.NAME='김수민';",strOraConn);
             DataTable STATUS_dt = STATUS_DS.Tables["STATUS_dt"];
             DataTable STATUS_dt1 = STATUS_DS.Tables["STATUS_dt1"];
-            DataTable STATUS_dt2 = STATUS_DS.Tables["STATUS_dt2"];
+            //DataTable STATUS_dt2 = STATUS_DS.Tables["STATUS_dt2"];
             oraBuilder = new OracleCommandBuilder(Adpt);
             oraBuilder = new OracleCommandBuilder(Adpt1);
             //oraBuilder2 = new OracleCommandBuilder(Adpt2);
@@ -47,8 +66,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             DG_CO_PL.CanUserAddRows = false;
             DG_CO_PD.CanUserAddRows = false;
             #endregion
-
-            //DG_CO_PD.Columns[3] = 
         }
 
         private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -105,6 +122,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             DG_CO_PL.ItemsSource = STATUS_DS.Tables["STATUS_dt"].DefaultView;
             //CBOXLEC.ItemsSource = STATUS_DS.Tables["STATUS_dt"].DefaultView;
             DG_CO_PL.CanUserAddRows = false;
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }

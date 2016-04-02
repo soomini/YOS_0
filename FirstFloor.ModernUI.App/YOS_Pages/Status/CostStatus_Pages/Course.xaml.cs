@@ -23,6 +23,28 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG_ST_C.ItemsSource = null;
+                Money.Text = null;
+                Commission.Text = null;
+                BusinessExpenses.Text = null;
+                MembershipFees.Text = null;
+                CorporationProfit.Text = null;
+
+                DataTable d1 = LECTURE_DS.Tables["LECTURE_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
@@ -141,6 +163,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
             DG_ST_C.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             CB_ST_C.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             DG_ST_C.CanUserAddRows = false;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }

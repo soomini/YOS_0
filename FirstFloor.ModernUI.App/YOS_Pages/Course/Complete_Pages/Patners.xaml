@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -66,7 +66,7 @@
                 <RowDefinition Height="130"/>
             </Grid.RowDefinitions>
             <ScrollViewer d:LayoutOverrides="Height" Margin="0,0,10,0">
-                <DataGrid x:Name="DG_CO_P" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid x:Name="DG_CO_P" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
                     
                     <!--#region 데이터그리드 공통 스타일-->
                     <!--<DataGrid.Resources>
