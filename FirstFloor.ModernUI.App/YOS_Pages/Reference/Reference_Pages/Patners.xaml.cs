@@ -27,6 +27,24 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+      
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG1.ItemsSource = null;
+
+                DataTable d1 = PARTNERS_DS.Tables["PARTNERS_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt = new OracleDataAdapter("SELECT * FROM PARTNERS", strOraConn);
@@ -43,10 +61,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
             //PARTNERS = new ListCollectionView(_PARTNERS);
             //PARTNERS.GroupDescriptions.Add(new PropertyGroupDescription("Gender"));
-           
+
             //RelName= new DataRelation("partner", PARTNERS_DS.Tables["PARTNERS_dt"].Columns["NAME"],
-            //    PARTNERS_DS.Tables["PARTNERS_dt"].Columns{[""])        
+            //    PARTNERS_DS.Tables["PARTNERS_dt"].Columns{[""])  
         }
+
         public void StackPannel_control_init()
         {
             TextFirstName.Text = null;
@@ -171,7 +190,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
                 Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
 
-                MessageBox.Show("삭제 성공");
+                MessageBox.Show("삭제가 완료되었습니다.");
 
             }
             catch (Exception ex)
@@ -183,6 +202,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Btn_Register.Content = "업데이트";
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }

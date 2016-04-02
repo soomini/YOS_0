@@ -7,7 +7,7 @@
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:converters="clr-namespace:CustomConverter">
+             xmlns:converters="clr-namespace:CustomConverter" Loaded="UserControl_Loaded">
 
     <UserControl.Resources>
         <converters:IVConverter x:Key="IVConverter"/>

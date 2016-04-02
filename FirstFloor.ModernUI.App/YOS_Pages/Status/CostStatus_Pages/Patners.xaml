@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -28,25 +28,25 @@
                 </Style>
             </StackPanel.Resources>
 
-            <StackPanel Margin="0,0,15,0" HorizontalAlignment="Left" >
+                <StackPanel Margin="0,0,15,0" HorizontalAlignment="Left" >
                 <Label Content="시작" Width="40" />
                 <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" />
-            </StackPanel>
+                </StackPanel>
             <StackPanel Margin="0,0,15,0" HorizontalAlignment="Left" >
                 <Label Content="끝" Width="30" />
                 <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" />
-            </StackPanel>
+                </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="0" >
                 <Label Content="파트너" Width="50" />
                 <TextBox x:Name="CB_ST_P_T" Visibility="Hidden" Width="0" Text="{Binding Text, ElementName=CB_ST_P, Mode=TwoWay}" TextChanged="CB_ST_P_T_TextChanged"/>
                 <TextBox x:Name="CB_ST_P_T2" Visibility="Hidden" Width="0" Text="{Binding SelectedItem.NAME, ElementName=DG_ST_P, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="CB_ST_P_T2_TextChanged"/>
                 <ComboBox x:Name="CB_ST_P" IsEditable="True" Width="80" Text="{Binding SelectedItem.NAME, ElementName=DG_ST_P, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="NAME"/>
-            </StackPanel>
+                </StackPanel>
             <StackPanel Margin="15,0,0,0" HorizontalAlignment="Left" >
                 <Label Content="전체" Width="30" />
                 <CheckBox x:Name="CheckWhole" Margin="6,0,0,0" Checked="CheckWhole_Checked" Unchecked="CheckWhole_Unchecked"  />
+                </StackPanel>
             </StackPanel>
-        </StackPanel> 
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Row="1" Height="1" />
         <DockPanel Grid.Row="2" Margin="0,10,0,0">
             <TextBlock DockPanel.Dock="Top" Text="결과" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
