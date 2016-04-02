@@ -40,8 +40,7 @@ namespace CSampleClient
 				case PROTOCOL.CHAT_MSG_ACK:
 					{                                               
                         string text = msg.pop_string();
-                        Application.Current.Dispatcher.Invoke(DispatcherPriority.Send,
-                            new Action(() => YOS.CAccessDB.odpconn(text)));
+                        Application.Current.Dispatcher.Invoke(DispatcherPriority.Send, new Action(() => YOS.CAccessDB.odpconn(text)));
                     }
 					break;
                 case PROTOCOL.CHAT_MSG_INSERT_ACK:

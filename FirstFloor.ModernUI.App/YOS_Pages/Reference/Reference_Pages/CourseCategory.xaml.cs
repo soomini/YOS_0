@@ -135,6 +135,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             UIDispatcher.Invoke(new Action(() => PurposeCATEGORY_Dt = YOS.CAccessDB.getdt()));
             UIDispatcher.Invoke(new Action(() => PurposeCATEGORY_Dt_copy = PurposeCATEGORY_Dt.Clone()));
             UIDispatcher.Invoke(new Action(() => DGCat1.ItemsSource = PurposeCATEGORY_Dt_copy.DefaultView));//수신    
+            
         }
 
         private void DGCat2_Loaded(object sender, RoutedEventArgs e)

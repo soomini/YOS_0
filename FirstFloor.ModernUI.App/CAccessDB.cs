@@ -26,10 +26,19 @@ namespace YOS
         {         
             Ac_ds.Reset();
             Ac_ds = new DataSet();
+            Ac_dt.Reset();
+            Ac_dt = new DataTable();
             xmlSR = new StringReader(message);            
             Ac_ds.ReadXml(xmlSR, XmlReadMode.ReadSchema);
             Ac_dt = Ac_ds.Tables[0];      
-        }        
+        }
+        static public void dsreset()
+        {
+            Ac_ds.Reset();
+            Ac_ds = new DataSet();
+            Ac_dt.Reset();
+            Ac_dt = new DataTable();
+        }
         static public DataTable getdt()
         {         
             return Ac_dt;
