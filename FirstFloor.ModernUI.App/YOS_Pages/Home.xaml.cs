@@ -1,5 +1,6 @@
 ﻿using FirstFloor.ModernUI.App.Content;
 using FirstFloor.ModernUI.App.YOS_Pages.Course;
+using FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages;
 using FirstFloor.ModernUI.Windows.Controls;
 using System;
 using System.Collections.Generic;
@@ -69,36 +70,34 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 				case "교구 단가":
 					btn.CommandParameter = "/YOS_Pages/Reference/Reference_Pages/TeachingMaterialPrice.xaml";
 					break;
-
 			}
-			
-		}
-
-		private void btnEdit_Checked(object sender, RoutedEventArgs e)
-		{
-			//rtbEdit.IsReadOnly = false;
-			//rtbEdit.IsEnabled = true;
-		}
-
-		private void btnEdit_Unchecked(object sender, RoutedEventArgs e)
-		{
-			//rtbEdit.IsReadOnly = true;
-			//rtbEdit.IsEnabled = false;
 		}
 
 		private void btnEdit_Click(object sender, RoutedEventArgs e)
 		{
-			var dlg = new ModernDialog
+			var wnd = new Windows.Controls.Page();
+
+			wnd.Style = (Style)App.Current.Resources["BlankWindow"];
+			wnd.Title = "Edit Notice";
+			wnd.Width = 550;
+			wnd.Height = 350;
+			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+			StackPanel stpNotice = new StackPanel();
+			stpNotice.Children.Add(new RichTextBox
 			{
-				Title = "공지사항",
-				Content = new RichTextBox()
-			};
-			dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton };
-			dlg.ShowDialog();
+				Width = 530, Height = 250, Margin = new Thickness(0,0,0,5)
+			});
 
-			//this.dialogResult.Text = dlg.DialogResult.HasValue ? dlg.DialogResult.ToString() : "<null>";
-			//this.dialogMessageBoxResult.Text = dlg.MessageBoxResult.ToString();
+			//StackPanel stpButtons = 
+			stpNotice.Children.Add(new Button());
+			
 
+
+
+			wnd.Content = stpNotice;
+
+			wnd.Show();
 		}
 	}
 }

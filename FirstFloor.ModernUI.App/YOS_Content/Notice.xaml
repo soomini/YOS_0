@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <TextBlock Text="공지사항을 수정하시려면 상단의 수정 버튼을 누르십시오."/>
+    <StackPanel x:Name="stpNotice" Margin="0,0,0,5">
+        
     </StackPanel>
 </UserControl>
