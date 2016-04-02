@@ -10,7 +10,7 @@
 
     <Grid Margin="0,15,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="330"/>
+            <ColumnDefinition Width="350"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                 <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
                 <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding ElementName=DGLEC, Path=SelectedItem.LECTURENAME, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="220"/>
             </StackPanel>
-            <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+            <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,40" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
                 <Button x:Name="btn_Init" Content="새로운 강좌 등록" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" Click="btn_Init_Click" />
                 <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
             </StackPanel>
