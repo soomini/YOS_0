@@ -28,6 +28,26 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG_ST_P.ItemsSource = null;
+                //CB_ST_P.ItemsSource = null;
+
+                DataTable d1 = SPARTNERS_DS.Tables["SPARTNERS_dt"];
+                DataTable d2 = SPARTNERS_DS1.Tables["SPARTNERS_dt1"];
+
+                d1.Clear();
+                d2.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
             //SELECT * FROM STATUS
@@ -35,15 +55,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
             Adpt1 = new OracleDataAdapter("SELECT DISTINCT p.NAME, s.JOB FROM STATUS s, PARTNERS p WHERE s.NAME=p.ID ORDER BY NAME", strOraConn);
 
             DataTable SPARTNERS_dt = SPARTNERS_DS.Tables["SPARTNERS_dt"];
-            DataTable SPARTNERS_dt1 = SPARTNERS_DS1.Tables["SPARTNERS_dt"];
+            DataTable SPARTNERS_dt1 = SPARTNERS_DS1.Tables["SPARTNERS_dt1"];
 
             oraBuilder = new OracleCommandBuilder(Adpt);
             oraBuilder1 = new OracleCommandBuilder(Adpt1);
 
             Adpt.Fill(SPARTNERS_DS, "SPARTNERS_dt");
             DG_ST_P.ItemsSource = SPARTNERS_DS.Tables["SPARTNERS_dt"].DefaultView;
-            Adpt1.Fill(SPARTNERS_DS1, "SPARTNERS_dt");
-            CB_ST_P.ItemsSource = SPARTNERS_DS1.Tables["SPARTNERS_dt"].DefaultView;
+            Adpt1.Fill(SPARTNERS_DS1, "SPARTNERS_dt1");
+            CB_ST_P.ItemsSource = SPARTNERS_DS1.Tables["SPARTNERS_dt1"].DefaultView;
             DG_ST_P.CanUserAddRows = false;
 
             #endregion
@@ -191,6 +211,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
             DG_ST_P.ItemsSource = SPARTNERS_DS.Tables["SPARTNERS_dt"].DefaultView;
             DG_ST_P.ItemsSource = SPARTNERS_DS.Tables["SPARTNERS_dt"].DefaultView;
             DG_ST_P.CanUserAddRows = false;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }
