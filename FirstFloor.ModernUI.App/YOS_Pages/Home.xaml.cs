@@ -72,14 +72,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			
 		}
 
-		//private void MenuItem_Click(object sender, RoutedEventArgs e)
-		//{
-		//	MenuItem contextMenuItem = (MenuItem)sender;
-
-		//	Button btn = ((ContextMenu)contextMenuItem.Parent).PlacementTarget as Button;
-
-		//	btn.Content = contextMenuItem.Header;
-		//}
 
 		private void btnCustomBtn2_Click(object sender, RoutedEventArgs e)
 		{

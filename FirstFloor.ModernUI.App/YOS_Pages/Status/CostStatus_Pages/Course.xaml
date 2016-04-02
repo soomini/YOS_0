@@ -55,7 +55,7 @@
                 <TextBlock DockPanel.Dock="Top" Text="강좌 목록" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
                 <DataGrid x:Name="DG_ST_C" ItemsSource="{Binding}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
+                        <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
