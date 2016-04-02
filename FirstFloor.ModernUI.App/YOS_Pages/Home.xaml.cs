@@ -1,4 +1,6 @@
-﻿using FirstFloor.ModernUI.App.YOS_Pages.Course;
+﻿using FirstFloor.ModernUI.App.Content;
+using FirstFloor.ModernUI.App.YOS_Pages.Course;
+using FirstFloor.ModernUI.Windows.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,9 +74,30 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			
 		}
 
-
-		private void btnCustomBtn2_Click(object sender, RoutedEventArgs e)
+		private void btnEdit_Checked(object sender, RoutedEventArgs e)
 		{
+			//rtbEdit.IsReadOnly = false;
+			//rtbEdit.IsEnabled = true;
+		}
+
+		private void btnEdit_Unchecked(object sender, RoutedEventArgs e)
+		{
+			//rtbEdit.IsReadOnly = true;
+			//rtbEdit.IsEnabled = false;
+		}
+
+		private void btnEdit_Click(object sender, RoutedEventArgs e)
+		{
+			var dlg = new ModernDialog
+			{
+				Title = "공지사항",
+				Content = new RichTextBox()
+			};
+			dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton };
+			dlg.ShowDialog();
+
+			//this.dialogResult.Text = dlg.DialogResult.HasValue ? dlg.DialogResult.ToString() : "<null>";
+			//this.dialogMessageBoxResult.Text = dlg.MessageBoxResult.ToString();
 
 		}
 	}

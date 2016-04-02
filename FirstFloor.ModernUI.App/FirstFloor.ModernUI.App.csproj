@@ -94,9 +94,6 @@
     <Compile Include="Sample.xaml.cs">
       <DependentUpon>Sample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YOS_Content\Home_Contents\Notice.xaml.cs">
-      <DependentUpon>Notice.xaml</DependentUpon>
-    </Compile>
     <Compile Include="YOS_Content\AddCost.xaml.cs">
       <DependentUpon>AddCost.xaml</DependentUpon>
     </Compile>
@@ -128,6 +125,9 @@
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />
     <Compile Include="SampleMsgBoxCommand.cs" />
+    <Compile Include="YOS_Content\Notice.xaml.cs">
+      <DependentUpon>Notice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YOS_Pages\Course\Complete.xaml.cs">
       <DependentUpon>Complete.xaml</DependentUpon>
     </Compile>
@@ -394,9 +394,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="YOS_Content\Home_Contents\Notice.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="YOS_Assets\appbar.edit.box.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YOS_Assets\EditIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="YOS_Content\AddCost.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -518,6 +522,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="YOS_Content\Notice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="YOS_Pages\Course\Complete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -592,9 +600,7 @@
   <ItemGroup>
     <Resource Include="Assets\background.snowflakes.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="YOS_Assets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
