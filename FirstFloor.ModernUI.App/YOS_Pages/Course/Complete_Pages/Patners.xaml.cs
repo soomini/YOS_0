@@ -65,7 +65,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
 
 
             #region 데이터 가져오기 및 DataGrid에 추가
-
+           
             ////DG_CO_PL(왼쪽) //DG_CO_P(오른쪽)
 
             //Adpt = new OracleDataAdapter("SELECT p.NAME, p.JOB, s.LECTURENAME, s.ROLE, s.AMOUNT FROM STATUS s, PARTNERS p WHERE s.NAME=p.ID", strOraConn);
@@ -149,7 +149,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         }
 
         private void DG_CO_PL_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            {
             DataSet DS = new DataSet();
 
             string strconn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
@@ -183,7 +183,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             for (int i = 0; i < LectureDT_cnt; i++)
             {
                 if (DS.Tables["LECTURE_Dt"].Rows[i][14].ToString() == "10" && (DS.Tables["LECTURE_Dt"].Rows[i][6].ToString() == CellClickEventROW[0][1].ToString()))
-                {
+            {
                     DataRow newRow = PARTNERS_filter_Dt.NewRow();
 
                     newRow[0] = CellClickEventROW[0][1];
@@ -200,7 +200,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             for (int i = 0; i < LectureDT_cnt; i++)
             {
                 if (DS.Tables["LECTURE_Dt"].Rows[i][14].ToString() == "10" && (DS.Tables["LECTURE_Dt"].Rows[i][7].ToString() == CellClickEventROW[0][1].ToString()))
-                {
+            {
                     DataRow newRow = PARTNERS_filter_Dt.NewRow();
 
                     newRow[0] = CellClickEventROW[0][1];
@@ -254,7 +254,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         private void DG_CO_PL_Loaded(object sender, RoutedEventArgs e)
         {          
 
-            
+
         }
 
         private void DG_CO_PL_LayoutUpdated(object sender, EventArgs e)
@@ -279,8 +279,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             //        UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
             //        UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("LECTURE")));
             //    }
-                
+
             //}
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }

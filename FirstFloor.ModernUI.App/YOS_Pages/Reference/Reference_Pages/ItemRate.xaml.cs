@@ -22,9 +22,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         static DataTable ITEMRATE_Dt_copy = new DataTable();
         static DataSet ITEMRATE_Ds = new DataSet();
 
-		#endregion
+        #endregion
 
-		static int switchint = 0;
+        static int switchint = 0;
 
         public ItemRate()
         {

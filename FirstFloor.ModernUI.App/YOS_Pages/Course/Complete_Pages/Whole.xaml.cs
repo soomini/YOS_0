@@ -27,9 +27,27 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DGLEC.ItemsSource = null;
+                CBOXLEC.ItemsSource = null;
+
+                DataTable d1 = LECTURE_DS.Tables["LECTURE_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM ONGOING", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT * FROM LECTURE WHERE COMPLETERATE=10", strOraConn);
             //SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.SUBJECTCATEGORY, p.PROJMANAGER p.RECOMMENDER l.LECPLACE l.STARTDATE l.CLOSEDATE l.LECTURETIME l.LECTUREFEE FROM LECTURE l, PARTNERS p WHERE l.NAME = p.ID
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
@@ -55,7 +73,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             dlg.ShowDialog();
         }
 
-        private void btn_Registration_Click(object sender, RoutedEventArgs e)
+        private void btn_Update_Click(object sender, RoutedEventArgs e)
         {
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
@@ -159,6 +177,41 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
             DGLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             CBOXLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             DGLEC.CanUserAddRows = false;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
+        }
+
+        private void btn_change_Click(object sender, RoutedEventArgs e)
+        {
+            //이 버튼을 클릭하면 선택한 강좌의 완료율이 10 -> 0 으로 변경되어야 함.
+
+            DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+
+            //foreach (DataRow R in LECTURE_dt.Rows)
+            //{
+                //string sd = String.Format("{0:yy-MM-dd}", StartDate.SelectedDate);
+                //string ed = String.Format("{0:yy-MM-dd}", EndDate.SelectedDate);
+
+                //////////////string select = Convert.ToString(DGLEC);
+
+                //MessageBox.Show($"{select}");
+                string s = "대구교육청 교사직무연수";
+                //string Record = "";
+                //s = Convert.ToString(R["LECTURENAME"]);
+                //MessageBox.Show("{0}", s);
+                if (s != "")
+                    s = " where LECTURENAME = '" + s + "' ";
+                Adpt = new OracleDataAdapter("UPDATE TABLE LECTURE SET COMPLETERATE=0", strOraConn);
+
+                //Record = string.Format("{0}", s);
+                MessageBox.Show($"{s} 강좌를 진행 중 강좌로 이동합니다.");
+            //}
+
+            Adpt.Update(LECTURE_DS, "LECTURE_dt");
+
         }
     }
 }

@@ -79,9 +79,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 if ((string)CellClickEventROW[0][3] == "남자")
                 {
                     RadioGenderMan.IsChecked = true;
-                }
+        }
                 else if ((string)CellClickEventROW[0][3] == "여자")
-                {
+        {
                     RadioGenderWoman.IsChecked = true;
                 }
                 TxtPhoneNumber.Text = (string)CellClickEventROW[0][4];
@@ -96,7 +96,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 
         #region button click event
         private void btn_Insert_Click(object sender, RoutedEventArgs e)
-        {
+            {
             #region insert 시
             if ((DG1.SelectedIndex == -1) && ((string)btn_Insert.Content == "등록"))
             {
@@ -139,7 +139,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][1] = TextFirstName.Text.Trim();
                 }
                 if ((string)CellClickEventROW[0][2] != TextLastName.Text.Trim())
-                {
+            {
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][2] = TextLastName.Text.Trim();
                 }
                 if ((string)CellClickEventROW[0][3] != strGENDER )
@@ -151,9 +151,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][4] = TxtPhoneNumber.Text.Trim();
                 }
                 if ( (DateTime)CellClickEventROW[0][5] != (DateTime)DT_search.Rows[0][5])
-                {
+                    {
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][5] = (DateTime)DT_search.Rows[0][5];
-                }
+                    }
                 if ((string)CellClickEventROW[0][6] != ((ComboBoxItem)TxtAddress.SelectedItem).Content.ToString())                    
                 {
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][6] = ((ComboBoxItem)TxtAddress.SelectedItem).Content.ToString();
@@ -161,21 +161,21 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                 if ((string)CellClickEventROW[0][7] != TxtAddress2.Text.Trim())
                 {
                     PARTNERS_Dt.Rows[DG1.SelectedIndex][7] = TxtAddress2.Text.Trim();
-                }
+            }
 
-                try
-                {
+            try
+            {
                     PARTNERS_Dt.AcceptChanges();
-                }
+            }
                 catch(Exception ex)
-                {
+            {
                     MessageBox.Show("오류오류 : " + ex);                    
-                }
+            }
                 #endregion
 
                 #region DB update connect
-                try
-                {
+            try
+            {
                     PARTNERS_Ds.Reset();
                     CSampleClient.Program.SrvrConn();
                     PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
@@ -188,9 +188,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
                                         
                     CSampleClient.Program.SendMessage_update(DG1.SelectedIndex.ToString());
                     CSampleClient.Program.SendMessage_update(stream.ToString());
-                }
+            }
                 catch (Exception ex)
-                {
+            {
                     MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
                 }
                 MessageBox.Show("수정이 완료되었습니다. ");
@@ -198,13 +198,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             }
 
         }
-                        
+
         private void btn_Init_Click(object sender, RoutedEventArgs e)
         {
             StackPannel_control_init();
             btn_Insert.Content = "등록";
             DG1.SelectedIndex = -1;
-        }  
+        }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {

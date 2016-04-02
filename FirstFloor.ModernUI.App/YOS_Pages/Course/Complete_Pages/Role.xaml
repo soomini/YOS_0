@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,23 +28,38 @@
                 </Style>
             </DockPanel.Resources>
             <!--#endregion-->
-            <StackPanel DockPanel.Dock="Top" >
+
+            <!--#region 시작 일자-->
+            <StackPanel x:Name="stpStartDate" DockPanel.Dock="Top" >
                 <Label Content="시작" Target="{Binding ElementName=StartDate}" FontWeight="Bold" />
                 <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" />
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top" >
+            <!--#endregion-->
+
+            <!--#region 끝 일자-->
+            <StackPanel x:Name="stpEndDate" DockPanel.Dock="Top" Margin="0,0,0,15" >
                 <Label Content="끝" Target="{Binding ElementName=EndDate}" FontWeight="Bold" />
                 <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" />
             </StackPanel>
-            <ScrollViewer>
-                <DataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
-                    <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="역할"  />
-                        <!--<mui:DataGridCheckBoxColumn Header="선택" />-->
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>
+            <!--#endregion-->
+            
+            
+            <GridSplitter x:Name="gridSplitter2" Background="#FFEAEAEA" DockPanel.Dock="Top" Height="2" Margin="0,0,10,0"/>
+
+            <!--#region 역할 분류-->
+            <StackPanel x:Name="stpRoleCategory" Margin="0,15,0,0" Orientation="Vertical" DockPanel.Dock="Top">
+                <Label Content="역할 분류" Target="{Binding ElementName=EndDate}" FontWeight="Bold" Margin="0,0,0,10" Width="Auto" />
+                <ListBox d:LayoutOverrides="Height" Margin="0">
+                    <ListBoxItem x:Name="LB_PM" Content="PM" Selected="LB_PM_Selected" />
+                    <ListBoxItem x:Name="LB_INT" Content="소개 및 제안" Selected="LB_INT_Selected" />
+                    <ListBoxItem x:Name="LB_LEC" Content="강의" Selected="LB_LEC_Selected" />
+                </ListBox>
+            </StackPanel>
+            <!--#endregion-->
+
         </DockPanel>
+
+
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Column="1" d:IsHidden="True" />
         <Grid Grid.Column="2" Margin="20,0,0,0">
             <Grid.RowDefinitions>
@@ -53,33 +68,33 @@
                 <RowDefinition Height="180"/>
             </Grid.RowDefinitions>
             <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin">
-                <DataGrid x:Name="DG_CO_R" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid x:Name="DG_CO_R" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
                     <DataGrid.Columns>
+                        <mui:DataGridTextColumn Header="담당자" Binding="{Binding p.NAME}" />
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />
-                        <mui:DataGridTextColumn Header="시작일" Binding="{Binding STARTDATE, StringFormat=yyyy-MM-dd}" />
                         <mui:DataGridTextColumn Header="종료일" Binding="{Binding CLOSEDATE, StringFormat=yyyy-MM-dd}" />
-                        <mui:DataGridTextColumn Header="강좌료" Binding="{Binding LECTUREFEE}" />
-                        <mui:DataGridTextColumn Header="역할 금액" />
-                        <mui:DataGridTextColumn Header="비율" />
+                        <mui:DataGridTextColumn Header="총 강좌료" Binding="{Binding LECTUREFEE, StringFormat=\{0:N0\}}" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </mui:DataGridTextColumn>
+                        <mui:DataGridTextColumn Header="역할  금액" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </mui:DataGridTextColumn>
 
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
             <GridSplitter x:Name="gridSplitter1" Background="#FFEAEAEA" Height="2" Grid.Row="1" />
-            <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="2">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="요약" Style="{StaticResource Heading2}" Margin="8,5,0,8"/>
-                    <DataGrid x:Name="DG3" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" >
-                        <DataGrid.Columns>
-                            <mui:DataGridTextColumn Header="역할" />
-                            <mui:DataGridTextColumn Header="건수" />
-                            <mui:DataGridTextColumn Header="강좌료 합계" />
-                            <mui:DataGridTextColumn Header="역할 금액 합계" />
-                            <mui:DataGridTextColumn Header="비율" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </ScrollViewer>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,-60" Grid.RowSpan="2" d:LayoutOverrides="Width, Height" Grid.Row="2">
+                <TextBlock Text="요약" Style="{StaticResource Heading2}"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

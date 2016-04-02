@@ -5,6 +5,7 @@ using System.Windows;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.Linq;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 {
@@ -22,6 +23,28 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             InitializeComponent();
 
+            wUpdate();
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG_ST_C.ItemsSource = null;
+                Money.Text = null;
+                Commission.Text = null;
+                BusinessExpenses.Text = null;
+                MembershipFees.Text = null;
+                CorporationProfit.Text = null;
+
+                DataTable d1 = LECTURE_DS.Tables["LECTURE_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
@@ -47,20 +70,32 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
         {
             try
             {
-                long tmoney = 0;
-                long.TryParse(Total.Text, out tmoney);
+			double totalMoney;
 
-                long money = (long)(tmoney * 0.65);
-                long comm = (long)(tmoney * 0.10);
-                long bexp = (long)(tmoney * 0.10);
-                long mfee = (long)(tmoney * 0.10);
-                long cpro = (long)(tmoney * 0.10);
+			char[] charToTrim = { ',' };
+			string result = Total.Text.Trim(charToTrim);
+			double.TryParse(result, out totalMoney);
 
-                Money.Text = money.ToString();
-                Commission.Text = comm.ToString();
-                BusinessExpenses.Text = bexp.ToString();
-                MembershipFees.Text = mfee.ToString();
-                CorporationProfit.Text = cpro.ToString();
+                //Money.Text = (totalMoney * 0.65).ToString();
+                //Commission.Text = (totalMoney * 0.1).ToString();
+                //BusinessExpenses.Text = (totalMoney * 0.1).ToString();
+                //MembershipFees.Text = (totalMoney * 0.1).ToString();
+                //CorporationProfit.Text = (totalMoney * 0.1).ToString();
+
+                //long tmoney = 0;
+                //long.TryParse(Total.Text, out tmoney);
+
+                long money = (long)(totalMoney * 0.65);
+                long comm = (long)(totalMoney * 0.10);
+                long bexp = (long)(totalMoney * 0.10);
+                long mfee = (long)(totalMoney * 0.10);
+                long cpro = (long)(totalMoney * 0.10);
+
+                Money.Text = string.Format("{0}", money.ToString("n0"));
+                Commission.Text = string.Format("{0}", comm.ToString("n0"));
+                BusinessExpenses.Text = string.Format("{0}", bexp.ToString("n0"));
+                MembershipFees.Text = string.Format("{0}", mfee.ToString("n0"));
+                CorporationProfit.Text = string.Format("{0}", cpro.ToString("n0"));
             }
             catch
             {
@@ -128,6 +163,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
             DG_ST_C.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             CB_ST_C.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
             DG_ST_C.CanUserAddRows = false;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wUpdate();
         }
     }
 }
