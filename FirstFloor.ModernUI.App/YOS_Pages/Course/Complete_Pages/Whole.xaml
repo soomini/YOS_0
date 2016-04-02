@@ -48,7 +48,7 @@
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Top" >
-                <Label Content="검색" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
+                <Label Content="강좌명" Target="{Binding ElementName=DGLEC}" FontWeight="Bold" />
                 <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding SelectedItem.LECTURENAME, ElementName=DGLEC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="300"/>
             </StackPanel>
             <ScrollViewer Margin="0,0,15,0">

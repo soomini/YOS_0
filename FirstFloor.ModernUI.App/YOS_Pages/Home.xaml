@@ -18,14 +18,12 @@
                     <Setter Property="HorizontalAlignment" Value="Center" />
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="Margin" Value="0,5,10,0" />
-
-
                 </Style>
             </StackPanel.Resources>
 
             <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0" ><Run Text="바로가기"/></TextBlock>
             <StackPanel Orientation="Horizontal">
-
+                
                 <Button Content="Custom Menu">
                     <Button.ContextMenu>
                         <ContextMenu>

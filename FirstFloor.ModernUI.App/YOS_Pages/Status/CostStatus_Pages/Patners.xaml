@@ -46,7 +46,7 @@
                 <Label Content="전체" Width="30" />
                 <CheckBox x:Name="CheckWhole" Margin="6,0,0,0" Checked="CheckWhole_Checked" Unchecked="CheckWhole_Unchecked"  />
             </StackPanel>
-        </StackPanel>
+        </StackPanel> 
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Background="#FFEAEAEA" Grid.Row="1" Height="1" />
         <DockPanel Grid.Row="2" Margin="0,10,0,0">
             <TextBlock DockPanel.Dock="Top" Text="결과" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
