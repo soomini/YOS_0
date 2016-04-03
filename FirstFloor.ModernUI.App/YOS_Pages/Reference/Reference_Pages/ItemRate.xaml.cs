@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Threading;
 
 #region ODP.NET @ CONNECTIONSTRING namespace 추가
 using Oracle.ManagedDataAccess.Client;
@@ -6,6 +7,7 @@ using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Data;
 using System.Windows;
+using System.IO;
 #endregion
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
@@ -14,13 +16,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
     public partial class ItemRate : UserControl
     {
         #region 비연결기반 객체들 준비
-        private DataSet ITEMRATE_DS = new DataSet("ITEMRATE_DS");
-
-        private OracleCommandBuilder oraBuilder_ItemRate;
-
-        private OracleDataAdapter oraDA_ItemRate;
-
-		private string connStr = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
+        static StringWriter stream = new StringWriter();
+        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
+        static DataTable ITEMRATE_Dt = new DataTable();
+        static DataTable ITEMRATE_Dt_copy = new DataTable();
+        static DataSet ITEMRATE_Ds = new DataSet();
 
         #endregion
 
@@ -29,17 +29,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         public ItemRate()
         {
             InitializeComponent();
-
-            #region 데이터 가져오기 및 DataGrid에 추가
-            oraDA_ItemRate = new OracleDataAdapter("SELECT * FROM ITEMRATE", connStr);
-
-            oraBuilder_ItemRate = new OracleCommandBuilder(oraDA_ItemRate);
-
-            oraDA_ItemRate.Fill(ITEMRATE_DS, "ITEMRATE");
-
-            DataTable DT = ITEMRATE_DS.Tables["ITEMRATE"];
-            ItemRate_DG1.ItemsSource = DT.DefaultView;
-            #endregion
         }
 
         private void Purpose_Checked(object sender, RoutedEventArgs e)
@@ -70,41 +59,16 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             switchint++;
         }
 
-        private void btn_Insert_Click(object sender, RoutedEventArgs e)
+        private void ItemRate_DG1_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToString(btn_Insert.Content) == "확인")
-            {
-                try
-                {
-                    DataTable ITEMRATE = ITEMRATE_DS.Tables["ITEMRATE"];
-                    btn_Insert.Content = "수정";
-                    string Record = "";
-                    foreach (DataRow R in ITEMRATE.Rows)
-                    {
-                        foreach (DataColumn C in ITEMRATE.Columns)
-                        {
-                            if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
-                            {
-                                Record = string.Format("수정: {0}", Convert.ToString(R["ITEMRATENAME"]));
-                                MessageBox.Show($"데이터가 수정되었습니다. {Record}");
-                            }
-                        }
-                    }
-                    oraDA_ItemRate.Update(ITEMRATE_DS, "ITEMRATE");
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
+            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("ITEMRATE")));          
+        }
 
-                    ItemRate_DG1.IsReadOnly = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("에러 발생: " + ex.ToString());
-                }
-            }
-            else
-            {
-                btn_Insert.Content = "확인";
-
-                ItemRate_DG1.IsReadOnly = false;
-            }
+        private void ItemRate_DG1_LayoutUpdated(object sender, EventArgs e)
+        {
+            UIDispatcher.Invoke(new Action(() => ITEMRATE_Dt = YOS.CAccessDB.getdt()));
+            UIDispatcher.Invoke(new Action(() => ItemRate_DG1.ItemsSource = ITEMRATE_Dt.DefaultView));//수신
         }
     }
 }

@@ -9,7 +9,10 @@
     <DockPanel d:LayoutOverrides="Width, Height" >
         <!--#region 프로그램명-->
         <TextBlock x:Name="tblTitle" Text="YStory Office Solution" Style="{StaticResource Heading1}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20"/>
-        <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ><Run Text="공지 사항"/></TextBlock>
+        <StackPanel Margin="0,0,0,8" Orientation="Horizontal" d:LayoutOverrides="Height" DockPanel.Dock="Top">
+            <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" HorizontalAlignment="Left" ><Run Text="공지 사항"/></TextBlock>
+            <mui:ModernButton x:Name="btnEdit" IconData="F1 M 53.2929,21.2929L 54.7071,22.7071C 56.4645,24.4645 56.4645,27.3137 54.7071,29.0711L 52.2323,31.5459L 44.4541,23.7677L 46.9289,21.2929C 48.6863,19.5355 51.5355,19.5355 53.2929,21.2929 Z M 31.7262,52.052L 23.948,44.2738L 43.0399,25.182L 50.818,32.9601L 31.7262,52.052 Z M 23.2409,47.1023L 28.8977,52.7591L 21.0463,54.9537L 23.2409,47.1023 Z " Margin="5,0,0,0"  Click="btnEdit_Click" />
+        </StackPanel>
         <StackPanel x:Name="stpCustomButtons" Margin="0,15,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
@@ -18,51 +21,161 @@
                     <Setter Property="HorizontalAlignment" Value="Center" />
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="Margin" Value="0,5,10,0" />
-
-
                 </Style>
             </StackPanel.Resources>
 
             <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0" ><Run Text="바로가기"/></TextBlock>
-            <StackPanel Orientation="Horizontal">
 
-                <Button x:Name="btnCustomBtn1" Content="사용자메뉴1" d:LayoutOverrides="TopPosition, BottomPosition" >
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Custom Menu">
                     <Button.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Course">
-                                <MenuItem x:Name="mniOngoingMenu" Header="진행 중 강좌" Click="SetCustomMenu" />
-                                <MenuItem x:Name="mniCompleteWholeMenu" Header="전체 완료 강좌" Click="SetCustomMenu" />
-                                <MenuItem x:Name="mniCompletePatnersMenu" Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
-                                <MenuItem x:Name="mniCompleteRoleMenu" Header="역할별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="진행 중 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="전체 완료 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="역할별 완료 강좌" Click="SetCustomMenu"/>
                             </MenuItem>
                             <MenuItem Header="Status">
-                                <MenuItem x:Name="mniCostStatusCourseMenu" Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
-                                <MenuItem x:Name="mniCostStatusPatnersMenu" Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
                             </MenuItem>
                             <MenuItem Header="Reference">
-                                <MenuItem x:Name="mniReferencePatnersMenu" Header="파트너" Click="SetCustomMenu"/>
-                                <MenuItem x:Name="mniReferenceItemRateMenu" Header="항목별 요율"/>
-                                <MenuItem x:Name="mniReferenceCourseCategoryMenu" Header="강좌 분류" Click="SetCustomMenu"/>
-                                <MenuItem x:Name="mniReferenceTeachingMaterialPriceMenu"  Header="교구 단가" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너" Click="SetCustomMenu"/>
+                                <MenuItem Header="항목별 요율" Click="SetCustomMenu"/>
+                                <MenuItem Header="강좌 분류" Click="SetCustomMenu"/>
+                                <MenuItem Header="교구 단가" Click="SetCustomMenu"/>
                             </MenuItem>
                             <MenuItem Header="Etc" />
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
-                <Button x:Name="btnCustomBtn2" Content="사용자메뉴2"  d:LayoutOverrides="TopPosition, BottomPosition" />
-                <Button x:Name="btnCustomBtn3" Content="사용자메뉴3" d:LayoutOverrides="TopPosition, BottomPosition"/>
+                <Button Content="Custom Menu">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Course">
+                                <MenuItem Header="진행 중 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="전체 완료 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="역할별 완료 강좌" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Status">
+                                <MenuItem Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Reference">
+                                <MenuItem Header="파트너" Click="SetCustomMenu"/>
+                                <MenuItem Header="항목별 요율"/>
+                                <MenuItem Header="강좌 분류" Click="SetCustomMenu"/>
+                                <MenuItem Header="교구 단가" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Etc" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Content="Custom Menu" >
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Course">
+                                <MenuItem Header="진행 중 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="전체 완료 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="역할별 완료 강좌" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Status">
+                                <MenuItem Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Reference">
+                                <MenuItem Header="파트너" Click="SetCustomMenu"/>
+                                <MenuItem Header="항목별 요율"/>
+                                <MenuItem Header="강좌 분류" Click="SetCustomMenu"/>
+                                <MenuItem Header="교구 단가" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Etc" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button x:Name="btnCustomBtn5" Content="사용자메뉴1"/>
-                <Button x:Name="btnCustomBtn6" Content="사용자메뉴2" />
-                <Button x:Name="btnCustomBtn7" Content="사용자메뉴3" />
+                <Button Content="Custom Menu">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Course">
+                                <MenuItem Header="진행 중 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="전체 완료 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="역할별 완료 강좌" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Status">
+                                <MenuItem Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Reference">
+                                <MenuItem Header="파트너" Click="SetCustomMenu"/>
+                                <MenuItem Header="항목별 요율"/>
+                                <MenuItem Header="강좌 분류" Click="SetCustomMenu"/>
+                                <MenuItem Header="교구 단가" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Etc" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Content="Custom Menu">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Course">
+                                <MenuItem Header="진행 중 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="전체 완료 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="역할별 완료 강좌" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Status">
+                                <MenuItem Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Reference">
+                                <MenuItem Header="파트너" Click="SetCustomMenu"/>
+                                <MenuItem Header="항목별 요율"/>
+                                <MenuItem Header="강좌 분류" Click="SetCustomMenu"/>
+                                <MenuItem Header="교구 단가" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Etc" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Content="Custom Menu">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Course">
+                                <MenuItem Header="진행 중 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="전체 완료 강좌" Click="SetCustomMenu" />
+                                <MenuItem Header="파트너별 완료 강좌" Click="SetCustomMenu"/>
+                                <MenuItem Header="역할별 완료 강좌" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Status">
+                                <MenuItem Header="강좌별 수수료 현황" Click="SetCustomMenu"/>
+                                <MenuItem Header="파트너별 수수료 현황" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Reference">
+                                <MenuItem Header="파트너" Click="SetCustomMenu"/>
+                                <MenuItem Header="항목별 요율"/>
+                                <MenuItem Header="강좌 분류" Click="SetCustomMenu"/>
+                                <MenuItem Header="교구 단가" Click="SetCustomMenu"/>
+                            </MenuItem>
+                            <MenuItem Header="Etc" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
              </StackPanel>
         </StackPanel>
-        <Border BorderBrush="#FFD6D4D4" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
-            <FlowDocumentPageViewer/>
-        </Border>
 
-        <!--#region 공지사항-->
+        <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
+            
+            <!--<mui:ModernFrame x:Name="Frame" Source="/Content/ModernFrame/Sample.xaml" Width="480" Height="200" Padding="4" FragmentNavigation="Frame_FragmentNavigation" Navigated="Frame_Navigated" Navigating="Frame_Navigating" NavigationFailed="Frame_NavigationFailed"/>-->
+            <mui:ModernFrame x:Name="Frame" Source="/YOS_Content/Notice.xaml" Width="480" Height="200" Padding="4" />
+        </Border>
 
     </DockPanel>
 </UserControl>
