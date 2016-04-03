@@ -26,7 +26,7 @@ namespace FirstFloor.ModernUI.App.YOS_Content
     {
 
         private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
-        private DataSet PARTNERS_DS = new DataSet("PARTNERS_DS");
+        private DataSet FEE_DS = new DataSet("FEE_dt");
         private OracleCommandBuilder oraBuilder;
         private OracleDataAdapter Adpt;
 
@@ -36,17 +36,27 @@ namespace FirstFloor.ModernUI.App.YOS_Content
 
             #region 데이터 가져오기 및 DataGrid에 추가
 
-            Adpt = new OracleDataAdapter("SELECT * FROM PARTNERS", strOraConn);
+            Adpt = new OracleDataAdapter("SELECT * FROM FEE", strOraConn);
 
-            DataTable PARTNERS_dt = PARTNERS_DS.Tables["PARTNERS_dt"];
+            DataTable FEE_dt = FEE_DS.Tables["FEE_dt"];
 
             oraBuilder = new OracleCommandBuilder(Adpt);
 
-            Adpt.Fill(PARTNERS_DS, "PARTNERS_dt");
+            Adpt.Fill(FEE_DS, "FEE_dt");
+            tbx_FoodCosts.DataContext = FEE_DS.Tables["FEE_dt"];
             //DGLEC.ItemsSource = PARTNERS_DS.Tables["PARTNERS_dt"].DefaultView;
             //DGLEC.CanUserAddRows = false;
 
             #endregion
+            //foreach (DataRow R in PARTNERS_dt.Rows)
+            //{
+            //    //bool rowdeleted = false;
+            ////    switch (R.RowState)
+            ////    {
+            ////        MessageBox.Show($"R.ItemArray[6]");
+            ////}
+
+            //}
         }
     }
 }

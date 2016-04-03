@@ -13,7 +13,7 @@
 
             <StackPanel x:Name="sp_FoodCosts" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_FoodCosts" Content="식비" Target="{Binding ElementName=tbx_FoodCosts}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_FoodCosts" Width="150" Text="7000" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_FoodCosts" Width="150" Text="{Binding Path=Rows[0].ItemArray[1],Mode=Default}" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_VenueRentalFee" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_VenueRentalFee" Content="대관료" Target="{Binding ElementName=ComboState}" Width="105" Margin="10,0,0,0"/>
