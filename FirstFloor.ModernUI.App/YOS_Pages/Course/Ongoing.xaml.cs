@@ -91,7 +91,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             }
 
             Adpt = new OracleDataAdapter("SELECT l.LECTURENAME, l.PURPOSECATEGORY, l.INSTITUTIONCATEGORY, l.TARGETCATEGORY, l.SUBJECTCATEGORY, p1.ID \"NC1\", p1.NAME \"N1\", p2.ID \"NC2\", p2.NAME \"N2\", p3.ID \"NC3\", p3.NAME \"N3\",l.LECPLACE, l.STARTDATE, l.CLOSEDATE, l.LECTURETIME, l.LECTUREFEE, l.COMPLETERATE FROM LECTURE l, PARTNERS p1, PARTNERS p2, PARTNERS p3 WHERE l.PROJMANAGER = p1.ID AND l.RECOMMENDER = p2.ID AND l.LECTURER = p3.ID AND NOT(l.COMPLETERATE=10)", strOraConn);
-            //Adpt = new OracleDataAdapter("SELECT * FROM LECTURE", strOraConn);
             DataTable PERSON_dt = LECTURE_DS.Tables["LECTURE_dt"];
             oraBuilder = new OracleCommandBuilder(Adpt);
 
