@@ -115,10 +115,8 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 			wndCost.lblCourse.Content = tbx_Course.Text;
 
 			wnd.Content = wndCost;
-			
 
 			wnd.Show();
-
 		}
 
 		private void btn_Registration_Click(object sender, RoutedEventArgs e)
