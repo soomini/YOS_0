@@ -15,8 +15,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
     public partial class Ongoing : UserControl
     {
         private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
-        //private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
-        //private OracleConnection Con = new OracleConnection();
         private DataSet LECTURE_DS = new DataSet("LECTURE_DS");
         private DataSet LECTUREO_DS = new DataSet("LECTUREO_DS");
         private DataSet PARTNERS_DS = new DataSet("PARTNERS_DS");
@@ -376,6 +374,31 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             //LECTURE_dt.Rows.RemoveAt(DGLEC.SelectedIndex);
             
             btn_Registration_Click(null, null);
+        }
+
+        public void Expense_Calculation()
+        {
+            DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+
+            string s = Convert.ToString(LECTURE_dt.Rows[DGLEC.SelectedIndex][0]);
+            if (s != "")
+                s = " where " + s;
+            Adpt = new OracleDataAdapter("SELECT FOODEXPENSES+RENTALFEE+TEXTBOOK+TALK+CONJECTUREWORDCARD+STICKER+POSTCARD+PICTURECARD_A+PICTURECARD_B+CARDPOCKET+OTHERMATERIALS+ETC SUM FROM FEE" + s, strOraConn);
+
+            //lb_NetProfit_Value=
+            //DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+
+            //DGLEC.ItemsSource = null;
+            //CBOXLEC.ItemsSource = null;
+
+            //LECTURE_dt.Clear();
+
+            //oraBuilder = new OracleCommandBuilder(Adpt);
+
+            //Adpt.Fill(LECTURE_DS, "LECTURE_dt");
+            //DGLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            //CBOXLEC.ItemsSource = LECTURE_DS.Tables["LECTURE_dt"].DefaultView;
+            //DGLEC.CanUserAddRows = false;
         }
     }
 }

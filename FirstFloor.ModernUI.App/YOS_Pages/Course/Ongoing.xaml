@@ -218,7 +218,7 @@
                     <!--#region 비용 제외 강의료-->
                     <StackPanel x:Name="sp_NetProfit">
                         <Label x:Name="lb_NetProfit_Property" Content="비용 제외 강의료"/>
-                        <Label x:Name="lb_NetProfit_Value" Content="     자동 계산"/>
+                        <Label x:Name="lb_NetProfit_Value" Content="{Binding SelectedItem.LECTUREFEE, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
