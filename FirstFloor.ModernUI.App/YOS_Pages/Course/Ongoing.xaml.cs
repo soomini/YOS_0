@@ -103,17 +103,25 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
         private void CommonDialog_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new ModernDialog
-            {
-                Title = "Common dialog",
-                Content = new YOS_Content.AddCost()
-            };
-            dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton };
+			var wnd = new Windows.Controls.Page();
 
-            dlg.ShowDialog();
-        }
+			wnd.Style = (Style)App.Current.Resources["BlankWindow"];
+			wnd.Title = "비용 등록 및 수정";
+			wnd.Width = 300;
+			wnd.Height = 480;
+			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-        private void btn_Registration_Click(object sender, RoutedEventArgs e)
+			YOS_Content.AddCost wndCost = new YOS_Content.AddCost();
+			wndCost.lblCourse.Content = tbx_Course.Text;
+
+			wnd.Content = wndCost;
+			
+
+			wnd.Show();
+
+		}
+
+		private void btn_Registration_Click(object sender, RoutedEventArgs e)
         {
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
             DataTable LECTUREO_dt = LECTUREO_DS.Tables["LECTUREO_dt"];
