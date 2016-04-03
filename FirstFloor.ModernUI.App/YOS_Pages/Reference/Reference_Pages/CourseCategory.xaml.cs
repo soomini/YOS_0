@@ -2,16 +2,20 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
+using System.IO;
 
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
 {
     public partial class CourseCategory : UserControl
     {
+        static StringWriter stream = new StringWriter();
+        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
 
         private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
         //private OracleConnection Con = new OracleConnection();
@@ -165,7 +169,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                         MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
                     }
 
-                    foreach (DataRow R in PurposeCATEGORY_dt.Rows)
+                        foreach (DataRow R in PurposeCATEGORY_dt.Rows)
                         {
                             switch (R.RowState)
                             {
@@ -228,23 +232,23 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                 try
                 {
                     if(DGCat1.SelectedIndex != -1)
-                        CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["PurposeCATEGORY_dt"].Rows[DGCat1.SelectedIndex].Delete();
 
                     if (DGCat2.SelectedIndex != -1)
-                        CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["InstitutionCATEGORY_dt"].Rows[DGCat2.SelectedIndex].Delete();
 
                     if (DGCat3.SelectedIndex != -1)
-                        CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["TargetCATEGORY_dt"].Rows[DGCat3.SelectedIndex].Delete();
 
                     if (DGCat4.SelectedIndex != -1)
-                        CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
+                    CATEGORY_DS.Tables["SubjectCATEGORY_dt"].Rows[DGCat4.SelectedIndex].Delete();
 
-                        Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
-                        Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
-                        Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
-                        Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
+                    Adpt1.Update(CATEGORY_DS, "PurposeCATEGORY_dt");
+                    Adpt2.Update(CATEGORY_DS, "InstitutionCATEGORY_dt");
+                    Adpt3.Update(CATEGORY_DS, "TargetCATEGORY_dt");
+                    Adpt4.Update(CATEGORY_DS, "SubjectCATEGORY_dt");
 
-                        MessageBox.Show("삭제 성공");
+                    MessageBox.Show("삭제 성공");
 
                 }
                 catch (Exception ex)
@@ -257,6 +261,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             wUpdate();
-        }
+            }
     }
 }

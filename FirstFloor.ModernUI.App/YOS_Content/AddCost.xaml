@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:App="clr-namespace:FirstFloor.ModernUI.App" x:Class="FirstFloor.ModernUI.App.YOS_Content.AddCost" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer>
-        <StackPanel x:Name="sp_Form" MinWidth="200">
-            <TextBlock x:Name="tbl_Title" Text="비용 등록" Style="{StaticResource Heading2}" Margin="10,0,0,10" TextAlignment="Left" />
+             d:DesignHeight="400" d:DesignWidth="270">
+    <StackPanel Margin="10,0" HorizontalAlignment="Center" >
+        <StackPanel x:Name="sp_Form" MinWidth="200" Margin="0,0,17,0" d:LayoutOverrides="Width">
+            <TextBlock x:Name="tbl_Title" Text="비용 상세" Style="{StaticResource Heading2}" Margin="10,0,0,13" TextAlignment="Left" />
+            <Label x:Name="lblCourse" Content="Label"/>
+
             <StackPanel x:Name="sp_FoodCosts" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_FoodCosts" Content="식비" Target="{Binding ElementName=tbx_FoodCosts}" Width="105" Margin="10,0,0,0"/>
                 <TextBox x:Name="tbx_FoodCosts" Width="100" Text="7000" TextAlignment="Right"/>
@@ -76,5 +78,10 @@
             </StackPanel>
 
         </StackPanel>
-    </ScrollViewer>
+
+        <StackPanel x:Name="sp_btn" Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+            <Button x:Name="btnInit" Content="초기화" Width="75" Margin="5,0"/>
+            <Button x:Name="btnSave" Content="저장" Width="75" Margin="5,0"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
