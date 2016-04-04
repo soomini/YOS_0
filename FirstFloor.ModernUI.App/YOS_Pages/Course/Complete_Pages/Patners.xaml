@@ -49,7 +49,7 @@
             </StackPanel>
 
             <ScrollViewer>
-                <DataGrid x:Name="DG_CO_PL" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,15,0" >
+                <DataGrid x:Name="DG_CO_PL" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DG_CO_PL_SelectionChanged" Loaded="DG_CO_PL_Loaded" LayoutUpdated="DG_CO_PL_LayoutUpdated" >
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn Header="이름" Binding="{Binding NAME}" />
                         <mui:DataGridTextColumn Header="직책" Binding="{Binding JOB}"/>
@@ -65,29 +65,15 @@
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="130"/>
             </Grid.RowDefinitions>
-            <ScrollViewer d:LayoutOverrides="Height" Margin="0,0,10,0">
-                <DataGrid x:Name="DG_CO_P" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
-                    
-                    <!--#region 데이터그리드 공통 스타일-->
-                    <!--<DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridCell}">
-                            <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </DataGrid.Resources>-->
-                    <!--#endregion-->
-                    
-                    <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="파트너명" Binding="{Binding NAME}" />
-                        <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />
-                        <mui:DataGridTextColumn Header="역할" Binding="{Binding ROLE}"  />
-                        <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT, StringFormat=\{0:N0\} }" >
-                            <DataGridTextColumn.CellStyle>
-                                <Style>
-                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </mui:DataGridTextColumn>
-                    </DataGrid.Columns>
+            <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin">
+                <DataGrid x:Name="DG_CO_P" ItemsSource="{Binding}" AutoGenerateColumns="True">
+                    <!--<DataGrid.Columns>
+                        <mui:DataGridTextColumn Header="파트너명" Binding="{Binding LECTUREID}" />
+                        <mui:DataGridTextColumn Header="직책" Binding="{Binding LECTURENAME}"/>
+                        <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}"/>
+                        <mui:DataGridTextColumn Header="역할" Binding="{Binding ROLE}" />
+                        <mui:DataGridTextColumn Header="금액" Binding="{Binding AMOUNT}" />
+                    </DataGrid.Columns>-->
                 </DataGrid>
             </ScrollViewer>
             <GridSplitter x:Name="gridSplitter1" Background="#FFEAEAEA" Height="2" Grid.Row="1" />

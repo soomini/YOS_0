@@ -9,7 +9,10 @@
     <DockPanel d:LayoutOverrides="Width, Height" >
         <!--#region 프로그램명-->
         <TextBlock x:Name="tblTitle" Text="YStory Office Solution" Style="{StaticResource Heading1}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20"/>
-        <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ><Run Text="공지 사항"/></TextBlock>
+        <StackPanel Margin="0,0,0,8" Orientation="Horizontal" d:LayoutOverrides="Height" DockPanel.Dock="Top">
+            <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" HorizontalAlignment="Left" ><Run Text="공지 사항"/></TextBlock>
+            <mui:ModernButton x:Name="btnEdit" IconData="F1 M 53.2929,21.2929L 54.7071,22.7071C 56.4645,24.4645 56.4645,27.3137 54.7071,29.0711L 52.2323,31.5459L 44.4541,23.7677L 46.9289,21.2929C 48.6863,19.5355 51.5355,19.5355 53.2929,21.2929 Z M 31.7262,52.052L 23.948,44.2738L 43.0399,25.182L 50.818,32.9601L 31.7262,52.052 Z M 23.2409,47.1023L 28.8977,52.7591L 21.0463,54.9537L 23.2409,47.1023 Z " Margin="5,0,0,0"  Click="btnEdit_Click" />
+        </StackPanel>
         <StackPanel x:Name="stpCustomButtons" Margin="0,15,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
@@ -22,8 +25,8 @@
             </StackPanel.Resources>
 
             <TextBlock Style="{StaticResource Heading2}" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0" ><Run Text="바로가기"/></TextBlock>
+
             <StackPanel Orientation="Horizontal">
-                
                 <Button Content="Custom Menu">
                     <Button.ContextMenu>
                         <ContextMenu>
@@ -47,7 +50,6 @@
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
-
                 <Button Content="Custom Menu">
                     <Button.ContextMenu>
                         <ContextMenu>
@@ -71,7 +73,6 @@
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
-
                 <Button Content="Custom Menu" >
                     <Button.ContextMenu>
                         <ContextMenu>
@@ -96,6 +97,7 @@
                     </Button.ContextMenu>
                 </Button>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Content="Custom Menu">
                     <Button.ContextMenu>
@@ -168,11 +170,12 @@
                 </Button>
              </StackPanel>
         </StackPanel>
-        <Border BorderBrush="#FFD6D4D4" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
-            <FlowDocumentPageViewer/>
-        </Border>
 
-        <!--#region 공지사항-->
+        <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
+            
+            <!--<mui:ModernFrame x:Name="Frame" Source="/Content/ModernFrame/Sample.xaml" Width="480" Height="200" Padding="4" FragmentNavigation="Frame_FragmentNavigation" Navigated="Frame_Navigated" Navigating="Frame_Navigating" NavigationFailed="Frame_NavigationFailed"/>-->
+            <mui:ModernFrame x:Name="Frame" Source="/YOS_Content/Notice.xaml" Width="480" Height="200" Padding="4" />
+        </Border>
 
     </DockPanel>
 </UserControl>

@@ -34,7 +34,7 @@
             </StackPanel>
             <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,40" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
                 <Button x:Name="btn_Init" Content="새로운 강좌 등록" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" Click="btn_Init_Click" />
-                <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
+                <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" Click="btn_Cancel_Click" />
             </StackPanel>
             <ScrollViewer Margin="0,0,15,0" DockPanel.Dock="Top">
                 <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DGLEC_SelectionChanged">
@@ -68,7 +68,7 @@
             <Button x:Name="btn_Registration" Content="업데이트" HorizontalAlignment="Center" Click="btn_Registration_Click" Width="200" VerticalAlignment="Center" DockPanel.Dock="Bottom" Margin="0,0,0,40" Height="25" />
             <StackPanel x:Name="spRatioSlider" Orientation="Vertical" d:LayoutOverrides="TopPosition, BottomPosition" HorizontalAlignment="Left" DockPanel.Dock="Right" Margin="0,0,15,0">
                 <Label x:Name="lb_Ratio" Content="완료율" Margin="0" HorizontalAlignment="Center"/>
-                <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" Height="370" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1" Value="{Binding SelectedItem.COMPLETERATE, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Slider x:Name="slider" Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="8" SelectionEnd="10" TickPlacement="Both" TickFrequency="1" IsSnapToTickEnabled="True" Height="370" d:LayoutOverrides="LeftPosition, RightPosition" Margin="0,15,0,0" HorizontalAlignment="Center" SmallChange="1" Value="{Binding Text, ElementName=txtCompleteRatio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="txtCompleteRatio" Height="23" Width="30" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"  Text="{Binding SelectedItem.COMPLETERATE, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel x:Name="spForm" MinWidth="250" d:IsHidden="True" d:LayoutOverrides="TopPosition, BottomPosition" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0">
@@ -168,8 +168,10 @@
                     <!--#region PM-->
                     <StackPanel x:Name="sp_PMName">
                         <Label x:Name="lb_PMName" Content="PM"/>
+                        
                         <TextBox x:Name="tbx_PMName" Text="{Binding SelectedItem.N1, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                         <TextBox x:Name="tbN1" Text="" Visibility="Hidden" TextChanged="tbN1_TextChanged"/>
+                        
                     </StackPanel>
                     <!--#region 소개자-->
                     <StackPanel x:Name="sp_RecommanderName">
@@ -216,7 +218,7 @@
                     <!--#region 비용 제외 강의료-->
                     <StackPanel x:Name="sp_NetProfit">
                         <Label x:Name="lb_NetProfit_Property" Content="비용 제외 강의료"/>
-                        <Label x:Name="lb_NetProfit_Value" Content="     자동 계산"/>
+                        <Label x:Name="lb_NetProfit_Value" Content="{Binding SelectedItem.LECTUREFEE, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
