@@ -118,7 +118,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 			
 
 			wnd.Show();
-
 		}
 
 		private void btn_Registration_Click(object sender, RoutedEventArgs e)
