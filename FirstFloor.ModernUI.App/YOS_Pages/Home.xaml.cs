@@ -115,7 +115,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 
 			//wnd.Content = stpNotice;
 
-			wnd.Content = new YOS_Content.AddCost();
+			//wnd.Content = new YOS_Content.AddCost();
 
 			wnd.Show();
 		}
