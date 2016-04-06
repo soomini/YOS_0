@@ -2,33 +2,68 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
 
-#region ODP.NET 관련 네임스페이스
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
-using System.IO;
-#endregion
-
+using System.Globalization;
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
 {
     public partial class Patners : UserControl
     {
-        private string strGENDER = null;
 
-        static StringWriter stream = new StringWriter();
-        public Dispatcher UIDispatcher = Application.Current.Dispatcher;
-        static DataTable PARTNERS_Dt = new DataTable();
-        static DataTable PARTNERS_Dt_copy = new DataTable();
-        static DataSet PARTNERS_Ds = new DataSet();        
-        static DataRow[] CellClickEventROW;
+        private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
+        //private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
+        //private OracleConnection Con = new OracleConnection();
+        private DataSet PARTNERS_DS = new DataSet("PARTNERS_DS");
+        private OracleCommandBuilder oraBuilder; // SelectCommand(읽기), InsertCommend(삽입), DeleteCommand(삭제), UpdateCommand(수정)의 기능
+        private OracleDataAdapter Adpt;
+
+        //private DataRelation RelName;
+        private string strGENDER = "";
 
         public Patners()
         {
             InitializeComponent();
-            StackPannel_control_init();
+
+            wUpdate();
+      
+        }
+
+        private void wUpdate()
+        {
+            try
+            {
+                DG1.ItemsSource = null;
+
+                DataTable d1 = PARTNERS_DS.Tables["PARTNERS_dt"];
+
+                d1.Clear();
+            }
+            catch
+            {
+
+            }
+            #region 데이터 가져오기 및 DataGrid에 추가
+
+            Adpt = new OracleDataAdapter("SELECT * FROM PARTNERS", strOraConn);
+
+            DataTable PARTNERS_dt = PARTNERS_DS.Tables["PARTNERS_dt"];
+
+            oraBuilder = new OracleCommandBuilder(Adpt);
+
+            Adpt.Fill(PARTNERS_DS, "PARTNERS_dt");
+            DG1.ItemsSource = PARTNERS_DS.Tables["PARTNERS_dt"].DefaultView;
+            DG1.CanUserAddRows = false;
+
+            #endregion
+
+            //PARTNERS = new ListCollectionView(_PARTNERS);
+            //PARTNERS.GroupDescriptions.Add(new PropertyGroupDescription("Gender"));
+
+            //RelName= new DataRelation("partner", PARTNERS_DS.Tables["PARTNERS_dt"].Columns["NAME"],
+            //    PARTNERS_DS.Tables["PARTNERS_dt"].Columns{[""])  
         }
 
         public void StackPannel_control_init()
@@ -42,7 +77,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
             TxtAddress.Text = null;
             TxtAddress2.Text = null;
         }
-
         #region Radio value get
         private void RadioGenderMan_Checked(object sender, RoutedEventArgs e)
         {
@@ -52,6 +86,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         {
             strGENDER = (string)(sender as RadioButton).Content;
         }
+
         private string getGender()
         {
             if (RadioGenderMan.IsChecked == true)
@@ -65,187 +100,113 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference_Pages
         }
         #endregion
 
-        #region Cell click event 
-        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (DG1.SelectedIndex != -1)
-            {                              
-                DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
-                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
-                CellClickEventROW = PARTNERS_Dt.Select(expression);
 
-                TextFirstName.Text = (string)CellClickEventROW[0][1];
-                TextLastName.Text = (string)CellClickEventROW[0][2];
-                if ((string)CellClickEventROW[0][3] == "남자")
-                {
-                    RadioGenderMan.IsChecked = true;
+            // select first control on the form
+            Keyboard.Focus(this.TextFirstName);
         }
-                else if ((string)CellClickEventROW[0][3] == "여자")
+        private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-                    RadioGenderWoman.IsChecked = true;
-                }
-                TxtPhoneNumber.Text = (string)CellClickEventROW[0][4];
-                TxtBirth.SelectedDate = ((DateTime)CellClickEventROW[0][5]);
-                TxtAddress.Text = (string)CellClickEventROW[0][6];
-                TxtAddress2.Text = (string)CellClickEventROW[0][7];
+            DataTable PARTNERS_dt = PARTNERS_DS.Tables["PARTNERS_dt"];
 
-                btn_Insert.Content = "업데이트";
-            }
-        }
-        #endregion
+            if (DG1.SelectedIndex == -1)
+            {
 
-        #region button click event
-        private void btn_Insert_Click(object sender, RoutedEventArgs e)
-            {
-            #region insert 시
-            if ((DG1.SelectedIndex == -1) && ((string)btn_Insert.Content == "등록"))
-            {
-                PARTNERS_Dt.Rows.Add(PARTNERS_Dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, getGender(), TxtPhoneNumber.Text, TxtBirth.Text, TxtAddress.Text, TxtAddress2.Text);
+                PARTNERS_dt.Rows.Add(PARTNERS_dt.Rows.Count + 1, TextFirstName.Text, TextLastName.Text, getGender(), TxtPhoneNumber.Text, TxtBirth.Text, TxtAddress.Text, TxtAddress2.Text);
 
                 try
                 {
-                    PARTNERS_Ds.Reset();
-                    CSampleClient.Program.SrvrConn();
-                    PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
-                    PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
-
-                    stream.Dispose();
-                    stream = new StringWriter();
-
-                    PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
-                    CSampleClient.Program.SendMessage_insert(stream.ToString());                    
+                    Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
+                    MessageBox.Show("추가가 완료되었습니다.");
                 }
                 catch (Exception ex)
                 {
-                    PARTNERS_Dt.Rows.RemoveAt(PARTNERS_Dt.Rows.Count - 1);
+                    PARTNERS_dt.Rows.RemoveAt(PARTNERS_dt.Rows.Count - 1);
                     MessageBox.Show("에러가 발생해 추가가 되지 않았습니다\n 에러메세지: " + ex.ToString());
                 }
-
-                MessageBox.Show("추가가 완료되었습니다.");
-                StackPannel_control_init();
-                btn_Insert.Content = "등록";
-                DG1.SelectedIndex = -1;
             }
-            #endregion
-            else if ((DG1.SelectedIndex > -1) && ((string)btn_Insert.Content == "업데이트"))
-            {
-                DataTable DT_search = PARTNERS_Dt.Copy();
-                DT_search.Clear();
-                DT_search.Rows.Add(0, "", "", getGender(), "", TxtBirth.Text, "", "");
 
-                #region update compare
-                if ( (string)CellClickEventROW[0][1] != TextFirstName.Text.Trim() )
-                {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][1] = TextFirstName.Text.Trim();
-                }
-                if ((string)CellClickEventROW[0][2] != TextLastName.Text.Trim())
+            string Record = "";
+            foreach (DataRow R in PARTNERS_dt.Rows)
             {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][2] = TextLastName.Text.Trim();
-                }
-                if ((string)CellClickEventROW[0][3] != strGENDER )
+                switch (R.RowState)
                 {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][3] = strGENDER;
+                    case DataRowState.Added:
+                        Record = string.Format("추가: {0}", Convert.ToString(R["NAME"]));
+                        MessageBox.Show($"데이터가 추가되었습니다. {Record}");
+                        break;
+
+                    case DataRowState.Deleted:
+                        Record = string.Format("삭제: {0}", Convert.ToString(R["NAME", DataRowVersion.Original]));
+                        MessageBox.Show($"데이터가 삭제되었습니다. {Record}");
+                        break;
                 }
-                if ((string)CellClickEventROW[0][4] != TxtPhoneNumber.Text.Trim())
+
+                foreach (DataColumn C in PARTNERS_dt.Columns)
                 {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][4] = TxtPhoneNumber.Text.Trim();
-                }
-                if ( (DateTime)CellClickEventROW[0][5] != (DateTime)DT_search.Rows[0][5])
+                    if (!R[C, DataRowVersion.Original].Equals(R[C, DataRowVersion.Current]))
                     {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][5] = (DateTime)DT_search.Rows[0][5];
+                        Record = string.Format("수정: {0}", Convert.ToString(R["NAME"]));
+                        MessageBox.Show($"데이터가 수정되었습니다. {Record}");
                     }
-                if ((string)CellClickEventROW[0][6] != ((ComboBoxItem)TxtAddress.SelectedItem).Content.ToString())                    
-                {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][6] = ((ComboBoxItem)TxtAddress.SelectedItem).Content.ToString();
                 }
-                if ((string)CellClickEventROW[0][7] != TxtAddress2.Text.Trim())
-                {
-                    PARTNERS_Dt.Rows[DG1.SelectedIndex][7] = TxtAddress2.Text.Trim();
             }
 
             try
             {
-                    PARTNERS_Dt.AcceptChanges();
+                Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
             }
-                catch(Exception ex)
+            catch (Exception ex)
             {
-                    MessageBox.Show("오류오류 : " + ex);                    
+                MessageBox.Show("에러 발생: " + ex.ToString());
             }
-                #endregion
 
-                #region DB update connect
             try
             {
-                    PARTNERS_Ds.Reset();
-                    CSampleClient.Program.SrvrConn();
-                    PARTNERS_Dt_copy = PARTNERS_Dt.Copy();
-                    PARTNERS_Ds.Tables.Add(PARTNERS_Dt_copy);
-
-                    stream.Dispose();
-                    stream = new StringWriter();
-
-                    PARTNERS_Ds.WriteXml(stream, XmlWriteMode.WriteSchema);
-                                        
-                    CSampleClient.Program.SendMessage_update(DG1.SelectedIndex.ToString());
-                    CSampleClient.Program.SendMessage_update(stream.ToString());
+                PARTNERS_dt.AcceptChanges();
             }
-                catch (Exception ex)
+            catch
             {
-                    MessageBox.Show("에러가 발생해 수정이 되지 않았습니다\n 에러메세지: " + ex.ToString());
-                }
-                MessageBox.Show("수정이 완료되었습니다. ");
-                #endregion
+
             }
+            //MessageBox.Show($"데이터가 등록되었습니다. {Record}");
+            //= MessageBox.Show(string.Format("데이터가 등록되었습니다.{0}", Record));
 
         }
 
         private void btn_Init_Click(object sender, RoutedEventArgs e)
         {
-            StackPannel_control_init();
-            btn_Insert.Content = "등록";
             DG1.SelectedIndex = -1;
+            StackPannel_control_init();
+            Btn_Register.Content = "등록";
         }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                DataGridRow row = (DataGridRow)DG1.ItemContainerGenerator.ContainerFromIndex(DG1.SelectedIndex);
-                string expression = "NAME = '" + ((TextBlock)(DG1.Columns[1].GetCellContent(row).Parent as DataGridCell).Content).Text + "'";
-                DataRow[] DeleteRow = YOS.CAccessDB.getds().Tables[0].Select(expression);
+                PARTNERS_DS.Tables["PARTNERS_dt"].Rows[DG1.SelectedIndex].Delete();
 
-                YOS.CAccessDB.getds().Tables[0].Rows[DG1.SelectedIndex].Delete();
+                Adpt.Update(PARTNERS_DS, "PARTNERS_dt");
 
-                stream.Dispose();
-                stream = new StringWriter();
+                MessageBox.Show("삭제가 완료되었습니다.");
 
-                CSampleClient.Program.SrvrConn();
-                YOS.CAccessDB.getds().WriteXml(stream, XmlWriteMode.WriteSchema);
-                CSampleClient.Program.SendMessage_delete(((TextBlock)(DG1.Columns[0].GetCellContent(row).Parent as DataGridCell).Content).Text);
-                CSampleClient.Program.SendMessage_delete(stream.ToString());
-
-                StackPannel_control_init();
-                DG1.SelectedIndex = -1;
-                btn_Insert.Content = "등록";
-                MessageBox.Show("강사 삭제 성공");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("오류 : " + ex.ToString());
             }
         }
-        #endregion
 
-        private void DG1_LayoutUpdated(object sender, EventArgs e)
+        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UIDispatcher.Invoke(new Action(() => PARTNERS_Dt = YOS.CAccessDB.getdt()));
-            UIDispatcher.Invoke(new Action(() => DG1.ItemsSource = PARTNERS_Dt.DefaultView));//수신
+            Btn_Register.Content = "업데이트";
         }
 
-        private void DG1_Loaded(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SrvrConn()));
-            UIDispatcher.Invoke(new Action(() => CSampleClient.Program.SendMessage("PARTNERS")));
+            wUpdate();
         }
     }
 }

@@ -13,62 +13,62 @@
 
             <StackPanel x:Name="sp_FoodCosts" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_FoodCosts" Content="식비" Target="{Binding ElementName=tbx_FoodCosts}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_FoodCosts" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_FoodCosts" Width="150" Text="" TextAlignment="Right"/>
+                <!--{Binding Path=Rows[0].ItemArray[1],Mode=Default}-->
             </StackPanel>
             <StackPanel x:Name="sp_VenueRentalFee" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_VenueRentalFee" Content="대관료" Target="{Binding ElementName=ComboState}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_VenueRentalFee" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_VenueRentalFee" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_Textbook" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_Textbook" Content="교재" Target="{Binding ElementName=ComboState}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_Textbook" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_Textbook" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_BoardGame" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_BoardGame" Content="이야기톡(클래식)" Target="{Binding ElementName=ComboState}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_BoardGame" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_BoardGame" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_AbstractCard" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_AbstractCard" Content="추상어카드" Target="{Binding ElementName=ComboState}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_AbstractCard" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_AbstractCard" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_Sticker" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_Sticker" Content="스티커" Target="{Binding ElementName=TextLastName}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_Sticker" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_Sticker" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_Postcard" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_Postcard" Content="엽서" Target="{Binding ElementName=TextLastName}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_Postcard" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_Postcard" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_ImageCardA" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_ImageCardA" Content="그림카드A" Target="{Binding ElementName=TextLastName}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_ImageCardA" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_ImageCardA" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_ImageCardB" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_ImageCardB" Content="그림카드B" Target="{Binding ElementName=DateBirth}" Width="105" Margin="10,0,0,0" />
-                <TextBox x:Name="tbx_ImageCardB" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_ImageCardB" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_CardPocket" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_CardPocket" Content="카드주머니" Target="{Binding ElementName=DateBirth}" Width="105" Margin="10,0,0,0" />
-                <TextBox x:Name="tbx_Pocket" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_Pocket" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_CardProtector" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_CardProtector" Content="프로텍트" Target="{Binding ElementName=TextLastName}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_CardProtector" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_CardProtector" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_EtcMaterial" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_EtcMaterial" Content="기타재료" Target="{Binding ElementName=TextLastName}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_EtcMaterial" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_EtcMaterial" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
             <StackPanel x:Name="sp_Etc" Width="369" Orientation="Horizontal" Margin="0,0,0,3">
                 <Label x:Name="lb_Etc" Content="기타" Target="{Binding ElementName=TextLastName}" Width="105" Margin="10,0,0,0"/>
-                <TextBox x:Name="tbx_Etc" Width="150" Text="0" TextAlignment="Right"/>
+                <TextBox x:Name="tbx_Etc" Width="150" Text="" TextAlignment="Right"/>
             </StackPanel>
-
         </StackPanel>
 
         <StackPanel x:Name="sp_btn" Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-            <Button x:Name="btnInit" Content="초기화" Width="75" Margin="5,0"/>
-            <Button x:Name="btnSave" Content="저장" Width="75" Margin="5,0"/>
+            <Button x:Name="btnInit" Content="초기화" Width="75" Margin="5,0" Click="btnInit_Click"/>
+            <Button x:Name="btnSave" Content="저장" Width="75" Margin="5,0" Click="btnSave_Click"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

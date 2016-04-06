@@ -99,7 +99,8 @@ namespace FirstFloor.ModernUI.Windows.Controls
         {
             get
             {
-                if (this.okButton == null) {
+                if (this.okButton == null)
+                {
                     this.okButton = CreateCloseDialogButton(FirstFloor.ModernUI.Resources.Ok, true, false, MessageBoxResult.OK);
                 }
                 return this.okButton;

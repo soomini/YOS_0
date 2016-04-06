@@ -44,7 +44,7 @@
 
             <StackPanel x:Name="sp_ResistDelete" Margin="30,0,0,50" VerticalAlignment="Center" Width="340" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
                 <Button x:Name="btn_change" Content="진행 중 강좌로 변경" Margin="0,0,0,0" HorizontalAlignment="Left" Width="150" Click="btn_change_Click" />
-                <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" />
+                <Button x:Name="btn_Cancel" Content="삭제" Margin="20,0,0,0" HorizontalAlignment="Left" Width="100" Click="btn_Cancel_Click" />
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Top" >
@@ -52,7 +52,7 @@
                 <ComboBox x:Name="CBOXLEC" IsEditable="True" Text="{Binding SelectedItem.LECTURENAME, ElementName=DGLEC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="LECTURENAME" SelectionChanged="CBOXLEC_SelectionChanged" Width="300"/>
             </StackPanel>
             <ScrollViewer Margin="0,0,15,0">
-                <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid x:Name="DGLEC" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DGLEC_SelectionChanged">
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn x:Name="dataGridTextColumn" Header="강좌명"  Binding="{Binding LECTURENAME}"/>
                         <mui:DataGridTextColumn x:Name="dataGridTextColumn1" Header="목적별" Visibility="Hidden" Binding="{Binding PURPOSECATEGORY}"/>
@@ -136,9 +136,9 @@
                 <!--#region 분류 : 목적별 분류-->
                 <StackPanel x:Name="sp_CategoryOfPurpose">
                     <Label x:Name="lb_CategoryOfPurpose" Content="목적별 분류"/>
-                    <ComboBox x:Name="cbb_CategoryOfPurpose" Text="{Binding SelectedItem.PURPOSECATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem Content="일반강좌"/>
-                        <ComboBoxItem Content="연수강좌"/>
+                    <ComboBox x:Name="cbb_CategoryOfPurpose" Text="{Binding SelectedItem.PURPOSECATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="PURPOSE">
+                        <!--<ComboBoxItem Content="일반강좌"/>
+                        <ComboBoxItem Content="연수강좌"/>-->
                     </ComboBox>
                 </StackPanel>
                 <!--#endregion-->
@@ -146,14 +146,14 @@
                 <!--#region 분류 : 기관별 분류-->
                 <StackPanel x:Name="sp_CategoryOfInstitution">
                     <Label x:Name="lb_CategoryOfInstitution" Content="기관별 분류"/>
-                    <ComboBox x:Name="cbb_CategoryOfInstitution"  Text="{Binding SelectedItem.INSTITUTIONCATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem Content="교사연구(교육청)"/>
+                    <ComboBox x:Name="cbb_CategoryOfInstitution"  Text="{Binding SelectedItem.INSTITUTIONCATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="INSTITUTION">
+                        <!--<ComboBoxItem Content="교사연구(교육청)"/>
                         <ComboBoxItem Content="평생교육원"/>
                         <ComboBoxItem Content="여성인력개발센터"/>
                         <ComboBoxItem Content="기타"/>
                         <ComboBoxItem Content="지도사 과정"/>
                         <ComboBoxItem Content="학교"/>
-                        <ComboBoxItem Content="기업"/>
+                        <ComboBoxItem Content="기업"/>-->
                     </ComboBox>
                 </StackPanel>
                 <!--#endregion-->
@@ -161,8 +161,8 @@
                 <!--#region 분류 : 대상별 분류-->
                 <StackPanel x:Name="sp_CategoryOfTarget">
                     <Label x:Name="lb_CategoryOfTarget" Content="대상별 분류"/>
-                    <ComboBox x:Name="cbb_CategoryOfTarget"  Text="{Binding SelectedItem.TARGETCATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem Content="초등학생"/>
+                    <ComboBox x:Name="cbb_CategoryOfTarget"  Text="{Binding SelectedItem.TARGETCATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="TARGET">
+                        <!--<ComboBoxItem Content="초등학생"/>
                         <ComboBoxItem Content="중학생"/>
                         <ComboBoxItem Content="고등학생"/>
                         <ComboBoxItem Content="대학생"/>
@@ -170,7 +170,7 @@
                         <ComboBoxItem Content="일반강사"/>
                         <ComboBoxItem Content="교수"/>
                         <ComboBoxItem Content="예비 지도사"/>
-                        <ComboBoxItem Content="기타"/>
+                        <ComboBoxItem Content="기타"/>-->
                     </ComboBox>
                 </StackPanel>
                 <!--#endregion-->
@@ -178,8 +178,8 @@
                 <!--#region 분류 : 주제별 분류-->
                 <StackPanel x:Name="sp_CategoryOfSubject">
                     <Label x:Name="lb_CategoryOfSubject" Content="주제별 분류"/>
-                    <ComboBox x:Name="cbb_CateroryOfSubject"  Text="{Binding SelectedItem.SUBJECTCATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem Content="이야기 창작"/>
+                    <ComboBox x:Name="cbb_CateroryOfSubject"  Text="{Binding SelectedItem.SUBJECTCATEGORY, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding}" DisplayMemberPath="SUBJECT">
+                        <!--<ComboBoxItem Content="이야기 창작"/>
                         <ComboBoxItem Content="진로"/>
                         <ComboBoxItem Content="커뮤니케이션"/>
                         <ComboBoxItem Content="문제해결"/>
@@ -187,7 +187,7 @@
                         <ComboBoxItem Content="창의력"/>
                         <ComboBoxItem Content="지도사과정(15H)"/>
                         <ComboBoxItem Content="지도사과정(8H)"/>
-                        <ComboBoxItem Content="지도사과정(32H)"/>
+                        <ComboBoxItem Content="지도사과정(32H)"/>-->
                     </ComboBox>
                 </StackPanel>
                 <!--#endregion-->
@@ -202,7 +202,7 @@
                 <!--#region 소개자-->
                 <StackPanel x:Name="sp_RecommanderName">
                     <Label x:Name="lb_RecommanderName" Content="소개자"/>
-                    <TextBox x:Name="tbx_RecommanderName" Text="{Binding SelectedItem.N1, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBox x:Name="tbx_RecommanderName" Text="{Binding SelectedItem.N2, ElementName=CBOXLEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
                 <!--#endregion-->
                 <!--#region 강사-->
@@ -248,7 +248,7 @@
                 <!--#region 비용 제외 강의료-->
                 <StackPanel x:Name="sp_NetProfit">
                     <Label x:Name="lb_NetProfit_Property" Content="비용 제외 강의료"/>
-                    <Label x:Name="lb_NetProfit_Value"  Content="    자동 계산"/>
+                    <Label x:Name="lb_NetProfit_Value2" Content=""/>
                 </StackPanel>
                 <!--#endregion-->
 

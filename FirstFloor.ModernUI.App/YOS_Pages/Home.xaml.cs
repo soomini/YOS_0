@@ -115,22 +115,9 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 
 			//wnd.Content = stpNotice;
 
-			wnd.Content = new YOS_Content.AddCost();
+			//wnd.Content = new YOS_Content.AddCost();
 
 			wnd.Show();
-		}
-
-		private void BtnSend_Click(object sender, RoutedEventArgs e)
-		{
-		}
-
-		private void BtnSave_Click(object sender, RoutedEventArgs e)
-		{
-		}
-
-		private void BtnInit_Click(object sender, RoutedEventArgs e)
-		{
-			
 		}
 	}
 }
