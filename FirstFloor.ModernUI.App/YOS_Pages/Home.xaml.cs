@@ -76,6 +76,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 
 		private void btnEdit_Click(object sender, RoutedEventArgs e)
 		{
+
 			var wnd = new Windows.Controls.Page();
 
 			wnd.Style = (Style)App.Current.Resources["BlankWindow"];
@@ -84,38 +85,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			wnd.Height = 350;
 			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-			//StackPanel stpNotice = new StackPanel(); 
-
-			//#region 버튼 스택패널 구현
-			//StackPanel stpButtons = new StackPanel
-			//{
-			//	Orientation = Orientation.Horizontal,
-			//	HorizontalAlignment = HorizontalAlignment.Right,
-			//	Height = 30
-			//};
-
-			//Button btnSave = new Button { Content = "저장", Margin = new Thickness(0, 0, 0, 0), Width = 90 };
-			//Button btnInit = new Button { Content = "초기화", Margin = new Thickness(10, 0, 10, 0), Width = 90 };
-			//Button btnSend = new Button { Content = "게시", Margin = new Thickness(0, 0, 0, 0), Width = 90 };
-
-			//btnInit.Click += BtnInit_Click;
-			//btnSave.Click += BtnSave_Click;
-			//btnSend.Click += BtnSend_Click;
-
-			//stpButtons.Children.Add(btnSave);
-			//stpButtons.Children.Add(btnInit);
-			//stpButtons.Children.Add(btnSend);
-			//#endregion
-
-			//RichTextBox rtbEdit = new RichTextBox { Width = 530, Height = 250, Margin = new Thickness(0, 0, 0, 5) };
-
-
-			//stpNotice.Children.Add(rtbEdit);
-			//stpNotice.Children.Add(stpButtons);
-
-			//wnd.Content = stpNotice;
-
-			//wnd.Content = new YOS_Content.AddCost();
+			
 
 			wnd.Show();
 		}
