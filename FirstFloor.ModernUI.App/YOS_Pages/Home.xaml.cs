@@ -76,7 +76,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 
 		private void btnEdit_Click(object sender, RoutedEventArgs e)
 		{
-
 			var wnd = new Windows.Controls.Page();
 
 			wnd.Style = (Style)App.Current.Resources["BlankWindow"];
@@ -84,7 +83,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			wnd.Width = 550;
 			wnd.Height = 350;
 			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
+			
 			
 
 			wnd.Show();
