@@ -66,7 +66,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
             {
 
             }
-
             #region 데이터 가져오기 및 DataGrid에 추가
 
             Adpt1 = new OracleDataAdapter("SELECT * FROM PurposeCATEGORY", strOraConn);
@@ -253,7 +252,6 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Reference.Reference_Pages
                 }
             }
         }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             wUpdate();
