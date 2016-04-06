@@ -2,7 +2,7 @@
 
 namespace FirstFloor.ModernUI.App.YOS_Pages.Status.CostStatus_Pages
 {
-	public partial class Chart : UserControl
+    public partial class Chart : UserControl
     {
         public Chart()
         {
