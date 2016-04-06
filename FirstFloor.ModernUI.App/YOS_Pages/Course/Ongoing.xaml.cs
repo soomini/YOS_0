@@ -57,7 +57,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
             #endregion
         }
-
+        
         private void wUpdate()
         {
             try
@@ -156,25 +156,23 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
         private void CommonDialog_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new Windows.Controls.Page();
+			var wnd = new Windows.Controls.Page();
 
-            wnd.Style = (Style)App.Current.Resources["BlankWindow"];
-            wnd.Title = "비용 등록 및 수정";
-            wnd.Width = 300;
-            wnd.Height = 480;
-            wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+			wnd.Style = (Style)App.Current.Resources["BlankWindow"];
+			wnd.Title = "비용 등록 및 수정";
+			wnd.Width = 300;
+			wnd.Height = 480;
+			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             YOS_Content.AddCost wndCost = new YOS_Content.AddCost(tbx_Course.Text);
-            wndCost.lblCourse.Content = tbx_Course.Text;
+			wndCost.lblCourse.Content = tbx_Course.Text;
 
-            wnd.Content = wndCost;
+			wnd.Content = wndCost;
+			
+			wnd.Show();
+		}
 
-
-            wnd.Show();
-
-        }
-
-        private void btn_Registration_Click(object sender, RoutedEventArgs e)
+		private void btn_Registration_Click(object sender, RoutedEventArgs e)
         {
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
             DataTable LECTUREO_dt = LECTUREO_DS.Tables["LECTUREO_dt"];
@@ -439,7 +437,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
             //LECTUREO_dt.Rows.RemoveAt(LECTUREL[LECTURE_dt.Rows[DGLEC.SelectedIndex].ItemArray[0].ToString()]);
             //LECTURE_dt.Rows.RemoveAt(DGLEC.SelectedIndex);
-
+            
             btn_Registration_Click(null, null);
         }
 
@@ -448,7 +446,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             if (DGLEC.SelectedIndex != -1)
             {
                 DataTable FEE_dt = FEE_DS.Tables["FEE_dt"];
-                DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
+            DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
                 try
                 {
                     FEE_dt.Clear();
@@ -459,7 +457,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
                 }
 
                 string s = LECTURE_dt.Rows[DGLEC.SelectedIndex].ItemArray[0].ToString();
-                if (s != "")
+            if (s != "")
                     s = " where LECTURENAME='" + s + "'";
                 Adpt4 = new OracleDataAdapter("SELECT FOODEXPENSES+RENTALFEE+TEXTBOOK+TALK+CONJECTUREWORDCARD+STICKER+POSTCARD+PICTURECARD_A+PICTURECARD_B+CARDPOCKET+PROTECT+OTHERMATERIALS+ETC SUM FROM FEE" + s, strOraConn);
                 oraBuilder4 = new OracleCommandBuilder(Adpt4);

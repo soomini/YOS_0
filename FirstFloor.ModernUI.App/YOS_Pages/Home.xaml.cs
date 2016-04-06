@@ -119,18 +119,5 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 
 			wnd.Show();
 		}
-
-		private void BtnSend_Click(object sender, RoutedEventArgs e)
-		{
-		}
-
-		private void BtnSave_Click(object sender, RoutedEventArgs e)
-		{
-		}
-
-		private void BtnInit_Click(object sender, RoutedEventArgs e)
-		{
-			
-		}
 	}
 }
