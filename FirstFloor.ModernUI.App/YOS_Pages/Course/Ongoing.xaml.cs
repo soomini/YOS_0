@@ -43,7 +43,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
         private Dictionary<string, string> PL = new Dictionary<string, string>();
         private Dictionary<string, string> PLR = new Dictionary<string, string>();
         private Dictionary<string, int> PLlinker = new Dictionary<string, int>();
+
+        string selectname = "";
+
         public object SelectedItem { get; set; }
+
 
         public Ongoing()
         {
@@ -369,8 +373,11 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
 
             DataTable LECTURE_dt = LECTURE_DS.Tables["LECTURE_dt"];
 
+            selectname = LECTURE_dt.Rows[DGLEC.SelectedIndex].ItemArray[0].ToString();
+
             Expense_Calculation();
 
+            btn_OpenCostResistrationWindow.IsEnabled = true;
             //tbN1.Text = PL[LECTURE_dt.Rows[DGLEC.SelectedIndex].ItemArray[5].ToString()];
             //tbN2.Text = PL[LECTURE_dt.Rows[DGLEC.SelectedIndex].ItemArray[7].ToString()];
         }
@@ -398,6 +405,7 @@ namespace FirstFloor.ModernUI.App.YOS_Pages.Course
             DGLEC.SelectedIndex = -1;
             StackPannel_control_init();
             btn_Registration.Content = "등록";
+            btn_OpenCostResistrationWindow.IsEnabled = false;
         }
 
         private void tbN1_TextChanged(object sender, TextChangedEventArgs e)
