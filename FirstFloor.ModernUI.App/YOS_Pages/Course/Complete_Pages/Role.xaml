@@ -70,7 +70,7 @@
             <ScrollViewer d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin">
                 <DataGrid x:Name="DG_CO_R" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
                     <DataGrid.Columns>
-                        <mui:DataGridTextColumn Header="담당자" Binding="{Binding p.NAME}" />
+                        <mui:DataGridTextColumn Header="담당자" Binding="{Binding NAME}" />
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />
                         <mui:DataGridTextColumn Header="종료일" Binding="{Binding CLOSEDATE, StringFormat=yyyy-MM-dd}" />
                         <mui:DataGridTextColumn Header="총 강좌료" Binding="{Binding LECTUREFEE, StringFormat=\{0:N0\}}" >
@@ -94,6 +94,13 @@
             <GridSplitter x:Name="gridSplitter1" Background="#FFEAEAEA" Height="2" Grid.Row="1" />
             <StackPanel Orientation="Vertical" Margin="0,0,0,-60" Grid.RowSpan="2" d:LayoutOverrides="Width, Height" Grid.Row="2">
                 <TextBlock Text="요약" Style="{StaticResource Heading2}"/>
+                <DataGrid x:Name="DG_CO_RD" ItemsSource="{Binding}" AutoGenerateColumns="False" d:LayoutOverrides="Width" >
+                    <DataGrid.Columns>
+                        <mui:DataGridTextColumn Header="이름" Binding="{Binding NAME}"/>
+                        <mui:DataGridTextColumn Header="건수"  Binding="{Binding RC}"/>
+                        <mui:DataGridTextColumn Header="역할 합계 금액" Binding="{Binding RS, StringFormat=\{0:N0\}}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </Grid>
     </Grid>

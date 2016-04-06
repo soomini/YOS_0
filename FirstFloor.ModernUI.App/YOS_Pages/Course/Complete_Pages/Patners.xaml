@@ -67,7 +67,7 @@
             </Grid.RowDefinitions>
             <ScrollViewer d:LayoutOverrides="Height" Margin="0,0,10,0">
                 <DataGrid x:Name="DG_CO_P" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
-                    
+
                     <!--#region 데이터그리드 공통 스타일-->
                     <!--<DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridCell}">
@@ -75,7 +75,7 @@
                         </Style>
                     </DataGrid.Resources>-->
                     <!--#endregion-->
-                    
+
                     <DataGrid.Columns>
                         <mui:DataGridTextColumn Header="파트너명" Binding="{Binding NAME}" />
                         <mui:DataGridTextColumn Header="강좌명" Binding="{Binding LECTURENAME}" />

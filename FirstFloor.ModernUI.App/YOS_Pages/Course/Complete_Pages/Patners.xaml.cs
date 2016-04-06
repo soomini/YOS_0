@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿
+using System.Windows.Controls;
 using System;
 
 using Oracle.ManagedDataAccess.Client;
@@ -8,7 +9,7 @@ using System.Data;
 namespace FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages
 {
 
-	public partial class Patners: UserControl
+    public partial class Patners : UserControl
     {
         private string strOraConn = "Data Source=ORCL;User Id=bitsoft;Password=bitsoft_";
         //private string strOraConn = "Data Source=MYORACLE;User Id=dba_soo;Password=tnalsl";
