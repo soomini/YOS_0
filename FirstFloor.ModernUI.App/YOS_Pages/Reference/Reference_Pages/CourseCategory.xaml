@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel MinWidth="200">
             <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
-            <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
+                <TextBlock Text="강좌 분류" Style="{StaticResource Heading2}" Margin="0,0,0,15" />
                 <Button x:Name="btn_Insert" Content="추가/수정" Margin="250,0,0,20" Click="btn_Insert_Click"/>
                 <!--<Button x:Name="btn_Cancel" Content="취소" Margin="20,0,0,20" Click="btn_Cancel_Click"/>-->
                 <Button x:Name="btn_Delete" Content="삭제" Margin="20,0,0,20" Click="btn_Delete_Click"/>
