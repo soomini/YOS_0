@@ -83,10 +83,12 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			wnd.Width = 550;
 			wnd.Height = 350;
 			wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-			
-			
+
+			YOS_Content.Notice wndNotice = new YOS_Content.Notice();
+			wnd.Content = wndNotice;
 
 			wnd.Show();
+
 		}
 	}
 }
