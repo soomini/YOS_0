@@ -13,20 +13,20 @@
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
             <Button Command="ApplicationCommands.Open">
-                <Image Source="/WpfTutorialSamples;component/Images/folder.png" Width="16" Height="16" />
+                <Image Source="folder.png" Width="16" Height="16" />
             </Button>
             <Button Command="ApplicationCommands.Save">
-                <Image Source="/WpfTutorialSamples;component/Images/disk.png" Width="16" Height="16" />
+                <Image Source="disk.png" Width="16" Height="16" />
             </Button>
             <Separator />
             <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
-                <Image Source="/WpfTutorialSamples;component/Images/text_bold.png" Width="16" Height="16" />
+                <Image Source="text_bold.png" Width="16" Height="16" />
             </ToggleButton>
             <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
-                <Image Source="/WpfTutorialSamples;component/Images/text_italic.png" Width="16" Height="16" />
+                <Image Source="text_italic.png" Width="16" Height="16" />
             </ToggleButton>
             <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
-                <Image Source="/WpfTutorialSamples;component/Images/text_underline.png" Width="16" Height="16" />
+                <Image Source="text_underline.png" Width="16" Height="16" />
             </ToggleButton>
             <Separator />
             <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
