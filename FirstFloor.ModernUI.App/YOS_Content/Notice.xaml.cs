@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace FirstFloor.ModernUI.App.YOS_Content
@@ -67,6 +68,23 @@ namespace FirstFloor.ModernUI.App.YOS_Content
 		private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
+		}
+
+		private void btnPost_Click(object sender, RoutedEventArgs e)
+		{
+			using (FileStream fStream = File.Open("documentData.xaml", FileMode.Create))
+			{
+				XamlWriter.Save(this.rtbEditor.Document, fStream);
+			}
+		}
+
+		private void btnImport_Click(object sender, RoutedEventArgs e)
+		{
+			using (FileStream fStream = File.Open("documentData.xaml", FileMode.Open))
+			{
+				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
+				this.rtbEditor.Document = doc;
+			}
 		}
 	}
 }
