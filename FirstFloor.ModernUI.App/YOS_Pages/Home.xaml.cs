@@ -4,6 +4,7 @@ using FirstFloor.ModernUI.App.YOS_Pages.Course.Complete_Pages;
 using FirstFloor.ModernUI.Windows.Controls;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -27,7 +29,13 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
         public Home()
         {
             InitializeComponent();
-        }
+
+			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Open))
+			{
+				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
+				this.lblNotice.Content = doc;
+			}
+		}
 
 		private void SetCustomMenu(object sender, RoutedEventArgs e)
 		{
@@ -89,6 +97,15 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 
 			wnd.Show();
 
+		}
+
+		private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+		{
+			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Open))
+			{
+				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
+				this.lblNotice.Content = doc;
+			}
 		}
 	}
 }
