@@ -82,15 +82,9 @@ namespace FirstFloor.ModernUI.App.YOS_Content
 			{
 				XamlWriter.Save(this.rtbEditor.Document, fStream);
 			}
+
+			
 		}
 
-		private void btnImport_Click(object sender, RoutedEventArgs e)
-		{
-			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Open))
-			{
-				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
-				this.rtbEditor.Document = doc;
-			}
-		}
 	}
 }

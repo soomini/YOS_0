@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" MouseEnter="UserControl_MouseEnter">
     <DockPanel d:LayoutOverrides="Width, Height" >
         <TextBlock x:Name="tblTitle" Text="YStory Office Solution" Style="{StaticResource Heading1}" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20"/>
         <StackPanel Margin="0,0,0,8" Orientation="Horizontal" d:LayoutOverrides="Height" DockPanel.Dock="Top">

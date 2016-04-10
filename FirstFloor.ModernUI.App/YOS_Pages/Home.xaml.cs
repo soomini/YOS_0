@@ -98,5 +98,14 @@ namespace FirstFloor.ModernUI.App.YOS_Pages
 			wnd.Show();
 
 		}
+
+		private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+		{
+			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Open))
+			{
+				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
+				this.lblNotice.Content = doc;
+			}
+		}
 	}
 }
