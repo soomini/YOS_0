@@ -22,8 +22,6 @@
 
             <Button x:Name="btnPost" Content="게시" Click="btnPost_Click" >
             </Button>
-            <Button x:Name="btnImport" Content="불러오기" Click="btnImport_Click">
-            </Button>
             <Separator />
             <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
                 <Image Source="text_bold.png" Width="16" Height="16" />

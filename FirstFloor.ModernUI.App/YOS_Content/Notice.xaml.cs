@@ -18,6 +18,12 @@ namespace FirstFloor.ModernUI.App.YOS_Content
 			InitializeComponent();
 			cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
 			cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
+
+			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Open))
+			{
+				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
+				this.rtbEditor.Document = doc;
+			}
 		}
 
 		private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -72,7 +78,7 @@ namespace FirstFloor.ModernUI.App.YOS_Content
 
 		private void btnPost_Click(object sender, RoutedEventArgs e)
 		{
-			using (FileStream fStream = File.Open("documentData.xaml", FileMode.Create))
+			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Create))
 			{
 				XamlWriter.Save(this.rtbEditor.Document, fStream);
 			}
@@ -80,7 +86,7 @@ namespace FirstFloor.ModernUI.App.YOS_Content
 
 		private void btnImport_Click(object sender, RoutedEventArgs e)
 		{
-			using (FileStream fStream = File.Open("documentData.xaml", FileMode.Open))
+			using (FileStream fStream = File.Open("NoticeData.xaml", FileMode.Open))
 			{
 				FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
 				this.rtbEditor.Document = doc;

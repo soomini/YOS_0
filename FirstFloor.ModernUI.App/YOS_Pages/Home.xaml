@@ -171,8 +171,7 @@
         </StackPanel>
 
         <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" DockPanel.Dock="Bottom" Margin="0,15,15,0">
-            
-            <mui:ModernFrame x:Name="Frame" Width="480" Height="200" Padding="4" />
+            <Label x:Name="lblNotice" Content=""/>
         </Border>
 
     </DockPanel>
