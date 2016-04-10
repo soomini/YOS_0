@@ -15,8 +15,12 @@
             <Button Command="ApplicationCommands.Open">
                 <Image Source="folder.png" Width="16" Height="16" />
             </Button>
+            
             <Button Command="ApplicationCommands.Save">
                 <Image Source="disk.png" Width="16" Height="16" />
+            </Button>
+
+            <Button x:Name="btnPost" Content="게시" Click="btnPost_Click" >
             </Button>
             <Separator />
             <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
@@ -34,19 +38,4 @@
         </ToolBar>
         <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" />
     </DockPanel>
-    <!--<StackPanel x:Name="stpNotice" Margin="0,0,0,5">
-        <RichTextBox x:Name="richTextBox" Height="200">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-        <StackPanel Orientation="Horizontal" d:LayoutOverrides="Width" Margin="0,15,0,0" HorizontalAlignment="Right">
-            <Button x:Name="btnSave" Content="저장" />
-            <Button x:Name="btnInit" Content="초기화" />
-            <Button x:Name="btnSend" Content="게시" />
-        </StackPanel>
-
-    </StackPanel>-->
 </UserControl>
